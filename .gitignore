@@ -1,0 +1,29 @@
+# --- Python Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# --- Data (CRITICAL: Do not upload raw datasets) ---
+data/raw/*
+data/processed/*
+!data/processed/.gitkeep
+datasets/*.csv
+datasets/*.json
+*.zip
+*.tar.gz
+
+# --- Model Weights ---
+models/
+*.pt
+*.pth
+*.bin
+*.gguf
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db

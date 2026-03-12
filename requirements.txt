@@ -1,0 +1,31 @@
+# --- Core AI & LLM ---
+groq
+pydantic>=2.0.0
+python-dotenv
+transformers
+accelerate
+bitsandbytes
+
+# --- Data & Scraping ---
+kaggle
+pandas
+numpy
+requests
+beautifulsoup4
+scikit-learn
+
+# --- Training (Lightweight Fine-tuning) ---
+# Note: Unsloth is highly recommended for Llama 3.1 on limited compute
+# pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+
+# --- Evaluation & Visualization ---
+matplotlib
+seaborn
+tqdm
+
+# --- Hugging Face Core ---
+transformers>=4.43.0  # Crucial: Llama 3.1 support starts here
+huggingface_hub       # For logging in and downloading weights
+datasets              # To load any public VC data from HF
+peft                  # For "Parameter-Efficient Fine-Tuning" (LoRA)
+trl                   # For the "Post-Training" (SFT and DPO)

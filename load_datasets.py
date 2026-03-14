@@ -9,7 +9,11 @@ DATASETS = {
     "yc_latest": "amanpriyanshu/latest-yc-data",
     "startup_failures": "dagloxkankwanda/startup-failures",
     "failure_prediction": "sakharebharat/startup-failure-prediction-dataset",
-    "global_startups": "adarsh2626/startup-dataset"
+    "global_startups": "adarsh2626/startup-dataset",
+    # For Market Analyst Agent
+    "crunchbase_investments": "arindam235/startup-investments-crunchbase",
+    "startup_failures": "dagloxkankwanda/startup-failures"
+
 }
 
 RAW_DATA_DIR = "data/raw"

@@ -11,7 +11,7 @@ except ImportError:
     load_dotenv = None
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).parents[2]
 DATA_DIR = PROJECT_ROOT / "data" / "market_analyst"
 OUTPUT_DIR = DATA_DIR / "outputs"
 CRUNCHBASE_PATH = DATA_DIR / "crunchbase_clean.json"

@@ -52,6 +52,7 @@ client = (
 )
 
 # Each sector has a list of niches so the pitches don't all feel like the same startup.
+# All these niches I generated using Claude which includes exisiting and fictional ideas
 SECTOR_NICHES = {
     "fintech": [
         "payroll automation for restaurant groups",

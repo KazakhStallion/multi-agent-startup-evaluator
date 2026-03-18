@@ -254,25 +254,6 @@ def safe_int(val, default=0):
     except (ValueError, TypeError):
         return default
 
-def score_rubric(result, math_accuracy_pct):
-    score = 0
-    
-    # ... previous rubric checks ...
-
-    # --- THE SAFE FIX ---
-    risk_level = str(result.get("capital_risk", {}).get("level", "")).lower()
-    
-    # Safely convert to int using our helper
-    total_rating = safe_int(result.get("total_rating", 0)) 
-    
-    # Now this comparison is guaranteed not to crash
-    if not (risk_level == "high" and total_rating > 8):
-        score += 1
-
-    if result.get("final_decision") in ["Go", "No-Go", "Pivot"]:
-        score += 1
-
-    return score
 
 # Score result based on number of inputs, math, etc.
 def score_rubric(result, math_accuracy_pct):

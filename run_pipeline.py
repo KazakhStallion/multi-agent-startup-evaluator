@@ -17,6 +17,5 @@ if __name__ == "__main__":
             data = json.load(f)
         print(data)
         print(finance_agent.analyze(data))
-    
     else:
         print(f"File not found: {test_file}")

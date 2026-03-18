@@ -1,0 +1,20 @@
+file,startup_name,sector,verdict,confidence,risks_count,plan_items,questions_count,summary_words,missing_required_keys,has_schema_issues,verdict_valid,confidence_valid,rubric_score
+borderwise_technical_analysis.json,BorderWise,fintech,Pivot,Medium,3,3,3,78,0,False,True,True,5
+buildspend_technical_analysis.json,BuildSpend,fintech,Pivot,Low,3,3,3,68,0,False,True,True,5
+complisure_technical_analysis.json,CompliSure,fintech,Go,Medium,3,3,3,64,0,False,True,True,5
+dentipay_technical_analysis.json,Dentipay,fintech,Go,Medium,3,3,3,78,0,False,True,True,5
+flexbank_technical_analysis.json,FlexBank,fintech,Pivot,Medium,3,3,3,50,0,False,True,True,5
+flowfund_technical_analysis.json,FlowFund,fintech,Go,Medium,3,3,3,68,0,False,True,True,5
+haulcash_technical_analysis.json,HaulCash,fintech,Pivot,Medium,3,3,3,69,0,False,True,True,5
+hedgeloop_technical_analysis.json,HedgeLoop,fintech,Pivot,Medium,3,3,3,78,0,False,True,True,5
+ledgerlaw_technical_analysis.json,LedgerLaw,fintech,Pivot,Medium,3,3,3,66,0,False,True,True,5
+marketguard_ai_technical_analysis.json,MarketGuard AI,fintech,Pivot,Low,3,3,3,65,0,False,True,True,5
+paybridge_technical_analysis.json,PayBridge,fintech,Pivot,Medium,3,3,3,85,0,False,True,True,5
+recoup_technical_analysis.json,Recoup,fintech,Go,Medium,3,3,3,62,0,False,True,True,5
+rewardloop_technical_analysis.json,RewardLoop,fintech,Pivot,Low,3,3,3,72,0,False,True,True,5
+scorebridge_technical_analysis.json,ScoreBridge,fintech,Pivot,Medium,3,3,3,74,0,False,True,True,5
+shiftnest_technical_analysis.json,ShiftNest,fintech,Pivot,Low,3,3,3,63,0,False,True,True,5
+shiftpay_technical_analysis.json,ShiftPay,fintech,Pivot,Low,3,3,3,65,0,False,True,True,5
+taxchain_technical_analysis.json,TaxChain,fintech,Pivot,Low,3,3,3,65,0,False,True,True,5
+therapay_technical_analysis.json,TheraPay,fintech,Pivot,Medium,3,3,3,61,0,False,True,True,5
+truckcredit_technical_analysis.json,TruckCredit,fintech,Pivot,Low,3,3,3,76,0,False,True,True,5

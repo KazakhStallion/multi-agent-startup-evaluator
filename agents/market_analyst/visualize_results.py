@@ -20,9 +20,9 @@ def load_data():
     metrics_path = EVAL_DIR / "metrics.json"
 
     if not csv_path.exists():
-        raise FileNotFoundError(f"summary.csv not found")
+        raise FileNotFoundError(f"run evaluate_models.py first, summary.csv not found at {csv_path}")
     if not metrics_path.exists():
-        raise FileNotFoundError(f"metrics.json not found")
+        raise FileNotFoundError(f"metrics.json not found at {metrics_path}")
 
     df = pd.read_csv(csv_path)
     with metrics_path.open("r", encoding="utf-8") as f:
@@ -44,7 +44,7 @@ def plot_score_comparison(df):
     ax.legend(title="Model")
     ax.set_ylim(0, 5.5)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "score_comparison", dpi=150)
+    fig.savefig(FIGURES_DIR / "score_comparison.png", dpi=150)
     plt.close(fig)
     print("saved score_comparison")
 
@@ -65,7 +65,7 @@ def plot_avg_score_per_model(df):
     ax.set_ylabel("Mean Score (1-5)")
     ax.set_ylim(0, 5.5)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "avg_score_per_model", dpi=150)
+    fig.savefig(FIGURES_DIR / "avg_score_per_model.png", dpi=150)
     plt.close(fig)
     print("saved avg_score_per_model")
 
@@ -79,7 +79,7 @@ def plot_score_heatmap(df):
     ax.set_xlabel("Model")
     ax.set_ylabel("Pitch")
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "score_heatmap", dpi=150)
+    fig.savefig(FIGURES_DIR / "score_heatmap.png", dpi=150)
     plt.close(fig)
     print("saved score_heatmap")
 
@@ -102,7 +102,7 @@ def plot_evidence_grounding(metrics):
     for bar, rate in zip(bars, rates):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5, f"{rate:.1f}%", ha="center", fontsize=10)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "evidence_grounding", dpi=150)
+    fig.savefig(FIGURES_DIR / "evidence_grounding.png", dpi=150)
     plt.close(fig)
     print("saved evidence_grounding")
 
@@ -125,7 +125,7 @@ def plot_rubric_scores(metrics):
     for bar, s in zip(bars, scores):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.05, f"{s:.2f}", ha="center", fontsize=10)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "rubric_scores", dpi=150)
+    fig.savefig(FIGURES_DIR / "rubric_scores.png", dpi=150)
     plt.close(fig)
     print("saved rubric_scores")
 
@@ -142,7 +142,7 @@ def plot_risk_flagging(df):
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
     ax.legend(title="Model")
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "risk_flagging", dpi=150)
+    fig.savefig(FIGURES_DIR / "risk_flagging.png", dpi=150)
     plt.close(fig)
     print("saved risk_flagging")
 
@@ -190,7 +190,7 @@ def plot_model_agreement(metrics):
     ax.set_xlabel("Model")
     ax.set_ylabel("Model")
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "model_agreement", dpi=150)
+    fig.savefig(FIGURES_DIR / "model_agreement.png", dpi=150)
     plt.close(fig)
     print("saved model_agreement")
 
@@ -204,7 +204,7 @@ def plot_score_consistency(df):
     ax.set_ylabel("Score (1-5)")
     ax.set_ylim(0, 6)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "score_consistency", dpi=150)
+    fig.savefig(FIGURES_DIR / "score_consistency.png", dpi=150)
     plt.close(fig)
     print("saved score_consistency")
 

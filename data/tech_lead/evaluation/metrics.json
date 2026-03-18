@@ -1,0 +1,17 @@
+{
+  "total_files": 19,
+  "schema_pass_rate": 100.0,
+  "verdict_valid_rate": 100.0,
+  "confidence_valid_rate": 100.0,
+  "verdict_distribution": {
+    "Pivot": 15,
+    "Go": 4
+  },
+  "confidence_distribution": {
+    "Medium": 12,
+    "Low": 7
+  },
+  "avg_risks_flagged": 3,
+  "avg_summary_words": 68.79,
+  "avg_rubric_score": 5
+}

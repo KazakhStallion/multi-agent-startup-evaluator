@@ -2,15 +2,15 @@ import pandas as pd
 import json
 import os
 
-from agents.finance_agent import FinanceAgent
+from agents.finance.finance_agent import FinanceAgent
 
 
 if __name__ == "__main__":
     # Choose a specific file to test
     file_name = "startup_3.json"
-    test_file = os.path.join("data", "processed", file_name)
+    test_file = os.path.join("data", "finance", "processed", file_name)
 
-    finance_agent = FinanceAgent(use_local=False, model="openai/gpt-oss-120b")
+    finance_agent = FinanceAgent(model="gpt-oss-120b")
     
     if os.path.exists(test_file):
         with open(test_file, 'r', encoding='utf-8') as f:

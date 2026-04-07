@@ -64,7 +64,7 @@ def hydrate_startup(file_path):
 
 if __name__ == "__main__":
     # Choose a specific file to test
-    test_file = os.path.join("data", "processed", "everyme.json")
+    test_file = os.path.join("data", "finance", "processed", "everyme.json")
     
     if os.path.exists(test_file):
         print(f"--- Before Hydration: {test_file} ---")

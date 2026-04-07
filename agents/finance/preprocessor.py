@@ -3,8 +3,8 @@ import json
 import os
 import random
 
-PROCESSED_DIR = "data/processed"
-RAW_DIR = "data/raw"
+PROCESSED_DIR = "data/finance/processed"
+RAW_DIR = "data/finance/raw"
 
 def clean_value(val):
     if pd.isna(val): return "Unknown"

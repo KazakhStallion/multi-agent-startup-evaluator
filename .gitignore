@@ -6,8 +6,20 @@ __pycache__/
 .env
 
 # --- Data (CRITICAL: Do not upload raw datasets) ---
-data/raw/*
-data/processed/*
+data/finance/raw/*
+data/finance/processed/*
+data/market_analyst/outputs/*
+data/market_analyst/synthetic_cases/*
+data/market_analyst/*.json
+data/tech_lead/outputs/*
+data/tech_lead/synthetic_cases/*
+data/tech_lead/*.json
+
+# Do upload evaluation metrics and figures
+!data/finance/evaluation/
+!data/market_analyst/evaluation/
+!data/tech_lead/evaluation/
+
 !data/processed/.gitkeep
 datasets/*.csv
 datasets/*.json

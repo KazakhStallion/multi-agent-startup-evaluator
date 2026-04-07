@@ -1,17 +1,24 @@
 import os
 import json
-from groq import Groq
+# from groq import Groq
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+api_key = os.getenv("OPENAI_API_KEY")
+vt_client = (
+    OpenAI(
+        api_key=api_key,
+        base_url="https://llm-api.arc.vt.edu/api/v1/",
+    )
+    if api_key
+    else None
+)
 
 class FinanceAgent:
-    def __init__(self, use_local=False, model="llama-3.3-70b-versatile"):
-        self.use_local = use_local
-        if not self.use_local:
-            self.client = client
-            self.model = model
+    def __init__(self, client= vt_client,model="gpt-oss-120b"):
+        self.client = client
+        self.model = model
     
     def analyze(self, startup):
         try:
@@ -109,9 +116,49 @@ class FinanceAgent:
             4. Runway: Months of survival at zero growth.
             5. Unit Economics: LTV/CAC sustainability.
             6. 10x Goal: Revenue needed for 10x exit.
-            7. Intensity: Capital Intensity Rating.
+            7. Intensity: Capital Intensity Rating (Low/Med/High).
             8. Inquiry: One critical question for the founder.
-            """
+            9. Total Rating: 1-10
+            10. Final Decision: Go, No-Go, Pivot, with detailed reasoning
+
+
+            Return ONLY a valid JSON object with exactly these keys:
+            {{
+            "agent": "Finance",
+            "burn_efficiency": {{
+                "calculation": "string showing the math",
+                "result": number,
+                "reasoning": "string"
+            }},
+            "capital_risk": {{
+                "level": "low/medium/high",
+                "reasoning": "string"
+            }},
+            "burn_multiple": {{
+                "calculation": "string showing the math",
+                "result": number,
+                "reasoning": "string"
+            }},
+            "runway": {{
+                "calculation": "cash / monthly_burn",
+                "months": number,
+                "reasoning": "string"
+            }},
+            "ten_x_goal": {{
+                "target_revenue_usd": number,
+                "calculation": "string"
+            }},
+            "capital_intensity": {{
+                "rating": "low/medium/high",
+                "reasoning": "string"
+            }},
+            "founder_inquiry": "string",
+            "total_rating": 5,
+            "final_decision": {{
+                "decision": "Go/No-Go/Pivot",
+                "recommendation": "string"
+            }}
+            }}""".strip()
             # ### OUTPUT FORMAT:
             # Return ONLY a valid JSON object. 
             # """
@@ -128,15 +175,14 @@ class FinanceAgent:
                 startup_data=startup_data
                 )
 
-            print("\n--- DEBUG: PROMPT SENT TO GROQ ---")
-            print(final_prompt)
-            print("----------------------------------\n")
+            # print("\n--- DEBUG: PROMPT SENT TO GROQ ---")
+            # print(final_prompt)
+            # print("----------------------------------\n")
 
-            # Using the current Llama 3.3 70B model ID on Groq
             response = self.client.chat.completions.create(
                 model= self.model, 
                 messages=[{"role": "user", "content": final_prompt}],
-                # response_format={ "type": "json_object" } 
+                response_format={ "type": "json_object" } 
             )
 
             print("Using Model: ", self.model)

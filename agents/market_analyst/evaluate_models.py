@@ -7,6 +7,7 @@ Total is 108 API calls, takes a few minutes to finish.
 import csv
 import json
 import os
+import re
 import sys
 import time
 from itertools import combinations
@@ -188,7 +189,7 @@ TEST_PITCHES = [
     },
 ]
 
-  
+
 def build_prompt(name, sector, description, evidence):
     return f"""You are the Market Analyst agent in an AI investment committee.
 Evaluate the market opportunity for this startup using only the
@@ -202,6 +203,13 @@ Description: {description}
 
 MARKET EVIDENCE FROM REAL DATASETS:
 {evidence}
+
+Score the startup from 1 to 5 based strictly on what the evidence supports:
+  1 = very weak, no traction, major red flags from the failure patterns
+  2 = below average, idea-stage only, gaps that failure data confirms are risky
+  3 = average, some signals but not enough evidence to score higher
+  4 = strong, real traction and market size supported by the data
+  5 = exceptional, strong evidence across market size, traction, and low failure risk
 
 Return a JSON object with exactly these keys:
 {{
@@ -218,7 +226,7 @@ Return a JSON object with exactly these keys:
   "risks": [
     {{"description": "string", "severity": "high/medium/low", "evidence": "string"}}
   ],
-  "score": 3,
+  "score": <integer 1-5 based on the rubric above>,
   "recommendation": "string"
 }}""".strip()
 
@@ -244,35 +252,35 @@ def run_single(pitch, model_name, model_client):
 
 
 def is_evidence_cited(result):
-    # just check if there's a number in the evidence field
-    # if the model used our dataset it would have cited company counts or funding amounts
+    # look for 3+ digit numbers — company counts, funding amounts, that kind of thing
+    # a single digit like "0 examples" or "1 risk" shouldn't count as real grounding
     ms = result.get("market_sizing", {})
     evidence_text = ms.get("evidence", "") if isinstance(ms, dict) else ""
-    return any(c.isdigit() for c in str(evidence_text))
+    return bool(re.search(r'\b\d{3,}\b', str(evidence_text)))
 
 
 def score_rubric(result):
     # 5-point automatic quality check, one point each
-    score = 0
+    points = 0
     risks = result.get("risks", [])
 
     if len(risks) >= 2:
-        score += 1
+        points += 1
     if risks and all(str(r.get("evidence", "")).strip() for r in risks):
-        score += 1
+        points += 1
     if len(result.get("key_claims", [])) >= 2:
-        score += 1
+        points += 1
     raw_score = result.get("score", 0)
     if isinstance(raw_score, (int, float)) and 1 <= int(raw_score) <= 5:
-        score += 1
+        points += 1
     if len(str(result.get("recommendation", "")).split()) > 10:
-        score += 1
+        points += 1
 
-    return score
+    return points
 
 
 def extract_metrics(result, pitch, model, run_num):
-    risks = result.get("risks", [])
+    risks = [r for r in result.get("risks", []) if isinstance(r, dict)]
     return {
         "pitch_name": pitch["name"],
         "sector": pitch["sector"],

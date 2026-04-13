@@ -1,0 +1,27 @@
+{
+  "score_variance_per_model": {
+    "Kimi-K2.5": 0.0833,
+    "gpt-oss-120b": 0.1111,
+    "llama3.1:8b": 0.0833
+  },
+  "inter_model_agreement": {
+    "Kimi-K2.5 vs gpt-oss-120b": 100.0,
+    "Kimi-K2.5 vs llama3.1:8b": 100.0,
+    "gpt-oss-120b vs llama3.1:8b": 100.0
+  },
+  "evidence_grounding_rate": {
+    "Kimi-K2.5": 100.0,
+    "gpt-oss-120b": 100.0,
+    "llama3.1:8b": 55.6
+  },
+  "avg_risks_flagged": {
+    "Kimi-K2.5": 3.14,
+    "gpt-oss-120b": 3.03,
+    "llama3.1:8b": 2.0
+  },
+  "avg_rubric_score": {
+    "Kimi-K2.5": 4.97,
+    "gpt-oss-120b": 5.0,
+    "llama3.1:8b": 4.42
+  }
+}

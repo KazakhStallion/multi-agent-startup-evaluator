@@ -16,7 +16,7 @@ DATASETS = {
 
 }
 
-RAW_DATA_DIR = "data/raw"
+RAW_DATA_DIR = "data/finance/raw"
 
 def download_and_extract(api, dataset_path, dest_folder):
     """Downloads a Kaggle dataset and extracts its contents."""

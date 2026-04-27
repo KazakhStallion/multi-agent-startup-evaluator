@@ -11,12 +11,11 @@ DATASETS = {
     "failure_prediction": "sakharebharat/startup-failure-prediction-dataset",
     "global_startups": "adarsh2626/startup-dataset",
     # For Market Analyst Agent
-    "crunchbase_investments": "arindam235/startup-investments-crunchbase",
-    "startup_failures": "dagloxkankwanda/startup-failures"
+    "crunchbase_investments": "arindam235/startup-investments-crunchbase"
 
 }
 
-RAW_DATA_DIR = "data/finance/raw"
+RAW_DATA_DIR = "data/raw"
 
 def download_and_extract(api, dataset_path, dest_folder):
     """Downloads a Kaggle dataset and extracts its contents."""

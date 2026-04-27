@@ -1,0 +1,34 @@
+{
+  "agent": "Legal",
+  "regulatory_burden": "Medium",
+  "applicable_regulations": [
+    "PCI DSS (payment card data security)",
+    "GDPR (if EU shoppers or EU\u2011based merchants)",
+    "CCPA / CPRA (California consumer privacy)",
+    "FTC Act / Consumer Protection Laws (false advertising, refund policies)",
+    "State Marketplace Facilitator Sales\u2011Tax Laws (CA, NY, MA, etc.)",
+    "SOC 2 Type II (optional but expected by enterprise partners)",
+    "E\u2011commerce specific consumer right statutes (e.g., EU Consumer Rights Directive)",
+    "Trademark & Copyright law (product images, brand names)",
+    "Open\u2011source license compliance (Apache 2.0, MIT, GPL, etc.)"
+  ],
+  "ip_defensibility": "The platform likely relies on standard web technologies and a mix of proprietary code and open\u2011source libraries. IP defensibility is moderate: core marketplace logic, data\u2011matching algorithms, and UI/UX can be protected via copyright and trade\u2011secret policies, but there are few patent\u2011able breakthroughs. The real risk is open\u2011source license contamination and potential infringement of merchants\u2019 branding or product images. A thorough open\u2011source bill\u2011of\u2011materials audit and clear merchant licensing agreements are needed to shore up defensibility.",
+  "critical_red_flags": [
+    "1. Failure to collect and remit sales tax as a marketplace facilitator could trigger state\u2011level penalties and legal action.",
+    "2. Non\u2011compliance with PCI DSS or data\u2011privacy statutes (GDPR/CCPA) could lead to costly fines and class\u2011action lawsuits after a breach.",
+    "3. Product liability exposure for unsafe or counterfeit goods listed by third\u2011party boutiques.",
+    "4. Inadequate IP clearance for product images, descriptions, and brand marks, exposing the company to infringement claims.",
+    "5. Insufficient merchant onboarding/KYC enabling fraud, money\u2011laundering, or the sale of prohibited items."
+  ],
+  "mitigation_requirements": [
+    "Implement a PCI DSS\u2011validated payment flow or partner with a compliant payment processor.",
+    "Adopt a comprehensive privacy program: GDPR/CCPA notices, data\u2011subject request workflow, data\u2011encryption at rest and in transit, and a Data Protection Impact Assessment (DPIA).",
+    "Deploy a Marketplace Facilitator tax engine and register in all states where thresholds are met; retain documentation of tax collection and remittance.",
+    "Create robust merchant terms of service with warranties that listings do not infringe IP, are authentic, and comply with safety standards; include a rapid takedown process.",
+    "Establish a product\u2011listing vetting process, AI\u2011assisted fraud detection, and a clear \u201cred\u2011flag\u201d escalation path for prohibited items.",
+    "Conduct an open\u2011source license audit; maintain an SPDX\u2011style SBOM and enforce contribution guidelines to avoid GPL\u2011infected code.",
+    "Obtain appropriate commercial general liability (CGL) and cyber\u2011risk insurance covering third\u2011party seller claims."
+  ],
+  "score": 6,
+  "legal_verdict": "Hold"
+}

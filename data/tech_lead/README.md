@@ -22,13 +22,19 @@ Run a local heuristic smoke batch:
 python agents/tech_lead/run_batch.py --use-local --limit 5
 ```
 
-Run against LLM (requires `GROQ_API_KEY`):
+Run against LLM:
 
 ```bash
 python agents/tech_lead/run_batch.py --limit 20
 ```
 
+By default the tech lead agent now follows the same client setup as the other agents:
+- prefers `OPENAI_API_KEY` with the ARC VT base URL and auto-selects `gpt-oss-120b`
+- falls back to `GROQ_API_KEY` if available and auto-selects `llama-3.3-70b-versatile`
+- falls back to the local heuristic if no LLM client is configured
+
 Useful flags:
 - `--start 20` starts at record index 20.
 - `--limit 50` processes only 50 cases.
 - `--dataset path/to/file.json` overrides the input dataset file.
+- `--model auto` uses the provider-specific default model.

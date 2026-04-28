@@ -208,7 +208,9 @@ def run_single(pitch, model_name, model_client):
 
 
 def verify_finance_math(result, pitch):
-    """Checks if the LLM's runway calculation matches the actual data."""
+    """Checks if core finance math lines up with provided inputs.
+    Returns True / False / None where None means not applicable.
+    """
     accuracy = {}
     fin = pitch['finances']
     # Ground Truth Calculations
@@ -230,16 +232,26 @@ def verify_finance_math(result, pitch):
 
     # 1. Runway Check (Cash / Burn)
     try:
-        expected_runway = true_cash / true_burn if true_burn > 0 else 0
-        llm_runway = get_num(result.get("runway", {}).get("months", 0))
-        accuracy['runway'] = abs(llm_runway - expected_runway) < (expected_runway * 0.05)
-    except: accuracy['runway'] = False
+        if true_burn <= 0:
+            accuracy["runway"] = None
+        else:
+            expected_runway = true_cash / true_burn
+            llm_runway = get_num(result.get("runway", {}).get("months", 0))
+            tolerance = max(expected_runway * 0.05, 0.25)
+            accuracy["runway"] = abs(llm_runway - expected_runway) <= tolerance
+    except Exception:
+        accuracy["runway"] = False
 
     try:
-        expected_eff = true_burn / true_monthly_rev if true_monthly_rev > 0 else 0
-        llm_eff = get_num(result.get("burn_efficiency", {}).get("result", 0))
-        accuracy['burn_efficiency'] = abs(llm_eff - expected_eff) < (expected_eff * 0.1)
-    except: accuracy['burn_efficiency'] = False
+        if true_monthly_rev <= 0:
+            accuracy["burn_efficiency"] = None
+        else:
+            expected_eff = true_burn / true_monthly_rev
+            llm_eff = get_num(result.get("burn_efficiency", {}).get("result", 0))
+            tolerance = max(expected_eff * 0.1, 0.1)
+            accuracy["burn_efficiency"] = abs(llm_eff - expected_eff) <= tolerance
+    except Exception:
+        accuracy["burn_efficiency"] = False
 
     return accuracy
 
@@ -309,10 +321,17 @@ def safe_nested_get(data, top_key, sub_key, default=""):
 
 def extract_metrics(result, pitch, model, run_num):
     math_checks = verify_finance_math(result, pitch)
-    
-    num_checks = len(math_checks)
-    num_correct = sum(1 for v in math_checks.values() if v is True)
+    check_values = list(math_checks.values())
+    applicable = [v for v in check_values if v is not None]
+    num_checks = len(check_values)
+    num_correct = sum(1 for v in check_values if v is True)
+    num_applicable = len(applicable)
+    num_correct_applicable = sum(1 for v in applicable if v is True)
+
     math_accuracy_pct = (num_correct / num_checks) * 100 if num_checks > 0 else 0
+    math_accuracy_excl_na = (
+        (num_correct_applicable / num_applicable) * 100 if num_applicable > 0 else None
+    )
 
     return {
         "pitch_name": pitch["name"],
@@ -321,6 +340,9 @@ def extract_metrics(result, pitch, model, run_num):
         "run": run_num,
         "score": safe_int(result.get("total_rating", 0)),
         "math_accuracy": math_accuracy_pct,
+        "math_accuracy_excluding_na": math_accuracy_excl_na if math_accuracy_excl_na is not None else "",
+        "math_checks_total": num_checks,
+        "math_checks_applicable": num_applicable,
         # SAFE FIXES USING THE HELPER
         "risk_level": safe_nested_get(result, "capital_risk", "level", "No Level Returned"),
         "capital_intensity": safe_nested_get(result, "capital_intensity", "rating", "No Rating Returned"),
@@ -381,6 +403,15 @@ def compute_ml_metrics(rows):
         for model in models
     }
 
+    avg_math_accuracy_excluding_na = {}
+    for model in models:
+        vals = [
+            r["math_accuracy_excluding_na"]
+            for r in rows
+            if r["model"] == model and r["math_accuracy_excluding_na"] != ""
+        ]
+        avg_math_accuracy_excluding_na[model] = round(sum(vals) / len(vals), 2) if vals else None
+
     avg_rubric_score = {
         model: round(
             sum(r["rubric_score"] for r in rows if r["model"] == model) /
@@ -394,6 +425,7 @@ def compute_ml_metrics(rows):
         "score_variance_per_model": score_variance_per_model,
         "inter_model_agreement": inter_model_agreement,
         "avg_math_accuracy": avg_math_accuracy,
+        "avg_math_accuracy_excluding_na": avg_math_accuracy_excluding_na,
         "avg_rubric_score": avg_rubric_score,
     }
 

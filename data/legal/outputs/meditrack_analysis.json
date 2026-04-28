@@ -1,0 +1,36 @@
+{
+  "agent": "Legal",
+  "regulatory_burden": "Medium",
+  "applicable_regulations": [
+    "HIPAA (Privacy, Security, and Breach Notification Rules)",
+    "HITECH Act",
+    "45 CFR Part 164",
+    "State health privacy laws (e.g., California CCPA/CPRA, New York SHIELD Act)",
+    "GDPR (if handling EU resident data)",
+    "SOC 2 Type II (Security, Availability, Confidentiality)",
+    "HITRUST CSF",
+    "Potential FDA regulations only if the platform is classified as a medical device software (SaMD)"
+  ],
+  "ip_defensibility": "Moderate. The platform likely relies on standard software stacks and possibly proprietary workflows. IP protection hinges on obtaining clear copyrights on code, filing patents on any novel data\u2011handling algorithms, and rigorous open\u2011source license compliance. Without a strong patent portfolio or trade\u2011secret strategy, defensibility is limited.",
+  "critical_red_flags": [
+    "No evidence of a formal HIPAA compliance program (risk assessments, policies, training, incident\u2011response plan).",
+    "Missing or incomplete Business Associate Agreements (BAAs) with any third\u2011party cloud or analytics providers.",
+    "Potential use of open\u2011source components without proper attribution or license compatibility (e.g., GPL code in a commercial product).",
+    "Unclear data\u2011storage locations \u2013 could trigger cross\u2011border data\u2011transfer issues under GDPR and state\u2011level restrictions.",
+    "Lack of documented encryption-at\u2011rest/in\u2011transit and access\u2011control mechanisms meeting HITRUST/SOC\u202f2 standards.",
+    "No stated strategy for handling patient consent and data\u2011subject rights requests (opt\u2011out, deletion, data portability).",
+    "If the product is marketed as a clinical decision\u2011support tool, absence of FDA/21\u202fCFR\u202fPart\u202f820 QMS could expose the firm to enforcement actions."
+  ],
+  "mitigation_requirements": [
+    "Develop and implement a HIPAA compliance framework: risk analysis, policies, staff training, breach\u2011notification procedures, and regular audits.",
+    "Execute BAAs with all cloud, analytics, and third\u2011party service providers handling PHI.",
+    "Conduct a comprehensive open\u2011source audit; replace or re\u2011license any incompatible components; maintain an SPDX\u2011style bill of materials.",
+    "Document data residency and ensure any cross\u2011border transfers are covered by Standard Contractual Clauses or Privacy Shield equivalents.",
+    "Adopt industry\u2011standard security controls: AES\u2011256 encryption at rest, TLS\u202f1.2+ in transit, multi\u2011factor authentication, role\u2011based access, and logging for audit trails.",
+    "Implement a consent\u2011management module that captures, stores, and enforces patient preferences and GDPR/CCPA data\u2011subject rights.",
+    "If the product will be used for clinical decision\u2011support, perform a regulatory classification assessment and, if needed, register with the FDA and implement a Quality Management System.",
+    "Secure IP: file provisional patents on any novel data\u2011processing methods, maintain strict access controls to source code, and draft robust copyright notices."
+  ],
+  "score": 5,
+  "legal_verdict": "Hold"
+}

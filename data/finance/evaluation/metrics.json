@@ -1,0 +1,22 @@
+{
+  "score_variance_per_model": {
+    "Kimi-K2.5": 0.25,
+    "gpt-oss-120b": 0.9444,
+    "llama3.1:8b-instruct-q3_K_M": 2.8611
+  },
+  "inter_model_agreement": {
+    "Kimi-K2.5 vs gpt-oss-120b": 50.0,
+    "Kimi-K2.5 vs llama3.1:8b-instruct-q3_K_M": 41.7,
+    "gpt-oss-120b vs llama3.1:8b-instruct-q3_K_M": 83.3
+  },
+  "avg_math_accuracy": {
+    "Kimi-K2.5": 36.11,
+    "gpt-oss-120b": 70.83,
+    "llama3.1:8b-instruct-q3_K_M": 61.43
+  },
+  "avg_rubric_score": {
+    "Kimi-K2.5": 4.11,
+    "gpt-oss-120b": 5.0,
+    "llama3.1:8b-instruct-q3_K_M": 4.46
+  }
+}

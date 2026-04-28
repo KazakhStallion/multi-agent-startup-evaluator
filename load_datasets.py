@@ -11,8 +11,7 @@ DATASETS = {
     "failure_prediction": "sakharebharat/startup-failure-prediction-dataset",
     "global_startups": "adarsh2626/startup-dataset",
     # For Market Analyst Agent
-    "crunchbase_investments": "arindam235/startup-investments-crunchbase",
-    "startup_failures": "dagloxkankwanda/startup-failures"
+    "crunchbase_investments": "arindam235/startup-investments-crunchbase"
 
 }
 

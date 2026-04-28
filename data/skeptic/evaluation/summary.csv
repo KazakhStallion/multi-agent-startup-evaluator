@@ -1,0 +1,2 @@
+file,startup_name,sector,verdict,confidence,risks_count,questions_count,next_steps_count,summary_words,missing_required_keys,has_schema_issues,verdict_valid,confidence_valid,rubric_score
+shiftpay_skeptic_analysis.json,ShiftPay,fintech,Pivot,Medium,3,3,3,15,0,False,True,True,5

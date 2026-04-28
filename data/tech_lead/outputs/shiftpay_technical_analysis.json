@@ -17,6 +17,7 @@
       "reasoning": "Estimated from product keywords and likely software leverage."
     },
     "security_and_reliability_risks": [
+      "LLM analysis failed: Connection error.",
       "No explicit architecture diagram or deployment model provided.",
       "No explicit security posture, compliance scope, or threat model provided.",
       "No reliability SLO/SLA, incident, or observability plan described."

@@ -1,0 +1,58 @@
+{
+  "agent": "Skeptic",
+  "startup_identity": {
+    "name": "ShiftPay",
+    "sector": "fintech",
+    "location": "Unknown"
+  },
+  "analysis": {
+    "agent": "Skeptic",
+    "role": "skeptical",
+    "summary": "Local skeptical heuristic focused on missing evidence, execution gaps, and reasons the startup could fail.",
+    "decision": "Pivot",
+    "confidence": "Medium",
+    "scorecard": {
+      "execution_feasibility": {
+        "assessment": "Medium",
+        "reasoning": "The pitch may describe a plausible product, but execution claims are still only lightly substantiated."
+      },
+      "scalability": {
+        "assessment": "High",
+        "reasoning": "Scalability depends on whether the delivery model is truly software-leveraged or still services-heavy."
+      },
+      "evidence_quality": {
+        "assessment": "Medium",
+        "reasoning": "Most founder pitches leave critical diligence questions unresolved unless traction is explicit."
+      },
+      "risk_level": {
+        "assessment": "High",
+        "reasoning": "Missing details should be treated as risk until the startup proves otherwise."
+      }
+    },
+    "key_strengths": [
+      "The pitch is at least aimed at a specific customer and workflow.",
+      "There is a concrete enough product story to interrogate rather than pure vision.",
+      "If the traction claims are real, there may be the beginnings of a wedge."
+    ],
+    "key_risks": [
+      "The startup may be overstating product readiness relative to the evidence shown.",
+      "There may be hidden distribution, compliance, or onboarding friction not visible in the pitch.",
+      "The team has not yet proven that customer enthusiasm translates into repeatable execution."
+    ],
+    "key_questions": [
+      "What hard evidence proves customers will keep paying after the pilot or founder-led sales motion ends?",
+      "Which assumption in the pitch would most quickly break the business if it is wrong?",
+      "What has the team already learned that contradicts the original plan?"
+    ],
+    "next_steps": [
+      "Pressure-test the traction claims with customer references and retention evidence.",
+      "Ask for the ugliest known operational bottleneck rather than the happiest-case roadmap.",
+      "Require a short list of falsifiable milestones before treating this as a go decision."
+    ],
+    "debate": {
+      "core_thesis": "The pitch should be treated as unproven until the team demonstrates real evidence instead of relying on narrative quality.",
+      "challenge_for_committee": "Which assumption are we most tempted to gloss over because the story sounds coherent?",
+      "what_would_change_my_mind": "Verified traction, referenceable customers, and evidence that the ugliest risks are already understood by the founders."
+    }
+  }
+}

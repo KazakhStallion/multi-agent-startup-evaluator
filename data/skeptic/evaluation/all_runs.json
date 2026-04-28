@@ -1,0 +1,18 @@
+[
+  {
+    "file": "shiftpay_skeptic_analysis.json",
+    "startup_name": "ShiftPay",
+    "sector": "fintech",
+    "verdict": "Pivot",
+    "confidence": "Medium",
+    "risks_count": 3,
+    "questions_count": 3,
+    "next_steps_count": 3,
+    "summary_words": 15,
+    "missing_required_keys": 0,
+    "has_schema_issues": false,
+    "verdict_valid": true,
+    "confidence_valid": true,
+    "rubric_score": 5
+  }
+]

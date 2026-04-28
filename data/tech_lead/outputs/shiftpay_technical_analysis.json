@@ -6,31 +6,32 @@
     "location": "Unknown"
   },
   "analysis": {
-    "technical_summary": "ShiftPay is a cloud-native payroll platform for multi-unit restaurant groups, automating tasks such as tip reporting and compliance filing. Given its cloud-native nature, it likely leverages modern cloud services for scalability and reliability. However, without more information on its business model, team size, and location, a full technical assessment is challenging. The platform's focus on automation and compliance suggests a potential for high technical complexity.",
+    "agent": "Technical Lead",
+    "technical_summary": "Local heuristic analysis based on sector, product description, and any runway data provided.",
     "architecture_feasibility": {
       "assessment": "Medium",
-      "reasoning": "The feasibility of ShiftPay's architecture is moderate due to the lack of detailed information about its technology stack, infrastructure, and integration with existing restaurant management systems."
+      "reasoning": "Estimated from sector complexity and available description only."
     },
     "scalability_outlook": {
-      "assessment": "Medium",
-      "reasoning": "As a cloud-native platform, ShiftPay is likely designed to scale with the growth of its customer base. However, without knowing the specifics of its architecture and technology choices, it's difficult to assess its scalability fully."
+      "assessment": "High",
+      "reasoning": "Estimated from product keywords and likely software leverage."
     },
     "security_and_reliability_risks": [
-      "Data privacy and compliance risks due to handling sensitive payroll information",
-      "Integration risks with various restaurant management systems",
-      "Dependence on cloud service reliability and security"
+      "No explicit architecture diagram or deployment model provided.",
+      "No explicit security posture, compliance scope, or threat model provided.",
+      "No reliability SLO/SLA, incident, or observability plan described."
     ],
     "build_plan_90_days": [
-      "Define and document the technical architecture and roadmap",
-      "Develop a minimum viable product (MVP) for core payroll automation features",
-      "Establish a robust testing and quality assurance process"
+      "Define system architecture and non-functional requirements.",
+      "Ship MVP with telemetry, authentication, and CI/CD guardrails.",
+      "Run load and security tests, then prioritize remediation backlog."
     ],
     "tech_due_diligence_questions": [
-      "What is the current technology stack and infrastructure of ShiftPay?",
-      "How does ShiftPay ensure data security and compliance with payroll regulations?",
-      "What are the plans for integrating with different restaurant management systems?"
+      "What does your reference architecture and data flow look like?",
+      "How will you handle security, privacy, and compliance from day one?",
+      "What are your scalability bottlenecks and mitigation plan?"
     ],
-    "technical_verdict": "Pivot",
+    "technical_verdict": "Go",
     "confidence": "Low"
   }
 }

@@ -52,7 +52,10 @@ def run_batch(dataset_path: Path, start: int, limit: int | None, use_local: bool
 
     print(f"Loaded {len(all_cases)} cases from {dataset_path}")
     print(f"Processing {len(selected)} case(s) starting at index {start}")
-    print(f"Mode: {'local-heuristic' if use_local else 'llm'}")
+    if use_local:
+        print("Mode: local-heuristic")
+    else:
+        print(f"Mode: llm ({agent.provider}, model={agent.model})")
 
     for idx, startup in enumerate(selected, start=start):
         name = startup.get("identity", {}).get("name", f"case_{idx}")
@@ -97,8 +100,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=str,
-        default="llama-3.3-70b-versatile",
-        help="Model name when running with LLM mode",
+        default="auto",
+        help="Model name when running with LLM mode (default: provider-specific auto selection)",
     )
     return parser.parse_args()
 

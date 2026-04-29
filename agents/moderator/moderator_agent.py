@@ -33,22 +33,31 @@ DEFAULT_RESULT = {
     "top_risks": ["The startup still has unresolved execution and evidence gaps."],
     "required_follow_ups": ["Collect the missing diligence inputs before investing."],
     "agent_positions": [],
+    "debate_round": {
+        "round": 1,
+        "rebuttals": [],
+        "key_shifts": [],
+    },
 }
 
 
-def _build_prompt(startup: dict, agent_outputs: list[dict]) -> str:
+def _build_prompt(startup: dict, agent_outputs: list[dict], debate_round: dict) -> str:
     startup_text = startup_to_text(startup)
     outputs_text = json.dumps(agent_outputs, indent=2)
+    debate_text = json.dumps(debate_round, indent=2)
     return f"""
 You are the Moderator agent in an AI investment committee.
 Your job is to synthesize the current committee debate into a final investment decision.
-Use only the startup data and the agent outputs below.
+Use only the startup data, the initial agent outputs, and the round-1 rebuttal context below.
 
 STARTUP DATA:
 {startup_text}
 
 AGENT OUTPUTS:
 {outputs_text}
+
+ROUND-1 REBUTTALS:
+{debate_text}
 
 Return ONLY valid JSON with exactly these keys:
 {{
@@ -86,6 +95,43 @@ Return ONLY valid JSON with exactly these keys:
 """.strip()
 
 
+def _build_rebuttal_prompt(startup: dict, agent_outputs: list[dict]) -> str:
+    startup_text = startup_to_text(startup)
+    outputs_text = json.dumps(agent_outputs, indent=2)
+    return f"""
+You are facilitating round 1 rebuttals in a startup investment committee.
+Use the startup data and committee outputs to produce rebuttals.
+
+STARTUP DATA:
+{startup_text}
+
+AGENT OUTPUTS:
+{outputs_text}
+
+Return ONLY valid JSON with this exact shape:
+{{
+  "round": 1,
+  "rebuttals": [
+    {{
+      "agent": "Market Analyst",
+      "responds_to": ["Finance"],
+      "stance": "Maintain/Harden/Soften",
+      "rebuttal": "1-2 sentence rebuttal grounded in this agent's concerns.",
+      "new_decision": "Go/Pivot/No-Go"
+    }}
+  ],
+  "key_shifts": [
+    "short note on any position shift after rebuttals"
+  ]
+}}
+
+Rules:
+- Include one rebuttal per input agent.
+- The rebuttal should engage at least one opposing view.
+- new_decision must be one of Go/Pivot/No-Go.
+""".strip()
+
+
 def _normalize_positions(value) -> list[dict]:
     if not isinstance(value, list):
         return []
@@ -112,7 +158,66 @@ def _normalize_positions(value) -> list[dict]:
     return positions
 
 
-def _validate_result(result: dict, committee_size: int, default_positions: list[dict]) -> dict:
+def _normalize_rebuttals(value, default_agents: list[dict]) -> list[dict]:
+    by_agent = {}
+    if isinstance(value, list):
+        for item in value:
+            if not isinstance(item, dict):
+                continue
+            agent = str(item.get("agent", "")).strip()
+            if not agent:
+                continue
+            raw_decision = str(item.get("new_decision", "Pivot")).strip()
+            new_decision = raw_decision if raw_decision in VALID_VERDICTS else "Pivot"
+            raw_stance = str(item.get("stance", "Maintain")).strip().title()
+            stance = raw_stance if raw_stance in {"Maintain", "Harden", "Soften"} else "Maintain"
+            responds_to = normalize_list(item.get("responds_to"), ["Committee"])
+            rebuttal = str(item.get("rebuttal", "No rebuttal provided.")).strip() or "No rebuttal provided."
+            by_agent[agent] = {
+                "agent": agent,
+                "responds_to": responds_to,
+                "stance": stance,
+                "rebuttal": rebuttal,
+                "new_decision": new_decision,
+            }
+
+    normalized = []
+    for item in default_agents:
+        agent = item["agent"]
+        if agent in by_agent:
+            normalized.append(by_agent[agent])
+            continue
+        normalized.append(
+            {
+                "agent": agent,
+                "responds_to": ["Committee"],
+                "stance": "Maintain",
+                "rebuttal": "Keeps prior stance pending stronger cross-functional evidence.",
+                "new_decision": item["decision"],
+            }
+        )
+    return normalized
+
+
+def _validate_debate_round(debate_round: dict, default_agents: list[dict]) -> dict:
+    base = {"round": 1, "rebuttals": [], "key_shifts": []}
+    if isinstance(debate_round, dict):
+        base.update(debate_round)
+    base["round"] = 1
+    base["rebuttals"] = _normalize_rebuttals(base.get("rebuttals"), default_agents)
+    base["key_shifts"] = normalize_list(
+        base.get("key_shifts"),
+        ["No major position shifts in round 1 rebuttals."],
+    )
+    return base
+
+
+def _validate_result(
+    result: dict,
+    committee_size: int,
+    default_positions: list[dict],
+    debate_round: dict,
+) -> dict:
     validated = json.loads(json.dumps(DEFAULT_RESULT))
     if isinstance(result, dict):
         validated.update(result)
@@ -153,6 +258,7 @@ def _validate_result(result: dict, committee_size: int, default_positions: list[
 
     positions = _normalize_positions(validated.get("agent_positions"))
     validated["agent_positions"] = positions or default_positions
+    validated["debate_round"] = _validate_debate_round(debate_round, validated["agent_positions"])
 
     return validated
 
@@ -166,27 +272,36 @@ class ModeratorAgent:
     def synthesize(self, startup: dict, agent_outputs: list[dict]) -> dict:
         normalized_startup = normalize_startup(startup)
         normalized_outputs = self._normalize_agent_outputs(agent_outputs)
+        default_positions = self._default_positions(normalized_outputs)
+        debate_round = self._run_debate_round(normalized_startup, normalized_outputs)
 
         if self.use_local:
-            return self._local_synthesis(normalized_outputs)
+            return self._local_synthesis(normalized_outputs, debate_round=debate_round)
 
         if self.client is None:
             return self._local_synthesis(
                 normalized_outputs,
+                debate_round=debate_round,
                 extra_risk="No LLM client configured. Falling back to local moderator heuristic.",
             )
 
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[{"role": "user", "content": _build_prompt(normalized_startup, normalized_outputs)}],
+                messages=[
+                    {
+                        "role": "user",
+                        "content": _build_prompt(normalized_startup, normalized_outputs, debate_round),
+                    }
+                ],
                 response_format={"type": "json_object"},
             )
             parsed = json.loads(response.choices[0].message.content)
-            return _validate_result(parsed, len(normalized_outputs), self._default_positions(normalized_outputs))
+            return _validate_result(parsed, len(normalized_outputs), default_positions, debate_round)
         except Exception as exc:
             return self._local_synthesis(
                 normalized_outputs,
+                debate_round=debate_round,
                 extra_risk=f"LLM synthesis failed: {exc}",
             )
 
@@ -252,7 +367,73 @@ class ModeratorAgent:
             for item in agent_outputs
         ]
 
-    def _local_synthesis(self, agent_outputs: list[dict], extra_risk: str | None = None) -> dict:
+    def _run_debate_round(self, startup: dict, agent_outputs: list[dict]) -> dict:
+        defaults = self._default_positions(agent_outputs)
+
+        if self.use_local or self.client is None:
+            return self._local_debate_round(agent_outputs)
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": _build_rebuttal_prompt(startup, agent_outputs)}],
+                response_format={"type": "json_object"},
+            )
+            parsed = json.loads(response.choices[0].message.content)
+            return _validate_debate_round(parsed, defaults)
+        except Exception:
+            return self._local_debate_round(agent_outputs)
+
+    def _local_debate_round(self, agent_outputs: list[dict]) -> dict:
+        rebuttals = []
+        decision_map = {item["agent"]: item["decision"] for item in agent_outputs}
+        shifts = []
+
+        for item in agent_outputs:
+            agent = item["agent"]
+            decision = item["decision"]
+            challenge = item.get("debate", {}).get("challenge_for_committee", "Needs stronger cross-check.")
+            change_mind = item.get("debate", {}).get(
+                "what_would_change_my_mind", "Needs stronger validation."
+            )
+
+            opposing = [
+                other["agent"]
+                for other in agent_outputs
+                if other["agent"] != agent and other["decision"] != decision
+            ]
+            responds_to = opposing[:2] or ["Committee"]
+            rebuttal_text = f"{challenge} Counterpoint: {change_mind}"
+
+            new_decision = decision
+            stance = "Maintain"
+            if decision == "Go" and any(decision_map.get(x) == "No-Go" for x in responds_to):
+                new_decision = "Pivot"
+                stance = "Soften"
+            elif decision == "No-Go" and any(decision_map.get(x) == "Go" for x in responds_to):
+                stance = "Harden"
+
+            if new_decision != decision:
+                shifts.append(f"{agent} shifted from {decision} to {new_decision} after rebuttal.")
+
+            rebuttals.append(
+                {
+                    "agent": agent,
+                    "responds_to": responds_to,
+                    "stance": stance,
+                    "rebuttal": rebuttal_text,
+                    "new_decision": new_decision,
+                }
+            )
+
+        return _validate_debate_round({"round": 1, "rebuttals": rebuttals, "key_shifts": shifts}, self._default_positions(agent_outputs))
+
+    def _local_synthesis(
+        self,
+        agent_outputs: list[dict],
+        debate_round: dict,
+        extra_risk: str | None = None,
+    ) -> dict:
         positions = self._default_positions(agent_outputs)
         decisions = [DECISION_ORDER[item["decision"]] for item in positions] or [DECISION_ORDER["Pivot"]]
         average = sum(decisions) / len(decisions)
@@ -272,6 +453,9 @@ class ModeratorAgent:
             follow_up_pool.extend(item["next_steps"][:1])
         if extra_risk:
             risk_pool.insert(0, extra_risk)
+
+        if debate_round.get("key_shifts"):
+            follow_up_pool.append("Review shifts from rebuttal round before final investment memo.")
 
         summary = (
             "The moderator combined the current technical and skeptical views into a provisional committee decision."
@@ -300,7 +484,7 @@ class ModeratorAgent:
             "required_follow_ups": follow_up_pool[:5] or DEFAULT_RESULT["required_follow_ups"],
             "agent_positions": positions,
         }
-        return _validate_result(result, len(agent_outputs), positions)
+        return _validate_result(result, len(agent_outputs), positions, debate_round)
 
 
 def run_two_agent_committee(

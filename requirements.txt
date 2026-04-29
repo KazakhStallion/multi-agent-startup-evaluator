@@ -23,6 +23,7 @@ scikit-learn
 matplotlib
 seaborn
 tqdm
+streamlit
 
 # --- Hugging Face Core ---
 transformers>=4.43.0  # Crucial: Llama 3.1 support starts here

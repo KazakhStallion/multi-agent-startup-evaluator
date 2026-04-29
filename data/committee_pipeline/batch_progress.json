@@ -1,0 +1,28 @@
+{
+  "runs": [
+    {
+      "startup": "CareCoord",
+      "status": "ok",
+      "message": "decision=No-Go",
+      "elapsed_sec": 43.46,
+      "attempt": 1,
+      "timestamp": 1777489139
+    },
+    {
+      "startup": "WellnessAI",
+      "status": "ok",
+      "message": "decision=No-Go",
+      "elapsed_sec": 39.26,
+      "attempt": 1,
+      "timestamp": 1777489186
+    },
+    {
+      "startup": "ReturnKit",
+      "status": "ok",
+      "message": "decision=Pivot",
+      "elapsed_sec": 44.79,
+      "attempt": 1,
+      "timestamp": 1777489231
+    }
+  ]
+}

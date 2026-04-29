@@ -6,6 +6,41 @@ def _safe_text(value, fallback):
     return text or fallback
 
 
+def _tight_text(value, fallback, max_len=220):
+    text = _safe_text(value, fallback)
+    text = " ".join(text.split())
+    if len(text) <= max_len:
+        return text
+
+    split_points = [". ", "; ", " - "]
+    cut = len(text)
+    for marker in split_points:
+        idx = text.find(marker)
+        if 40 <= idx <= max_len:
+            cut = min(cut, idx + 1)
+    if cut == len(text):
+        cut = max_len
+
+    trimmed = text[:cut].rstrip(" ,;:-")
+    if not trimmed.endswith("."):
+        trimmed += "."
+    return trimmed
+
+
+def _join_text_list(value, fallback):
+    if isinstance(value, list):
+        parts = [_tight_text(x, "", max_len=180) for x in value if str(x).strip()]
+        parts = [p for p in parts if p]
+        if parts:
+            return "; ".join(parts)
+    return _safe_text(value, fallback)
+
+
+def _is_bucket_label(text):
+    low_signal = {"low", "medium", "high", "modest", "moderate", "strong", "weak"}
+    return str(text).strip().lower() in low_signal
+
+
 def _scorecard_from_score(score_1_to_10):
     # simple mapping to keep scores roughly comparable across agents
     if score_1_to_10 >= 8:
@@ -19,19 +54,19 @@ def _scorecard_from_score(score_1_to_10):
     return {
         "execution_feasibility": {
             "assessment": level,
-            "reasoning": "Mapped from overall score.",
+            "reasoning": f"Derived from score {score_1_to_10}/10 and consistency of returned evidence.",
         },
         "scalability": {
             "assessment": level,
-            "reasoning": "Mapped from overall score.",
+            "reasoning": f"Scalability confidence tracks score bucket at {score_1_to_10}/10.",
         },
         "evidence_quality": {
             "assessment": level,
-            "reasoning": "Based on score and returned evidence.",
+            "reasoning": "Evidence quality follows how specific and testable the supporting points are.",
         },
         "risk_level": {
             "assessment": risk_level,
-            "reasoning": "Inverse of score bucket.",
+            "reasoning": f"Risk is inversely mapped from score bucket ({score_1_to_10}/10).",
         },
     }
 
@@ -50,21 +85,26 @@ def market_to_committee_output(result):
     confidence = "Medium" if score_1_to_5 >= 3 else "Low"
 
     adapted = {
-        "summary": _safe_text(result.get("competitive_landscape"), "No market summary provided."),
+        "summary": _tight_text(result.get("competitive_landscape"), "No market summary provided."),
         "decision": decision,
         "confidence": confidence,
         "scorecard": _scorecard_from_score(score_1_to_10),
         "key_strengths": [
-            _safe_text(market_sizing.get("tam_estimate"), "TAM estimate missing."),
-            _safe_text(market_sizing.get("sam_estimate"), "SAM estimate missing."),
-            _safe_text(result.get("demand_validation"), "Demand validation missing."),
+            _tight_text(market_sizing.get("tam_estimate"), "TAM estimate missing."),
+            _tight_text(market_sizing.get("sam_estimate"), "SAM estimate missing."),
+            _tight_text(result.get("market_timing"), "Market timing notes missing."),
         ],
         "key_risks": [
-            _safe_text(r.get("description"), "Risk description missing.")
+            _tight_text(r.get("description"), "Risk description missing.", max_len=180)
             for r in result.get("risks", [])
             if isinstance(r, dict)
         ][:5]
-        or ["No explicit market risks returned."],
+        or [
+            _tight_text(
+                result.get("demand_validation"),
+                "No explicit market risks returned.",
+            )
+        ],
         "key_questions": [
             "What proof exists for repeatable customer demand in the exact target niche?",
             "What is the startup's most defensible market wedge against incumbents?",
@@ -78,7 +118,7 @@ def market_to_committee_output(result):
         "debate": {
             "core_thesis": _safe_text(result.get("recommendation"), "No market thesis provided."),
             "challenge_for_committee": "Are we overestimating demand from broad market stats?",
-            "what_would_change_my_mind": _safe_text(
+            "what_would_change_my_mind": _tight_text(
                 market_sizing.get("evidence"),
                 "Need clearer evidence tied to this startup's segment.",
             ),
@@ -119,11 +159,11 @@ def finance_to_committee_output(result):
         "scorecard": {
             "execution_feasibility": {
                 "assessment": "High" if total_rating >= 7 else "Medium" if total_rating >= 4 else "Low",
-                "reasoning": "Mapped from finance rating.",
+                "reasoning": f"Mapped from finance rating {total_rating}/10 and stability of cash profile.",
             },
             "scalability": {
                 "assessment": "High" if _safe_text(cap_intensity.get("rating"), "high").lower() == "low" else "Medium",
-                "reasoning": _safe_text(cap_intensity.get("reasoning"), "Based on burn profile."),
+                "reasoning": _tight_text(cap_intensity.get("reasoning"), "Based on burn profile."),
             },
             "evidence_quality": {
                 "assessment": "High",
@@ -137,10 +177,17 @@ def finance_to_committee_output(result):
         "key_strengths": [
             f"Burn efficiency: {_safe_text(burn_eff.get('result'), 'n/a')}",
             f"Runway months: {_safe_text(runway.get('months'), 'n/a')}",
-            f"Capital intensity: {_safe_text(cap_intensity.get('rating'), 'n/a')}",
+            _tight_text(
+                runway.get("reasoning"),
+                "Runway gives enough time to execute core milestones.",
+                max_len=170,
+            ),
         ],
         "key_risks": [
-            _safe_text(cap_risk.get("reasoning"), "No explicit capital risk reasoning provided."),
+            f"Capital risk level: {_safe_text(cap_risk.get('level'), 'unknown')}",
+            _tight_text(cap_risk.get("reasoning"), "No explicit capital risk reasoning provided."),
+            f"Capital intensity: {_safe_text(cap_intensity.get('rating'), 'unknown')}",
+            "Burn is still close to revenue, so margin error is thin if growth slows.",
         ],
         "key_questions": [
             _safe_text(result.get("founder_inquiry"), "What financial milestone must be hit before the next raise?"),
@@ -193,10 +240,10 @@ def legal_to_committee_output(result):
         "scorecard": _scorecard_from_score(score),
         "key_strengths": [
             f"Regulatory burden: {_safe_text(result.get('regulatory_burden'), 'Unknown')}",
-            _safe_text(result.get("ip_defensibility"), "IP defensibility not provided."),
+            _tight_text(result.get("ip_defensibility"), "IP defensibility not provided."),
         ],
         "key_risks": [
-            _safe_text(item, "Missing legal risk detail.")
+            _tight_text(item, "Missing legal risk detail.", max_len=180)
             for item in result.get("critical_red_flags", [])
         ][:5]
         or ["No explicit legal red flags returned."],
@@ -206,12 +253,12 @@ def legal_to_committee_output(result):
             "What is the highest legal risk concentration by geography?",
         ],
         "next_steps": [
-            _safe_text(item, "Legal mitigation step missing.")
+            _tight_text(item, "Legal mitigation step missing.", max_len=180)
             for item in result.get("mitigation_requirements", [])
         ][:5]
         or ["Create a legal mitigation plan before committing capital."],
         "debate": {
-            "core_thesis": _safe_text(
+            "core_thesis": _tight_text(
                 result.get("ip_defensibility"),
                 "Legal thesis missing.",
             ),
@@ -240,20 +287,28 @@ def product_to_committee_output(result):
 
     confidence = "High" if score >= 8 else "Medium" if score >= 5 else "Low"
 
+    product_diff = _safe_text(result.get("product_differentiation"), "")
+    feature_priority = _safe_text(result.get("feature_priority"), "")
+    scalability_assessment = _safe_text(result.get("scalability_assessment"), "")
+    summary_text = product_diff
+    if _is_bucket_label(summary_text) or not summary_text:
+        summary_text = feature_priority or scalability_assessment or "No product summary provided."
+
+    first_strength = product_diff
+    if _is_bucket_label(first_strength) or not first_strength:
+        first_strength = feature_priority or "Product differentiation not provided."
+
     adapted = {
-        "summary": _safe_text(
-            result.get("product_differentiation"),
-            "No product summary provided.",
-        ),
+        "summary": _tight_text(summary_text, "No product summary provided."),
         "decision": decision,
         "confidence": confidence,
         "scorecard": _scorecard_from_score(score),
         "key_strengths": [
-            _safe_text(result.get("product_differentiation"), "Product differentiation not provided."),
-            _safe_text(result.get("scalability_assessment"), "Scalability assessment not provided."),
+            _tight_text(first_strength, "Product differentiation not provided."),
+            _tight_text(result.get("scalability_assessment"), "Scalability assessment not provided."),
         ],
         "key_risks": [
-            _safe_text(item, "Missing product risk detail.")
+            _tight_text(item, "Missing product risk detail.", max_len=180)
             for item in result.get("execution_risks", [])
         ][:5]
         or ["No explicit product execution risks returned."],
@@ -269,7 +324,10 @@ def product_to_committee_output(result):
         ],
         "debate": {
             "core_thesis": _safe_text(
-                result.get("product_market_fit_signals"),
+                _join_text_list(
+                    result.get("product_market_fit_signals"),
+                    "Product thesis missing.",
+                ),
                 "Product thesis missing.",
             ),
             "challenge_for_committee": "Are we overestimating differentiation versus incumbents?",

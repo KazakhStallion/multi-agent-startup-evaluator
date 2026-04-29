@@ -1,0 +1,136 @@
+{
+  "num_runs": 6,
+  "avg_disagreement_rate": 0.4722,
+  "avg_vote_entropy": 1.2789,
+  "avg_vote_entropy_normalized": 0.8069,
+  "avg_majority_margin": 0.1945,
+  "final_decision_distribution": {
+    "Go": {
+      "count": 0,
+      "pct": 0.0
+    },
+    "Pivot": {
+      "count": 3,
+      "pct": 50.0
+    },
+    "No-Go": {
+      "count": 3,
+      "pct": 50.0
+    }
+  },
+  "confidence_distribution": {
+    "Low": {
+      "count": 0,
+      "pct": 0.0
+    },
+    "Medium": {
+      "count": 6,
+      "pct": 100.0
+    },
+    "High": {
+      "count": 0,
+      "pct": 0.0
+    }
+  },
+  "by_sector": {
+    "healthtech": {
+      "num_runs": 2,
+      "avg_disagreement_rate": 0.5,
+      "avg_vote_entropy_normalized": 0.7897,
+      "final_decision_distribution": {
+        "Go": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Pivot": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "No-Go": {
+          "count": 2,
+          "pct": 100.0
+        }
+      },
+      "confidence_distribution": {
+        "Low": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Medium": {
+          "count": 2,
+          "pct": 100.0
+        },
+        "High": {
+          "count": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "fintech": {
+      "num_runs": 3,
+      "avg_disagreement_rate": 0.4444,
+      "avg_vote_entropy_normalized": 0.7804,
+      "final_decision_distribution": {
+        "Go": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Pivot": {
+          "count": 2,
+          "pct": 66.67
+        },
+        "No-Go": {
+          "count": 1,
+          "pct": 33.33
+        }
+      },
+      "confidence_distribution": {
+        "Low": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Medium": {
+          "count": 3,
+          "pct": 100.0
+        },
+        "High": {
+          "count": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "ecommerce": {
+      "num_runs": 1,
+      "avg_disagreement_rate": 0.5,
+      "avg_vote_entropy_normalized": 0.9206,
+      "final_decision_distribution": {
+        "Go": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Pivot": {
+          "count": 1,
+          "pct": 100.0
+        },
+        "No-Go": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "confidence_distribution": {
+        "Low": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "Medium": {
+          "count": 1,
+          "pct": 100.0
+        },
+        "High": {
+          "count": 0,
+          "pct": 0.0
+        }
+      }
+    }
+  }
+}

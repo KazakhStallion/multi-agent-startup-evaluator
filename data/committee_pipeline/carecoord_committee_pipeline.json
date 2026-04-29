@@ -1,0 +1,661 @@
+{
+  "startup": {
+    "name": "CareCoord",
+    "sector": "healthtech",
+    "description": "Post-discharge care coordination platform for hospital systems.",
+    "business": {
+      "description": "Post-discharge care coordination platform for hospital systems."
+    },
+    "finances": {
+      "revenue": 75000,
+      "burn_rate": 60000,
+      "funding": 2500000,
+      "employee_count": 18
+    }
+  },
+  "native_outputs": {
+    "market_analyst": {
+      "agent": "Market Analyst",
+      "market_sizing": {
+        "tam_estimate": "Approximately $31\u202fbillion in cumulative healthtech investment (6,990 companies \u00d7 median funding $4.47M). This represents the overall funding pool from which a post\u2011discharge care\u2011coordination niche could draw.",
+        "sam_estimate": "Assuming the post\u2011discharge care\u2011coordination segment accounts for roughly 2\u20115% of total healthtech investment, the SAM would be $620\u202fM\u2013$1.5\u202fB. This is an assumption based on typical sub\u2011segment shares in healthtech.",
+        "evidence": "Crunchbase: 6,990 healthtech companies, median funding $4,469,794. Multiplying gives ~ $31\u202fB total invested. No direct data for care\u2011coordination, so the 2\u20115% figure is an assumption."
+      },
+      "competitive_landscape": "The healthtech sector is crowded: 6,264 operating firms and 343 acquisitions indicate active M&A. Top\u2011funded players (e.g., Sigmacare, Carestream) hold large capital resources, suggesting potential competitive pressure for any new coordination platform. Failure data show competition as the leading cause of exits (35 of 60 failures), underscoring a dense competitive environment.",
+      "demand_validation": "Evidence of robust investor activity (median $4.47M funding) suggests market interest in healthtech solutions broadly. However, there is no specific data confirming demand for post\u2011discharge coordination platforms; demand inference is therefore an assumption.",
+      "market_timing": "Healthtech funding has been occurring since 1902, with continued activity through 2014, indicating a mature but still evolving market. The absence of recent timing data means the assessment that now is a favorable window is an assumption, though the historical depth of investment implies enduring relevance.",
+      "key_claims": [
+        "The total healthtech funding pool is roughly $31\u202fB (evidence\u2011based).",
+        "Competition is a primary failure driver in healthtech (35 of 60 failures) (evidence\u2011based).",
+        "Post\u2011discharge care coordination could capture 2\u20115% of the healthtech funding pool (assumption)."
+      ],
+      "risks": [
+        {
+          "description": "High competitive pressure from well\u2011funded incumbents and new entrants.",
+          "severity": "high",
+          "evidence": "Failure evidence: competition cited in 35 of 60 failures."
+        },
+        {
+          "description": "Potential poor product\u2011market fit for post\u2011discharge coordination.",
+          "severity": "medium",
+          "evidence": "Failure evidence: poor market fit listed among top reasons (28 failures)."
+        },
+        {
+          "description": "Capital scarcity for niche healthtech sub\u2011segments.",
+          "severity": "medium",
+          "evidence": "Median funding $4.47M suggests modest capital per company; only a few firms receive multi\u2011billion dollar rounds."
+        }
+      ],
+      "score": 3,
+      "recommendation": "Proceed with cautious interest. The sector shows strong overall funding and clear competitive risks. Further primary market research to validate demand and differentiate from existing care\u2011coordination solutions is required before committing significant capital."
+    },
+    "finance": {
+      "agent": "Finance",
+      "burn_efficiency": {
+        "calculation": "Monthly Burn / Monthly Revenue = 60000.0 / 6250.0",
+        "result": 9.6,
+        "reasoning": "The company spends $60,000 each month while generating $6,250 in revenue, resulting in a burn efficiency of 9.6\u202f\u00d7 revenue."
+      },
+      "capital_risk": {
+        "level": "medium",
+        "reasoning": "The runway of ~41.7 months provides ample time to adjust, but the burn efficiency of 9.6\u00d7 indicates high cash consumption relative to revenue, creating moderate risk."
+      },
+      "burn_multiple": {
+        "calculation": "Annual Burn / Annual Revenue = (60000.0 * 12) / 75000.0 = 720000.0 / 75000.0",
+        "result": 9.6,
+        "reasoning": "Annual cash outflow is $720k versus $75k of annual revenue, giving a burn multiple of 9.6, consistent with the monthly ratio."
+      },
+      "runway": {
+        "calculation": "cash / monthly_burn",
+        "months": 41.67,
+        "reasoning": "With $2.5\u202fM in cash and a $60k monthly burn, the company can operate for about 41.7 months before needing additional capital."
+      },
+      "ten_x_goal": {
+        "target_revenue_usd": 750000.0,
+        "calculation": "Annual Revenue * 10 = 75000.0 * 10"
+      },
+      "capital_intensity": {
+        "rating": "high",
+        "reasoning": "Spending roughly ten times the revenue each month reflects a high capital\u2011intensive operating model."
+      },
+      "founder_inquiry": "Can you outline the path to profitability and how you plan to reduce the burn efficiency to a sustainable level?",
+      "total_rating": 5,
+      "final_decision": {
+        "decision": "Go",
+        "recommendation": "Proceed with investment but attach milestones to improve revenue growth and lower burn efficiency within the next 12\u201118 months."
+      }
+    },
+    "tech_lead": {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup offers a post\u2011discharge care coordination platform targeting hospital systems, but no technical architecture, stack, or execution details are provided. With $75k revenue, $60k monthly burn, $2.5M raised and an 18\u2011person team, the financial picture is modest yet the lack of concrete technical evidence makes it difficult to assess feasibility, scalability, or reliability.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on the technology stack, development methodology, compliance certifications (e.g., HIPAA), or integration strategy with hospital EMR/EHR systems; these are critical for health\u2011care platforms."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Absent details on cloud infrastructure, data handling, multi\u2011tenant design, or performance testing; scaling a care\u2011coordination platform across many hospital networks is non\u2011trivial."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All core technical data (architecture diagrams, APIs, security posture) are missing; traction, user metrics, and pilot results are unknown."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory compliance, data privacy, integration complexity, and market adoption risks cannot be evaluated without concrete technical documentation."
+        }
+      },
+      "key_strengths": [
+        "Secured $2.5M of funding, indicating investor confidence at an early stage",
+        "Existing revenue ($75k) suggests some market validation or pilot activity",
+        "Team size (18) is sufficient to build a modest SaaS platform"
+      ],
+      "key_risks": [
+        "Unclear compliance posture (HIPAA, GDPR, etc.) for handling patient health data",
+        "Integration complexity with heterogeneous hospital EHR/EMR systems",
+        "Lack of disclosed technical architecture makes reliability and scalability uncertain"
+      ],
+      "key_questions": [
+        "What is the underlying technology stack and hosting environment (e.g., cloud provider, containerization, data encryption)?",
+        "How does the platform achieve HIPAA compliance and what certifications are in place?",
+        "What integration methods (FHIR, HL7, APIs) are used to connect with hospital systems, and have they been validated in live environments?"
+      ],
+      "next_steps": [
+        "Request detailed technical documentation: architecture diagrams, data flow, security controls",
+        "Obtain evidence of compliance (HIPAA attestation, security audits) and integration case studies",
+        "Arrange a technical deep\u2011dive demo with the engineering team to assess code quality, scalability plans, and reliability testing"
+      ],
+      "debate": {
+        "core_thesis": "Without verifiable technical details, the platform's ability to safely and reliably operate within complex hospital ecosystems remains speculative, posing a high execution risk.",
+        "challenge_for_committee": "Can we justify further investment based solely on financials and team size when the core health\u2011tech compliance and integration challenges are undocumented?",
+        "what_would_change_my_mind": "Presentation of a detailed, HIPAA\u2011compliant architecture, proven integration pilots with at least two major hospital systems, and clear performance/scalability benchmarks would substantially improve confidence."
+      },
+      "technical_summary": "The startup offers a post\u2011discharge care coordination platform targeting hospital systems, but no technical architecture, stack, or execution details are provided. With $75k revenue, $60k monthly burn, $2.5M raised and an 18\u2011person team, the financial picture is modest yet the lack of concrete technical evidence makes it difficult to assess feasibility, scalability, or reliability.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on the technology stack, development methodology, compliance certifications (e.g., HIPAA), or integration strategy with hospital EMR/EHR systems; these are critical for health\u2011care platforms."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Absent details on cloud infrastructure, data handling, multi\u2011tenant design, or performance testing; scaling a care\u2011coordination platform across many hospital networks is non\u2011trivial."
+      },
+      "security_and_reliability_risks": [
+        "Unclear compliance posture (HIPAA, GDPR, etc.) for handling patient health data",
+        "Integration complexity with heterogeneous hospital EHR/EMR systems",
+        "Lack of disclosed technical architecture makes reliability and scalability uncertain"
+      ],
+      "build_plan_90_days": [
+        "Request detailed technical documentation: architecture diagrams, data flow, security controls",
+        "Obtain evidence of compliance (HIPAA attestation, security audits) and integration case studies",
+        "Arrange a technical deep\u2011dive demo with the engineering team to assess code quality, scalability plans, and reliability testing"
+      ],
+      "tech_due_diligence_questions": [
+        "What is the underlying technology stack and hosting environment (e.g., cloud provider, containerization, data encryption)?",
+        "How does the platform achieve HIPAA compliance and what certifications are in place?",
+        "What integration methods (FHIR, HL7, APIs) are used to connect with hospital systems, and have they been validated in live environments?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    "skeptic": {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup claims to offer a post\u2011discharge care coordination platform for hospitals, yet provides virtually no concrete data beyond $75,000 in revenue, $60,000 monthly burn, $2.5M raised, and an 18\u2011person team. Without clarity on product\u2011market fit, pricing, target customers, or traction, the risk profile is extremely high and the limited financial runway is concerning.",
+      "decision": "No-Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on the founding team\u2019s healthcare experience, technology stack, regulatory strategy, or go\u2011to\u2011market plan makes it impossible to gauge whether the team can deliver a complex care\u2011coordination solution."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability hinges on integration with hospital EHRs, payer contracts, and compliance with HIPAA and other regulations\u2014none of which are described, leaving scalability assumptions unsupported."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "The only quantitative signals are revenue, burn, and funding. Critical metrics such as customer count, usage statistics, retention, and clinical outcomes are missing, so evidence of product\u2011market fit is absent."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "High regulatory, adoption, and execution risk combined with an opaque financial picture (runway not provided) push the overall risk to a high level."
+        }
+      },
+      "key_strengths": [
+        "Secured $2.5M of funding, indicating some investor confidence",
+        "Already generating $75K of revenue, suggesting a minimal market presence",
+        "Team of 18 employees, which could provide sufficient headcount for early product development"
+      ],
+      "key_risks": [
+        "No disclosed target customer segment, pricing model, or go\u2011to\u2011market strategy",
+        "Lack of evidence on regulatory compliance and integration capabilities with hospital systems",
+        "Unclear financial runway; burn vs. revenue data insufficient to assess sustainability"
+      ],
+      "key_questions": [
+        "Who are the founding team members and what relevant healthcare or SaaS experience do they have?",
+        "What is the detailed business model (price per patient, subscription, revenue share) and how does it align with hospital budgeting cycles?",
+        "What traction metrics exist (number of hospital contracts, patient volume, clinical outcome improvements)?"
+      ],
+      "next_steps": [
+        "Request a detailed product demo and architecture overview to assess integration complexity",
+        "Obtain a breakdown of the team\u2019s expertise, especially in clinical operations and regulatory affairs",
+        "Ask for a financial model showing cash runway, projected revenue growth, and breakeven timeline"
+      ],
+      "debate": {
+        "core_thesis": "Without clear evidence of product\u2011market fit, regulatory readiness, and a sustainable financial plan, the venture is unlikely to succeed in the highly regulated hospital coordination space.",
+        "challenge_for_committee": "Can we justify investing further without verifiable data on hospital adoption, compliance pathways, and a realistic path to scale?",
+        "what_would_change_my_mind": "A concrete pipeline of hospital contracts, documented integration with major EHR platforms, and a detailed financial model showing at least 12\u2011month runway with a clear path to profitability would materially improve the assessment."
+      }
+    },
+    "legal": {
+      "agent": "Legal",
+      "regulatory_burden": "Medium",
+      "applicable_regulations": [
+        "HIPAA / HITECH",
+        "21st Century Cures Act (interoperability & information blocking rules)",
+        "CMS Medicare/Medicaid Transitional Care Regulations",
+        "State privacy statutes (e.g., California CCPA/CPRA, Virginia CDPA, New York SHIELD Act)",
+        "GDPR (if EU data are processed)",
+        "SOC 2 Type II / ISO 27001 (security assurance for hospital partners)",
+        "Potential FDA regulation if the platform provides clinical decision support or diagnostic recommendations"
+      ],
+      "ip_defensibility": "Moderate \u2013 the core software is likely protectable via copyright and trade\u2011secret regime, but patents in the care\u2011coordination space are dense. Strong IP ownership (founder & employee assignment agreements) and a freedom\u2011to\u2011operate search are essential. Open\u2011source components must be inventoried and licensed correctly to avoid inadvertent infringement.",
+      "critical_red_flags": [
+        "Absence of a Business Associate Agreement (BAA) with each hospital partner, exposing the company to HIPAA violations.",
+        "No documented HIPAA risk analysis, security policies, or incident\u2011response plan \u2013 a breach could trigger massive penalties and loss of trust.",
+        "Unclear whether the platform\u2019s clinical recommendations fall under FDA\u2019s Software as a Medical Device (SaMD) rules; mis\u2011classification could lead to enforcement actions.",
+        "Reliance on third\u2011party cloud services without validated data\u2011processing agreements that address PHI handling and cross\u2011border transfers.",
+        "Incomplete IP assignment from founders, contractors, and early employees; potential ownership disputes could stall acquisition or partnership deals.",
+        "Use of open\u2011source libraries with viral licenses (e.g., GPL) that could force the entire platform to be open sourced."
+      ],
+      "mitigation_requirements": [
+        "Execute BAAs with all hospital systems and certify that all cloud vendors sign Business Associate Agreements.",
+        "Conduct a full HIPAA compliance audit, implement a documented risk analysis, encryption at rest/in\u2011transit, access controls, and a breach\u2011notification/response plan.",
+        "Obtain a regulatory opinion on whether any functionality triggers FDA SaMD requirements; if so, develop a compliance roadmap (QSR, pre\u2011market submission, post\u2011market surveillance).",
+        "Adopt SOC 2 Type II controls and obtain a recent audit report to demonstrate security posture to partners.",
+        "Implement GDPR compliance measures (data subject rights, lawful basis, DPO) for any EU data subjects.",
+        "Perform a freedom\u2011to\u2011operate search and draft a patent strategy (filing of core workflow patents, defensive patent portfolio).",
+        "Collect and enforce IP assignment agreements and invention\u2011assignment clauses for all current and future contributors.",
+        "Create an open\u2011source compliance policy, maintain a software\u2011bill\u2011of\u2011materials (SBOM), and ensure any GPL\u2011licensed code is isolated or replaced."
+      ],
+      "score": 5,
+      "legal_verdict": "Hold"
+    },
+    "product_lead": {
+      "agent": "Product_Lead",
+      "product_differentiation": "Medium",
+      "feature_priority": "The startup should prioritize AI\u2011driven readmission risk stratification, automated care\u2011plan generation, and seamless EHR integration before building patient\u2011facing UI polish or extensive reporting dashboards.",
+      "scalability_assessment": "The core SaaS service can scale technically (cloud\u2011native, containerized micro\u2011services). However, growth is gated by the time\u2011intensive integration work required for each hospital system\u2019s EHR (Epic, Cerner, Meditech). If CareCoord builds a library of reusable connectors and a low\u2011code integration layer, onboarding can become semi\u2011automated, unlocking low\u2011friction expansion. Otherwise scaling will remain manual and costly.",
+      "ip_defensibility": "Potential moats include patents on proprietary risk\u2011scoring algorithms and workflow automation logic, a data moat from aggregated post\u2011discharge outcomes across multiple health systems, and network effects where hospitals gain value from shared best\u2011practice pathways. No strong hardware moat, so defensibility rests on data and algorithmic IP.",
+      "execution_risks": [
+        "Platform Dependency \u2013 heavy reliance on Epic/Cerner APIs could be blocked or change without notice.",
+        "Long sales cycle \u2013 hospital procurement and compliance can take 12\u201124 months.",
+        "Regulatory compliance \u2013 HIPAA and CMS reporting requirements increase operational overhead.",
+        "Competitive encroachment \u2013 large incumbents (e.g., Cardinal Health, Cerner) may roll out similar modules."
+      ],
+      "product_market_fit_signals": [
+        "CMS penalties for 30\u2011day readmissions have created financial incentives for hospitals to improve post\u2011discharge coordination.",
+        "Recent surge in value\u2011based care contracts and bundled payments pushes health systems toward coordinated care platforms.",
+        "Historical failures (Amino, Augmedix) highlight that solutions needing deep integration with existing hospital IT stacks often stumble without strong partner alliances."
+      ],
+      "score": 7,
+      "product_verdict": "Go"
+    }
+  },
+  "committee_inputs": [
+    {
+      "agent": "Market Analyst",
+      "role": "market",
+      "summary": "The healthtech sector is crowded: 6,264 operating firms and 343 acquisitions indicate active M&A.",
+      "decision": "Pivot",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 6/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 6/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (6/10)."
+        }
+      },
+      "key_strengths": [
+        "Approximately $31 billion in cumulative healthtech investment (6,990 companies \u00d7 median funding $4.47M). This represents the overall funding pool from which a post\u2011discharge care\u2011coordination niche could draw.",
+        "Assuming the post\u2011discharge care\u2011coordination segment accounts for roughly 2\u20115% of total healthtech investment, the SAM would be $620 M\u2013$1.5 B. This is an assumption based on typical sub\u2011segment shares in healthtech.",
+        "Healthtech funding has been occurring since 1902, with continued activity through 2014, indicating a mature but still evolving market."
+      ],
+      "key_risks": [
+        "High competitive pressure from well\u2011funded incumbents and new entrants.",
+        "Potential poor product\u2011market fit for post\u2011discharge coordination.",
+        "Capital scarcity for niche healthtech sub\u2011segments."
+      ],
+      "key_questions": [
+        "What proof exists for repeatable customer demand in the exact target niche?",
+        "What is the startup's most defensible market wedge against incumbents?",
+        "Which assumption in TAM/SAM has the highest downside if wrong?"
+      ],
+      "next_steps": [
+        "Get customer interviews and conversion proof in the target segment.",
+        "List the alternatives buyers are using right now.",
+        "Test pricing and retention assumptions with real prospects."
+      ],
+      "debate": {
+        "core_thesis": "Proceed with cautious interest. The sector shows strong overall funding and clear competitive risks. Further primary market research to validate demand and differentiate from existing care\u2011coordination solutions is required before committing significant capital.",
+        "challenge_for_committee": "Are we overestimating demand from broad market stats?",
+        "what_would_change_my_mind": "Crunchbase: 6,990 healthtech companies, median funding $4,469,794. Multiplying gives ~ $31 B total invested. No direct data for care\u2011coordination, so the 2\u20115% figure is an assumption."
+      }
+    },
+    {
+      "agent": "Finance",
+      "role": "finance",
+      "summary": "Proceed with investment but attach milestones to improve revenue growth and lower burn efficiency within the next 12\u201118 months.",
+      "decision": "Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Mapped from finance rating 5/10 and stability of cash profile."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Spending roughly ten times the revenue each month reflects a high capital\u2011intensive operating model."
+        },
+        "evidence_quality": {
+          "assessment": "High",
+          "reasoning": "Finance output has explicit calculations."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "The runway of ~41.7 months provides ample time to adjust, but the burn efficiency of 9.6\u00d7 indicates high cash consumption relative to revenue, creating moderate risk."
+        }
+      },
+      "key_strengths": [
+        "Burn efficiency: 9.6",
+        "Runway months: 41.67",
+        "With $2.5 M in cash and a $60k monthly burn, the company can operate for about 41.7 months before needing additional capital."
+      ],
+      "key_risks": [
+        "Capital risk level: medium",
+        "The runway of ~41.7 months provides ample time to adjust, but the burn efficiency of 9.6\u00d7 indicates high cash consumption relative to revenue, creating moderate risk.",
+        "Capital intensity: high",
+        "Burn is still close to revenue, so margin error is thin if growth slows."
+      ],
+      "key_questions": [
+        "Can you outline the path to profitability and how you plan to reduce the burn efficiency to a sustainable level?"
+      ],
+      "next_steps": [
+        "Track burn efficiency month to month.",
+        "Set runway guardrails and fundraise trigger points.",
+        "Validate unit economics with cohort data."
+      ],
+      "debate": {
+        "core_thesis": "Proceed with investment but attach milestones to improve revenue growth and lower burn efficiency within the next 12\u201118 months.",
+        "challenge_for_committee": "Is the current runway sufficient if growth slips below plan?",
+        "what_would_change_my_mind": "The runway of ~41.7 months provides ample time to adjust, but the burn efficiency of 9.6\u00d7 indicates high cash consumption relative to revenue, creating moderate risk."
+      }
+    },
+    {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup offers a post\u2011discharge care coordination platform targeting hospital systems, but no technical architecture, stack, or execution details are provided. With $75k revenue, $60k monthly burn, $2.5M raised and an 18\u2011person team, the financial picture is modest yet the lack of concrete technical evidence makes it difficult to assess feasibility, scalability, or reliability.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on the technology stack, development methodology, compliance certifications (e.g., HIPAA), or integration strategy with hospital EMR/EHR systems; these are critical for health\u2011care platforms."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Absent details on cloud infrastructure, data handling, multi\u2011tenant design, or performance testing; scaling a care\u2011coordination platform across many hospital networks is non\u2011trivial."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All core technical data (architecture diagrams, APIs, security posture) are missing; traction, user metrics, and pilot results are unknown."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory compliance, data privacy, integration complexity, and market adoption risks cannot be evaluated without concrete technical documentation."
+        }
+      },
+      "key_strengths": [
+        "Secured $2.5M of funding, indicating investor confidence at an early stage",
+        "Existing revenue ($75k) suggests some market validation or pilot activity",
+        "Team size (18) is sufficient to build a modest SaaS platform"
+      ],
+      "key_risks": [
+        "Unclear compliance posture (HIPAA, GDPR, etc.) for handling patient health data",
+        "Integration complexity with heterogeneous hospital EHR/EMR systems",
+        "Lack of disclosed technical architecture makes reliability and scalability uncertain"
+      ],
+      "key_questions": [
+        "What is the underlying technology stack and hosting environment (e.g., cloud provider, containerization, data encryption)?",
+        "How does the platform achieve HIPAA compliance and what certifications are in place?",
+        "What integration methods (FHIR, HL7, APIs) are used to connect with hospital systems, and have they been validated in live environments?"
+      ],
+      "next_steps": [
+        "Request detailed technical documentation: architecture diagrams, data flow, security controls",
+        "Obtain evidence of compliance (HIPAA attestation, security audits) and integration case studies",
+        "Arrange a technical deep\u2011dive demo with the engineering team to assess code quality, scalability plans, and reliability testing"
+      ],
+      "debate": {
+        "core_thesis": "Without verifiable technical details, the platform's ability to safely and reliably operate within complex hospital ecosystems remains speculative, posing a high execution risk.",
+        "challenge_for_committee": "Can we justify further investment based solely on financials and team size when the core health\u2011tech compliance and integration challenges are undocumented?",
+        "what_would_change_my_mind": "Presentation of a detailed, HIPAA\u2011compliant architecture, proven integration pilots with at least two major hospital systems, and clear performance/scalability benchmarks would substantially improve confidence."
+      },
+      "technical_summary": "The startup offers a post\u2011discharge care coordination platform targeting hospital systems, but no technical architecture, stack, or execution details are provided. With $75k revenue, $60k monthly burn, $2.5M raised and an 18\u2011person team, the financial picture is modest yet the lack of concrete technical evidence makes it difficult to assess feasibility, scalability, or reliability.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on the technology stack, development methodology, compliance certifications (e.g., HIPAA), or integration strategy with hospital EMR/EHR systems; these are critical for health\u2011care platforms."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Absent details on cloud infrastructure, data handling, multi\u2011tenant design, or performance testing; scaling a care\u2011coordination platform across many hospital networks is non\u2011trivial."
+      },
+      "security_and_reliability_risks": [
+        "Unclear compliance posture (HIPAA, GDPR, etc.) for handling patient health data",
+        "Integration complexity with heterogeneous hospital EHR/EMR systems",
+        "Lack of disclosed technical architecture makes reliability and scalability uncertain"
+      ],
+      "build_plan_90_days": [
+        "Request detailed technical documentation: architecture diagrams, data flow, security controls",
+        "Obtain evidence of compliance (HIPAA attestation, security audits) and integration case studies",
+        "Arrange a technical deep\u2011dive demo with the engineering team to assess code quality, scalability plans, and reliability testing"
+      ],
+      "tech_due_diligence_questions": [
+        "What is the underlying technology stack and hosting environment (e.g., cloud provider, containerization, data encryption)?",
+        "How does the platform achieve HIPAA compliance and what certifications are in place?",
+        "What integration methods (FHIR, HL7, APIs) are used to connect with hospital systems, and have they been validated in live environments?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup claims to offer a post\u2011discharge care coordination platform for hospitals, yet provides virtually no concrete data beyond $75,000 in revenue, $60,000 monthly burn, $2.5M raised, and an 18\u2011person team. Without clarity on product\u2011market fit, pricing, target customers, or traction, the risk profile is extremely high and the limited financial runway is concerning.",
+      "decision": "No-Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on the founding team\u2019s healthcare experience, technology stack, regulatory strategy, or go\u2011to\u2011market plan makes it impossible to gauge whether the team can deliver a complex care\u2011coordination solution."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability hinges on integration with hospital EHRs, payer contracts, and compliance with HIPAA and other regulations\u2014none of which are described, leaving scalability assumptions unsupported."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "The only quantitative signals are revenue, burn, and funding. Critical metrics such as customer count, usage statistics, retention, and clinical outcomes are missing, so evidence of product\u2011market fit is absent."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "High regulatory, adoption, and execution risk combined with an opaque financial picture (runway not provided) push the overall risk to a high level."
+        }
+      },
+      "key_strengths": [
+        "Secured $2.5M of funding, indicating some investor confidence",
+        "Already generating $75K of revenue, suggesting a minimal market presence",
+        "Team of 18 employees, which could provide sufficient headcount for early product development"
+      ],
+      "key_risks": [
+        "No disclosed target customer segment, pricing model, or go\u2011to\u2011market strategy",
+        "Lack of evidence on regulatory compliance and integration capabilities with hospital systems",
+        "Unclear financial runway; burn vs. revenue data insufficient to assess sustainability"
+      ],
+      "key_questions": [
+        "Who are the founding team members and what relevant healthcare or SaaS experience do they have?",
+        "What is the detailed business model (price per patient, subscription, revenue share) and how does it align with hospital budgeting cycles?",
+        "What traction metrics exist (number of hospital contracts, patient volume, clinical outcome improvements)?"
+      ],
+      "next_steps": [
+        "Request a detailed product demo and architecture overview to assess integration complexity",
+        "Obtain a breakdown of the team\u2019s expertise, especially in clinical operations and regulatory affairs",
+        "Ask for a financial model showing cash runway, projected revenue growth, and breakeven timeline"
+      ],
+      "debate": {
+        "core_thesis": "Without clear evidence of product\u2011market fit, regulatory readiness, and a sustainable financial plan, the venture is unlikely to succeed in the highly regulated hospital coordination space.",
+        "challenge_for_committee": "Can we justify investing further without verifiable data on hospital adoption, compliance pathways, and a realistic path to scale?",
+        "what_would_change_my_mind": "A concrete pipeline of hospital contracts, documented integration with major EHR platforms, and a detailed financial model showing at least 12\u2011month runway with a clear path to profitability would materially improve the assessment."
+      }
+    },
+    {
+      "agent": "Legal",
+      "role": "legal",
+      "summary": "Moderate \u2013 the core software is likely protectable via copyright and trade\u2011secret regime, but patents in the care\u2011coordination space are dense. Strong IP ownership (founder & employee assignment agreements) and a freedom\u2011to\u2011operate search are essential. Open\u2011source components must be inventoried and licensed correctly to avoid inadvertent infringement.",
+      "decision": "Pivot",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 5/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 5/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (5/10)."
+        }
+      },
+      "key_strengths": [
+        "Regulatory burden: Medium",
+        "Moderate \u2013 the core software is likely protectable via copyright and trade\u2011secret regime, but patents in the care\u2011coordination space are dense."
+      ],
+      "key_risks": [
+        "Absence of a Business Associate Agreement (BAA) with each hospital partner, exposing the company to HIPAA violations.",
+        "No documented HIPAA risk analysis, security policies, or incident\u2011response plan \u2013 a breach could trigger massive penalties and loss of trust.",
+        "Unclear whether the platform\u2019s clinical recommendations fall under FDA\u2019s Software as a Medical Device (SaMD) rules; mis\u2011classification could lead to enforcement actions.",
+        "Reliance on third\u2011party cloud services without validated data\u2011processing agreements that address PHI handling and cross\u2011border transfers.",
+        "Incomplete IP assignment from founders, contractors, and early employees; potential ownership disputes could stall acquisition or partnership deals."
+      ],
+      "key_questions": [
+        "Which compliance obligations must be met before scaling?",
+        "What legal blocker can halt go-to-market if not handled now?",
+        "What is the highest legal risk concentration by geography?"
+      ],
+      "next_steps": [
+        "Execute BAAs with all hospital systems and certify that all cloud vendors sign Business Associate Agreements.",
+        "Conduct a full HIPAA compliance audit, implement a documented risk analysis, encryption at rest/in\u2011transit, access controls, and a breach\u2011notification/response plan.",
+        "Obtain a regulatory opinion on whether any functionality triggers FDA SaMD requirements; if so, develop a compliance roadmap (QSR, pre\u2011market submission, post\u2011market surveillance).",
+        "Adopt SOC 2 Type II controls and obtain a recent audit report to demonstrate security posture to partners.",
+        "Implement GDPR compliance measures (data subject rights, lawful basis, DPO) for any EU data subjects."
+      ],
+      "debate": {
+        "core_thesis": "Moderate \u2013 the core software is likely protectable via copyright and trade\u2011secret regime, but patents in the care\u2011coordination space are dense.",
+        "challenge_for_committee": "Are we underestimating regulatory and liability exposure?",
+        "what_would_change_my_mind": "Proof of compliance readiness and lower legal exposure."
+      }
+    },
+    {
+      "agent": "Product Lead",
+      "role": "product",
+      "summary": "The startup should prioritize AI\u2011driven readmission risk stratification, automated care\u2011plan generation, and seamless EHR integration before building patient\u2011facing UI polish or extensive reporting dashboards.",
+      "decision": "Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 7/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 7/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (7/10)."
+        }
+      },
+      "key_strengths": [
+        "The startup should prioritize AI\u2011driven readmission risk stratification, automated care\u2011plan generation, and seamless EHR integration before building patient\u2011facing UI polish or extensive reporting dashboards.",
+        "The core SaaS service can scale technically (cloud\u2011native, containerized micro\u2011services)."
+      ],
+      "key_risks": [
+        "Platform Dependency \u2013 heavy reliance on Epic/Cerner APIs could be blocked or change without notice.",
+        "Long sales cycle \u2013 hospital procurement and compliance can take 12\u201124 months.",
+        "Regulatory compliance \u2013 HIPAA and CMS reporting requirements increase operational overhead.",
+        "Competitive encroachment \u2013 large incumbents (e.g., Cardinal Health, Cerner) may roll out similar modules."
+      ],
+      "key_questions": [
+        "What product signal most strongly indicates PMF progress?",
+        "Which user segment has the clearest willingness to pay?",
+        "What feature decision carries the highest execution risk?"
+      ],
+      "next_steps": [
+        "Prioritize the roadmap around the highest-confidence user pain.",
+        "Validate feature adoption using cohort-level usage data.",
+        "Reduce execution risk by sequencing delivery in milestones."
+      ],
+      "debate": {
+        "core_thesis": "CMS penalties for 30\u2011day readmissions have created financial incentives for hospitals to improve post\u2011discharge coordination.; Recent surge in value\u2011based care contracts and bundled payments pushes health systems toward coordinated care platforms.; Historical failures (Amino, Augmedix) highlight that solutions needing deep integration with existing hospital IT stacks often stumble without strong partner alliances.",
+        "challenge_for_committee": "Are we overestimating differentiation versus incumbents?",
+        "what_would_change_my_mind": "Stronger PMF evidence and lower execution risk."
+      }
+    }
+  ],
+  "moderator_output": {
+    "agent": "Moderator",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "decision_summary": "The startup shows modest cash runway and early revenue, but critical gaps in technical architecture, regulatory compliance, and demonstrated product\u2011market fit create a high execution risk that outweighs the potential upside. Without concrete evidence of integration capability, HIPAA readiness, and customer traction, advancing the investment is not justified at this time.",
+    "consensus_points": [
+      "Cash runway is adequate (~41 months) but burn efficiency is poor with revenue barely covering expenses.",
+      "The health\u2011tech market is crowded and competitive, especially for post\u2011discharge coordination solutions.",
+      "Key validation work (customer interviews, pricing tests, compliance evidence) is still missing."
+    ],
+    "disagreements": [
+      "Finance and Product Lead view the opportunity as investable with milestones, while Technical Lead, Skeptic, and Legal see insufficient technical and regulatory foundations.",
+      "Market Analyst recommends a strategic pivot to address market fit, whereas Skeptic advocates a outright rejection until fundamentals are proven."
+    ],
+    "top_risks": [
+      "Lack of documented HIPAA/Regulatory compliance and missing BAAs with hospital partners.",
+      "Unclear technical architecture, integration strategy with heterogeneous EHR/EMR systems, and scalability assurances.",
+      "Weak product\u2011market evidence: no clear target customers, pricing model, or traction metrics beyond $75K revenue."
+    ],
+    "required_follow_ups": [
+      "Obtain a detailed technical dossier: architecture diagrams, stack, security controls, HIPAA risk analysis, and integration case studies.",
+      "Secure customer validation: contracts, pilot results, usage and outcome data, and clear pricing/commercial terms.",
+      "Provide a comprehensive financial model showing unit economics, path to profitability, and burn\u2011reduction milestones."
+    ],
+    "agent_positions": [
+      {
+        "agent": "Market Analyst",
+        "decision": "Pivot",
+        "confidence": "Medium",
+        "core_thesis": "Proceed with cautious interest. The sector shows strong overall funding and clear competitive risks. Further primary market research to validate demand and differentiate from existing care\u2011coordination solutions is required before committing significant capital."
+      },
+      {
+        "agent": "Finance",
+        "decision": "Go",
+        "confidence": "Medium",
+        "core_thesis": "Proceed with investment but attach milestones to improve revenue growth and lower burn efficiency within the next 12\u201318 months."
+      },
+      {
+        "agent": "Technical Lead",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "Without verifiable technical details, the platform's ability to safely and reliably operate within complex hospital ecosystems remains speculative, posing a high execution risk."
+      },
+      {
+        "agent": "Skeptic",
+        "decision": "No-Go",
+        "confidence": "Medium",
+        "core_thesis": "Without clear evidence of product\u2011market fit, regulatory readiness, and a sustainable financial plan, the venture is unlikely to succeed in the highly regulated hospital coordination space."
+      },
+      {
+        "agent": "Legal",
+        "decision": "Pivot",
+        "confidence": "Medium",
+        "core_thesis": "Moderate \u2013 the core software is likely protectable via copyright and trade\u2011secret regime, but patents in the care\u2011coordination space are dense."
+      },
+      {
+        "agent": "Product Lead",
+        "decision": "Go",
+        "confidence": "Medium",
+        "core_thesis": "CMS penalties for 30\u2011day readmissions have created financial incentives for hospitals to improve post\u2011discharge coordination; focus on AI\u2011driven risk stratification, automated care\u2011plan generation, and seamless EHR integration before UI polish."
+      }
+    ]
+  }
+}

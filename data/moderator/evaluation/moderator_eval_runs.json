@@ -1,0 +1,108 @@
+[
+  {
+    "startup": "CareCoord",
+    "sector": "healthtech",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/carecoord_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "disagree_count": 4,
+    "disagreement_rate": 0.6667,
+    "vote_entropy": 1.585,
+    "vote_entropy_normalized": 1.0,
+    "majority_margin": 0.0,
+    "vote_counts": {
+      "Pivot": 2,
+      "Go": 2,
+      "No-Go": 2
+    }
+  },
+  {
+    "startup": "CryptoSave",
+    "sector": "fintech",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/cryptosave_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "disagree_count": 3,
+    "disagreement_rate": 0.5,
+    "vote_entropy": 1.0,
+    "vote_entropy_normalized": 0.6309,
+    "majority_margin": 0.0,
+    "vote_counts": {
+      "Pivot": 3,
+      "No-Go": 3
+    }
+  },
+  {
+    "startup": "LedgerFlow",
+    "sector": "fintech",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/ledgerflow_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "Pivot",
+    "confidence": "Medium",
+    "disagree_count": 3,
+    "disagreement_rate": 0.5,
+    "vote_entropy": 1.4591,
+    "vote_entropy_normalized": 0.9206,
+    "majority_margin": 0.1667,
+    "vote_counts": {
+      "Pivot": 3,
+      "Go": 1,
+      "No-Go": 2
+    }
+  },
+  {
+    "startup": "PayFlow",
+    "sector": "fintech",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/payflow_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "Pivot",
+    "confidence": "Medium",
+    "disagree_count": 2,
+    "disagreement_rate": 0.3333,
+    "vote_entropy": 1.2516,
+    "vote_entropy_normalized": 0.7897,
+    "majority_margin": 0.5,
+    "vote_counts": {
+      "Pivot": 4,
+      "Go": 1,
+      "No-Go": 1
+    }
+  },
+  {
+    "startup": "ReturnKit",
+    "sector": "ecommerce",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/returnkit_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "Pivot",
+    "confidence": "Medium",
+    "disagree_count": 3,
+    "disagreement_rate": 0.5,
+    "vote_entropy": 1.4591,
+    "vote_entropy_normalized": 0.9206,
+    "majority_margin": 0.1667,
+    "vote_counts": {
+      "Pivot": 3,
+      "Go": 1,
+      "No-Go": 2
+    }
+  },
+  {
+    "startup": "WellnessAI",
+    "sector": "healthtech",
+    "file": "/Users/shakirfarhan/Documents/Virginia-Tech/Projects/advance-ml/capstone/data/committee_pipeline/wellnessai_committee_pipeline.json",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "disagree_count": 2,
+    "disagreement_rate": 0.3333,
+    "vote_entropy": 0.9183,
+    "vote_entropy_normalized": 0.5794,
+    "majority_margin": 0.3333,
+    "vote_counts": {
+      "Pivot": 2,
+      "No-Go": 4
+    }
+  }
+]

@@ -1,0 +1,666 @@
+{
+  "startup": {
+    "name": "CryptoSave",
+    "sector": "fintech",
+    "description": "Rounds up purchases and converts spare change into crypto.",
+    "business": {
+      "description": "Rounds up purchases and converts spare change into crypto."
+    },
+    "finances": {
+      "revenue": 0,
+      "burn_rate": 12000,
+      "funding": 50000,
+      "employee_count": 5
+    }
+  },
+  "native_outputs": {
+    "market_analyst": {
+      "agent": "Market Analyst",
+      "market_sizing": {
+        "tam_estimate": "The fintech sector includes 2,254 companies, indicating a large overall market (TAM) that is likely multi\u2011billion\u2011dollar in size, though the precise dollar value is not provided in the evidence.",
+        "sam_estimate": "Crypto\u2011focused fintech solutions (e.g., rounding up purchases into crypto) represent a niche subset of the broader fintech TAM; given the limited number of similar ventures and high competitive pressure, the SAM is a fraction of the overall fintech market, but exact numbers are not disclosed.",
+        "evidence": "Crunchbase shows 2,254 fintech companies, median funding $2,000,000, and top\u2011funded firms ranging from $590.5M to $5.8B. Failure data lists 47 fintech failures, with competition (47) and domination by giants (45) as primary reasons."
+      },
+      "competitive_landscape": "The fintech space is crowded and dominated by well\u2011capitalized players (e.g., Square, Sberbank). Historical failures show that 47 fintech firms have failed, most commonly due to competition and being out\u2011matched by larger incumbents. This suggests CryptoSave will face intense rivalry from both established fintech giants and emerging crypto\u2011payment platforms.",
+      "demand_validation": "No direct user\u2011demand data is provided. The only indirect indication is the prevalence of fintech activity (2,254 companies) and the existence of other crypto\u2011payment attempts (e.g., Circle) that have struggled, implying uncertain consumer adoption for crypto\u2011round\u2011up models.",
+      "market_timing": "Fintech funding data spans 1902\u20112014, showing long\u2011standing investor interest, but the evidence does not include recent crypto\u2011specific trends. The timing appears ambiguous; while fintech is mature, crypto adoption is evolving, creating both opportunity and risk.",
+      "key_claims": [
+        "Fintech is a large, capital\u2011intensive sector with over two thousand active companies.",
+        "Competition and dominance by large incumbents are the leading causes of fintech failures (47 out of 47 failures cite competition, 45 cite giants).",
+        "Crypto\u2011focused fintech products occupy a niche within the broader market, implying a smaller but potentially high\u2011growth SAM."
+      ],
+      "risks": [
+        {
+          "description": "Intense competition from established fintech giants and new crypto payment providers.",
+          "severity": "high",
+          "evidence": "Failure evidence lists competition (47) and giants (45) as top reasons for fintech failures."
+        },
+        {
+          "description": "Potential poor market fit if users are reluctant to convert spare change into volatile crypto assets.",
+          "severity": "medium",
+          "evidence": "Failure evidence includes Poor Market Fit (11) among reasons for fintech failures."
+        },
+        {
+          "description": "Limited evidence of current consumer demand for round\u2011up crypto services.",
+          "severity": "medium",
+          "evidence": "Demand validation section contains no direct data; only indirect sector size indicators are available."
+        }
+      ],
+      "score": 3,
+      "recommendation": "Proceed with caution. CryptoSave operates in a highly competitive fintech arena where many ventures have failed due to competitive pressure and market\u2011fit issues. Strong differentiation, clear regulatory compliance, and demonstrated user demand are required before committing significant resources."
+    },
+    "finance": {
+      "agent": "Finance",
+      "burn_efficiency": {
+        "calculation": "0.00 / 12000.00 = 0.0",
+        "result": 0.0,
+        "reasoning": "With no monthly revenue, the efficiency of cash burn is zero."
+      },
+      "capital_risk": {
+        "level": "high",
+        "reasoning": "The company has no revenue and only ~4 months of runway, creating a high risk of cash exhaustion."
+      },
+      "burn_multiple": {
+        "calculation": "12000.00 / 0.00 = 0 (undefined, set to 0 for deterministic output)",
+        "result": 0.0,
+        "reasoning": "Revenue is zero, so the standard burn\u2011multiple formula is undefined; we follow the deterministic requirement of 0."
+      },
+      "runway": {
+        "calculation": "cash / monthly_burn",
+        "months": 4.17,
+        "reasoning": "50000 cash divided by 12000 monthly burn equals ~4.17 months of runway."
+      },
+      "ten_x_goal": {
+        "target_revenue_usd": 0.0,
+        "calculation": "0.0 * 10 = 0.0"
+      },
+      "capital_intensity": {
+        "rating": "medium",
+        "reasoning": "Burn rate consumes about 24% of cash each month, indicating moderate capital intensity but limited cushion."
+      },
+      "founder_inquiry": "What is your plan to achieve product\u2011market fit and generate sustainable revenue within the next few months?",
+      "total_rating": 5,
+      "final_decision": {
+        "decision": "No-Go",
+        "recommendation": "Secure additional financing or pivot to a revenue\u2011generating model before further investment."
+      }
+    },
+    "tech_lead": {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup proposes to round up purchases and convert spare change into crypto, but no technical details about its architecture, security model, or integration points are provided. With a 5\u2011person team, modest funding, and a monthly burn of $12,000, there is insufficient evidence to assess execution feasibility, scalability, or reliability.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on technology stack, development methodology, security practices, or regulatory compliance is available; feasibility cannot be judged."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Absence of details on transaction processing architecture, cloud or distributed design, and data handling makes scalability assessment impossible."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All core data points (product specs, architecture, traction, team bios) are missing, providing no verifiable evidence of technical capability."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Crypto handling involves strict security, compliance, and financial\u2011institution integration risks. Without any disclosed controls or audits, risk is deemed high."
+        }
+      },
+      "key_strengths": [
+        "Small lean team that could iterate quickly",
+        "Early\u2011stage funding provides a runway to build a prototype",
+        "Clear consumer\u2011facing value proposition (spare\u2011change crypto investment)"
+      ],
+      "key_risks": [
+        "Lack of disclosed security architecture for handling crypto assets",
+        "Regulatory compliance unknown (KYC/AML, licensing)",
+        "Unproven scalability of transaction rounding and settlement pipeline"
+      ],
+      "key_questions": [
+        "What technology stack and cloud/infrastructure providers are planned for transaction processing?",
+        "How will the platform ensure custody security, key management, and auditability of crypto assets?",
+        "What regulatory licenses or partnerships are in place to support fiat\u2011to\u2011crypto conversions?"
+      ],
+      "next_steps": [
+        "Request a detailed technical design document covering architecture, security, and compliance.",
+        "Ask for evidence of any pilot integrations with payment processors or crypto custodians.",
+        "Obtain CVs or bios of the engineering leads to assess competence in fintech/crypto development."
+      ],
+      "debate": {
+        "core_thesis": "Without concrete technical disclosure, the venture cannot demonstrate that it can safely and reliably handle crypto transactions at scale, making the investment too risky at this stage.",
+        "challenge_for_committee": "The team must prove they have a robust, auditable security model and regulatory pathway before committing capital.",
+        "what_would_change_my_mind": "A validated prototype with third\u2011party security audit results, clear regulatory licensing, and a documented scalable architecture would significantly improve the case."
+      },
+      "technical_summary": "The startup proposes to round up purchases and convert spare change into crypto, but no technical details about its architecture, security model, or integration points are provided. With a 5\u2011person team, modest funding, and a monthly burn of $12,000, there is insufficient evidence to assess execution feasibility, scalability, or reliability.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on technology stack, development methodology, security practices, or regulatory compliance is available; feasibility cannot be judged."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Absence of details on transaction processing architecture, cloud or distributed design, and data handling makes scalability assessment impossible."
+      },
+      "security_and_reliability_risks": [
+        "Lack of disclosed security architecture for handling crypto assets",
+        "Regulatory compliance unknown (KYC/AML, licensing)",
+        "Unproven scalability of transaction rounding and settlement pipeline"
+      ],
+      "build_plan_90_days": [
+        "Request a detailed technical design document covering architecture, security, and compliance.",
+        "Ask for evidence of any pilot integrations with payment processors or crypto custodians.",
+        "Obtain CVs or bios of the engineering leads to assess competence in fintech/crypto development."
+      ],
+      "tech_due_diligence_questions": [
+        "What technology stack and cloud/infrastructure providers are planned for transaction processing?",
+        "How will the platform ensure custody security, key management, and auditability of crypto assets?",
+        "What regulatory licenses or partnerships are in place to support fiat\u2011to\u2011crypto conversions?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    "skeptic": {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup claims to round up everyday purchases and invest the spare change in crypto, but provides no information on market size, regulatory compliance, revenue model, or traction. With $50k in cash, a $12k monthly burn, and no revenue, the runway is critically short and the financial risk is high. The lack of disclosed team expertise, competitive analysis, and product differentiation makes the proposition extremely speculative.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "A 5\u2011person team with $50k cash and a $12k/month burn cannot sustain product development, licensing, or marketing without immediate revenue or additional funding."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Crypto micro\u2011investment requires massive user acquisition and robust integration with payment processors; no evidence of partnerships or growth metrics is provided."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All critical data points (sector, problem, solution, target customer, pricing, traction) are listed as unknown, offering no verifiable proof of product\u2011market fit."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory uncertainty around crypto, consumer trust issues, and a thin cash runway create existential risk for the venture."
+        }
+      },
+      "key_strengths": [
+        "Small team keeps overhead low",
+        "Concept taps into a trending \u2018micro\u2011investment\u2019 narrative",
+        "Potential for high viral growth if integrated with popular payment platforms"
+      ],
+      "key_risks": [
+        "Regulatory compliance for handling crypto on behalf of consumers",
+        "Inability to acquire users cost\u2011effectively given the $12k monthly burn",
+        "No disclosed revenue model; reliance on undefined monetisation"
+      ],
+      "key_questions": [
+        "What licensing or AML/KYC procedures are in place to handle crypto transactions?",
+        "How does the company intend to monetize the spare\u2011change service (fees, interest, partner revenue share)?",
+        "What partnerships exist with merchants or payment processors to enable round\u2011up functionality?"
+      ],
+      "next_steps": [
+        "Request a detailed product roadmap, including integration points with payment networks",
+        "Obtain a financial model showing projected cash flow, breakeven point, and funding requirements",
+        "Ask for evidence of regulatory approvals or a clear plan to achieve them"
+      ],
+      "debate": {
+        "core_thesis": "Micro\u2011investing in crypto can capture a niche segment of financially\u2011savvy millennials who want automated, low\u2011friction exposure to digital assets.",
+        "challenge_for_committee": "Can the team prove a viable path to regulatory compliance, sustainable user acquisition, and a clear revenue stream before the cash runs out?",
+        "what_would_change_my_mind": "A signed partnership with a major payment processor, a regulated custodial solution, and a detailed monetisation plan that shows credible monthly recurring revenue within the next 6 months."
+      }
+    },
+    "legal": {
+      "agent": "Legal",
+      "regulatory_burden": "High",
+      "applicable_regulations": [
+        "FinCEN AML/CTF Regulations (Money Services Business registration)",
+        "State Money Transmitter Licenses (e.g., NY BitLicense, CA Money Transmitter)",
+        "SEC Guidance on Crypto Assets (investor protection, possible securities classification)",
+        "CFTC Commodity Futures Regulations (if crypto treated as commodity)",
+        "Office of the Comptroller of the Currency (OCC) charter for crypto\u2011related activities",
+        "Consumer Financial Protection Bureau (CFPB) consumer\u2011fairness rules",
+        "PCI DSS (if handling card data for round\u2011up purchases)",
+        "SOC 2 Type II (security, availability, confidentiality)",
+        "General Data Protection Regulation (GDPR) for EU users",
+        "California Consumer Privacy Act (CCPA) and other US state privacy statutes"
+      ],
+      "ip_defensibility": "Moderate \u2013 the core rounding\u2011up algorithm and proprietary transaction orchestration can be protected by trade secrets and patents, but the app will likely rely heavily on open\u2011source cryptographic libraries and blockchain SDKs. Proper open\u2011source license compliance (MIT, Apache 2.0, GPL) and a clear bill of materials are essential to avoid infringement risk. Absence of a robust IP strategy (patent filing, trademark protection) leaves the technology vulnerable to copycats.",
+      "critical_red_flags": [
+        "No evidence of Money Transmitter or BitLicense registration \u2013 operating without these licenses is a felony in many jurisdictions.",
+        "Unclear classification of the crypto assets (security vs. commodity) \u2013 could trigger SEC enforcement if tokens are deemed securities.",
+        "Lack of documented AML/KYC/CTF programs \u2013 FinCEN expects a BSA compliance program for any service converting fiat to crypto.",
+        "Consumer protection exposure: rounding\u2011up creates automatic purchases; if crypto value drops sharply, users may claim mis\u2011representation or unfair practices.",
+        "Data privacy gaps: app collects payment card data, transaction history, and possibly identity documents; insufficient GDPR/CCPA compliance can lead to hefty fines.",
+        "Reliance on third\u2011party custodial wallets without clear contractual liability or insurance coverage.",
+        "Limited indemnification and insurance for cyber\u2011theft or loss of crypto assets."
+      ],
+      "mitigation_requirements": [
+        "Obtain all required federal (FinCEN BSA registration) and state money\u2011transmitter licenses before launch.",
+        "Engage a securities law firm to produce a formal opinion on whether the specific crypto tokens offered are securities under the Howey test.",
+        "Implement a comprehensive AML/KYC program, including transaction monitoring, sanctions screening, and filing of SARs.",
+        "Adopt SOC\u202f2 Type\u202fII controls and undergo a third\u2011party audit; achieve PCI DSS compliance for any card\u2011data handling.",
+        "Develop and publish a privacy policy that meets GDPR, CCPA, and any other applicable data\u2011protection laws; appoint a Data Protection Officer for EU users.",
+        "Document open\u2011source usage in a Bill of Materials, verify license compatibility, and consider contributing back or purchasing commercial support where needed.",
+        "File patents on any novel rounding\u2011up or micro\u2011investment mechanisms; trademark the brand and UI elements.",
+        "Secure a cyber\u2011risk insurance policy covering theft of crypto assets and breach of customer data.",
+        "Create clear, user\u2011friendly disclosures about crypto volatility, rounding\u2011up mechanics, and the possibility of loss."
+      ],
+      "score": 5,
+      "legal_verdict": "Hold"
+    },
+    "product_lead": {
+      "agent": "Product_Lead",
+      "product_differentiation": "Low",
+      "feature_priority": "Focus first on seamless onboarding, KYC/AML compliance, robust API integrations with banks and crypto exchanges, and transparent fee structure. Secondary features like gamified rewards, multi\u2011crypto portfolios, and social sharing can follow.",
+      "scalability_assessment": "The core round\u2011up engine is highly automatable and can scale if reliable banking and exchange APIs are secured. However, scaling is gated by regulatory licensing, partnership negotiations, and the need to maintain continuous compliance across jurisdictions, which adds friction and can slow growth.",
+      "ip_defensibility": "Minimal patent protection; moat would rely on network effects (user base + merchant partnerships) and data on spend\u2011to\u2011crypto conversion habits. Neither is a strong barrier against larger fintechs that can replicate the service quickly.",
+      "execution_risks": [
+        "Platform Dependency on card networks, banks, and third\u2011party crypto exchanges",
+        "Regulatory & AML compliance risk across multiple jurisdictions",
+        "High competitive pressure from established fintechs (Acorns, Square, PayPal) adding crypto features",
+        "Liquidity and price\u2011risk management for automatic crypto purchases"
+      ],
+      "product_market_fit_signals": [
+        "Success of traditional round\u2011up apps (Acorns) shows consumer appetite for micro\u2011investing, but crypto\u2011specific equivalents have limited traction (e.g., Bitpass failure)",
+        "Retail interest in crypto remains volatile; spikes in market rallies drive short\u2011term adoption but taper off",
+        "Early adopters often cite security and fee transparency as make\u2011or\u2011break factors"
+      ],
+      "score": 4,
+      "product_verdict": "Hold"
+    }
+  },
+  "committee_inputs": [
+    {
+      "agent": "Market Analyst",
+      "role": "market",
+      "summary": "The fintech space is crowded and dominated by well\u2011capitalized players (e.g., Square, Sberbank).",
+      "decision": "Pivot",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 6/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 6/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (6/10)."
+        }
+      },
+      "key_strengths": [
+        "The fintech sector includes 2,254 companies, indicating a large overall market (TAM) that is likely multi\u2011billion\u2011dollar in size, though the precise dollar value is not provided in the evidence.",
+        "Crypto\u2011focused fintech solutions (e.g., rounding up purchases into crypto) represent a niche subset of the broader fintech TAM.",
+        "Fintech funding data spans 1902\u20112014, showing long\u2011standing investor interest, but the evidence does not include recent crypto\u2011specific trends."
+      ],
+      "key_risks": [
+        "Intense competition from established fintech giants and new crypto payment providers.",
+        "Potential poor market fit if users are reluctant to convert spare change into volatile crypto assets.",
+        "Limited evidence of current consumer demand for round\u2011up crypto services."
+      ],
+      "key_questions": [
+        "What proof exists for repeatable customer demand in the exact target niche?",
+        "What is the startup's most defensible market wedge against incumbents?",
+        "Which assumption in TAM/SAM has the highest downside if wrong?"
+      ],
+      "next_steps": [
+        "Get customer interviews and conversion proof in the target segment.",
+        "List the alternatives buyers are using right now.",
+        "Test pricing and retention assumptions with real prospects."
+      ],
+      "debate": {
+        "core_thesis": "Proceed with caution. CryptoSave operates in a highly competitive fintech arena where many ventures have failed due to competitive pressure and market\u2011fit issues. Strong differentiation, clear regulatory compliance, and demonstrated user demand are required before committing significant resources.",
+        "challenge_for_committee": "Are we overestimating demand from broad market stats?",
+        "what_would_change_my_mind": "Crunchbase shows 2,254 fintech companies, median funding $2,000,000, and top\u2011funded firms ranging from $590.5M to $5.8B."
+      }
+    },
+    {
+      "agent": "Finance",
+      "role": "finance",
+      "summary": "Secure additional financing or pivot to a revenue\u2011generating model before further investment.",
+      "decision": "No-Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Mapped from finance rating 5/10 and stability of cash profile."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Burn rate consumes about 24% of cash each month, indicating moderate capital intensity but limited cushion."
+        },
+        "evidence_quality": {
+          "assessment": "High",
+          "reasoning": "Finance output has explicit calculations."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "The company has no revenue and only ~4 months of runway, creating a high risk of cash exhaustion."
+        }
+      },
+      "key_strengths": [
+        "Burn efficiency: 0.0",
+        "Runway months: 4.17",
+        "50000 cash divided by 12000 monthly burn equals ~4.17 months of runway."
+      ],
+      "key_risks": [
+        "Capital risk level: high",
+        "The company has no revenue and only ~4 months of runway, creating a high risk of cash exhaustion.",
+        "Capital intensity: medium",
+        "Burn is still close to revenue, so margin error is thin if growth slows."
+      ],
+      "key_questions": [
+        "What is your plan to achieve product\u2011market fit and generate sustainable revenue within the next few months?"
+      ],
+      "next_steps": [
+        "Track burn efficiency month to month.",
+        "Set runway guardrails and fundraise trigger points.",
+        "Validate unit economics with cohort data."
+      ],
+      "debate": {
+        "core_thesis": "Secure additional financing or pivot to a revenue\u2011generating model before further investment.",
+        "challenge_for_committee": "Is the current runway sufficient if growth slips below plan?",
+        "what_would_change_my_mind": "The company has no revenue and only ~4 months of runway, creating a high risk of cash exhaustion."
+      }
+    },
+    {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup proposes to round up purchases and convert spare change into crypto, but no technical details about its architecture, security model, or integration points are provided. With a 5\u2011person team, modest funding, and a monthly burn of $12,000, there is insufficient evidence to assess execution feasibility, scalability, or reliability.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on technology stack, development methodology, security practices, or regulatory compliance is available; feasibility cannot be judged."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Absence of details on transaction processing architecture, cloud or distributed design, and data handling makes scalability assessment impossible."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All core data points (product specs, architecture, traction, team bios) are missing, providing no verifiable evidence of technical capability."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Crypto handling involves strict security, compliance, and financial\u2011institution integration risks. Without any disclosed controls or audits, risk is deemed high."
+        }
+      },
+      "key_strengths": [
+        "Small lean team that could iterate quickly",
+        "Early\u2011stage funding provides a runway to build a prototype",
+        "Clear consumer\u2011facing value proposition (spare\u2011change crypto investment)"
+      ],
+      "key_risks": [
+        "Lack of disclosed security architecture for handling crypto assets",
+        "Regulatory compliance unknown (KYC/AML, licensing)",
+        "Unproven scalability of transaction rounding and settlement pipeline"
+      ],
+      "key_questions": [
+        "What technology stack and cloud/infrastructure providers are planned for transaction processing?",
+        "How will the platform ensure custody security, key management, and auditability of crypto assets?",
+        "What regulatory licenses or partnerships are in place to support fiat\u2011to\u2011crypto conversions?"
+      ],
+      "next_steps": [
+        "Request a detailed technical design document covering architecture, security, and compliance.",
+        "Ask for evidence of any pilot integrations with payment processors or crypto custodians.",
+        "Obtain CVs or bios of the engineering leads to assess competence in fintech/crypto development."
+      ],
+      "debate": {
+        "core_thesis": "Without concrete technical disclosure, the venture cannot demonstrate that it can safely and reliably handle crypto transactions at scale, making the investment too risky at this stage.",
+        "challenge_for_committee": "The team must prove they have a robust, auditable security model and regulatory pathway before committing capital.",
+        "what_would_change_my_mind": "A validated prototype with third\u2011party security audit results, clear regulatory licensing, and a documented scalable architecture would significantly improve the case."
+      },
+      "technical_summary": "The startup proposes to round up purchases and convert spare change into crypto, but no technical details about its architecture, security model, or integration points are provided. With a 5\u2011person team, modest funding, and a monthly burn of $12,000, there is insufficient evidence to assess execution feasibility, scalability, or reliability.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on technology stack, development methodology, security practices, or regulatory compliance is available; feasibility cannot be judged."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Absence of details on transaction processing architecture, cloud or distributed design, and data handling makes scalability assessment impossible."
+      },
+      "security_and_reliability_risks": [
+        "Lack of disclosed security architecture for handling crypto assets",
+        "Regulatory compliance unknown (KYC/AML, licensing)",
+        "Unproven scalability of transaction rounding and settlement pipeline"
+      ],
+      "build_plan_90_days": [
+        "Request a detailed technical design document covering architecture, security, and compliance.",
+        "Ask for evidence of any pilot integrations with payment processors or crypto custodians.",
+        "Obtain CVs or bios of the engineering leads to assess competence in fintech/crypto development."
+      ],
+      "tech_due_diligence_questions": [
+        "What technology stack and cloud/infrastructure providers are planned for transaction processing?",
+        "How will the platform ensure custody security, key management, and auditability of crypto assets?",
+        "What regulatory licenses or partnerships are in place to support fiat\u2011to\u2011crypto conversions?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup claims to round up everyday purchases and invest the spare change in crypto, but provides no information on market size, regulatory compliance, revenue model, or traction. With $50k in cash, a $12k monthly burn, and no revenue, the runway is critically short and the financial risk is high. The lack of disclosed team expertise, competitive analysis, and product differentiation makes the proposition extremely speculative.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "A 5\u2011person team with $50k cash and a $12k/month burn cannot sustain product development, licensing, or marketing without immediate revenue or additional funding."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Crypto micro\u2011investment requires massive user acquisition and robust integration with payment processors; no evidence of partnerships or growth metrics is provided."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All critical data points (sector, problem, solution, target customer, pricing, traction) are listed as unknown, offering no verifiable proof of product\u2011market fit."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory uncertainty around crypto, consumer trust issues, and a thin cash runway create existential risk for the venture."
+        }
+      },
+      "key_strengths": [
+        "Small team keeps overhead low",
+        "Concept taps into a trending \u2018micro\u2011investment\u2019 narrative",
+        "Potential for high viral growth if integrated with popular payment platforms"
+      ],
+      "key_risks": [
+        "Regulatory compliance for handling crypto on behalf of consumers",
+        "Inability to acquire users cost\u2011effectively given the $12k monthly burn",
+        "No disclosed revenue model; reliance on undefined monetisation"
+      ],
+      "key_questions": [
+        "What licensing or AML/KYC procedures are in place to handle crypto transactions?",
+        "How does the company intend to monetize the spare\u2011change service (fees, interest, partner revenue share)?",
+        "What partnerships exist with merchants or payment processors to enable round\u2011up functionality?"
+      ],
+      "next_steps": [
+        "Request a detailed product roadmap, including integration points with payment networks",
+        "Obtain a financial model showing projected cash flow, breakeven point, and funding requirements",
+        "Ask for evidence of regulatory approvals or a clear plan to achieve them"
+      ],
+      "debate": {
+        "core_thesis": "Micro\u2011investing in crypto can capture a niche segment of financially\u2011savvy millennials who want automated, low\u2011friction exposure to digital assets.",
+        "challenge_for_committee": "Can the team prove a viable path to regulatory compliance, sustainable user acquisition, and a clear revenue stream before the cash runs out?",
+        "what_would_change_my_mind": "A signed partnership with a major payment processor, a regulated custodial solution, and a detailed monetisation plan that shows credible monthly recurring revenue within the next 6 months."
+      }
+    },
+    {
+      "agent": "Legal",
+      "role": "legal",
+      "summary": "Moderate \u2013 the core rounding\u2011up algorithm and proprietary transaction orchestration can be protected by trade secrets and patents, but the app will likely rely heavily on open\u2011source cryptographic libraries and blockchain SDKs. Proper open\u2011source license compliance (MIT, Apache 2.0, GPL) and a clear bill of materials are essential to avoid infringement risk. Absence of a robust IP strategy (patent filing, trademark protection) leaves the technology vulnerable to copycats.",
+      "decision": "Pivot",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 5/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 5/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (5/10)."
+        }
+      },
+      "key_strengths": [
+        "Regulatory burden: High",
+        "Moderate \u2013 the core rounding\u2011up algorithm and proprietary transaction orchestration can be protected by trade secrets and patents, but the app will likely rely heavily on open\u2011source cryptographic libraries and blockchai."
+      ],
+      "key_risks": [
+        "No evidence of Money Transmitter or BitLicense registration \u2013 operating without these licenses is a felony in many jurisdictions.",
+        "Unclear classification of the crypto assets (security vs. commodity) \u2013 could trigger SEC enforcement if tokens are deemed securities.",
+        "Lack of documented AML/KYC/CTF programs \u2013 FinCEN expects a BSA compliance program for any service converting fiat to crypto.",
+        "Consumer protection exposure: rounding\u2011up creates automatic purchases; if crypto value drops sharply, users may claim mis\u2011representation or unfair practices.",
+        "Data privacy gaps: app collects payment card data, transaction history, and possibly identity documents; insufficient GDPR/CCPA compliance can lead to hefty fines."
+      ],
+      "key_questions": [
+        "Which compliance obligations must be met before scaling?",
+        "What legal blocker can halt go-to-market if not handled now?",
+        "What is the highest legal risk concentration by geography?"
+      ],
+      "next_steps": [
+        "Obtain all required federal (FinCEN BSA registration) and state money\u2011transmitter licenses before launch.",
+        "Engage a securities law firm to produce a formal opinion on whether the specific crypto tokens offered are securities under the Howey test.",
+        "Implement a comprehensive AML/KYC program, including transaction monitoring, sanctions screening, and filing of SARs.",
+        "Adopt SOC 2 Type II controls and undergo a third\u2011party audit; achieve PCI DSS compliance for any card\u2011data handling.",
+        "Develop and publish a privacy policy that meets GDPR, CCPA, and any other applicable data\u2011protection laws; appoint a Data Protection Officer for EU users."
+      ],
+      "debate": {
+        "core_thesis": "Moderate \u2013 the core rounding\u2011up algorithm and proprietary transaction orchestration can be protected by trade secrets and patents, but the app will likely rely heavily on open\u2011source cryptographic libraries and blockchai.",
+        "challenge_for_committee": "Are we underestimating regulatory and liability exposure?",
+        "what_would_change_my_mind": "Proof of compliance readiness and lower legal exposure."
+      }
+    },
+    {
+      "agent": "Product Lead",
+      "role": "product",
+      "summary": "Focus first on seamless onboarding, KYC/AML compliance, robust API integrations with banks and crypto exchanges, and transparent fee structure.",
+      "decision": "Pivot",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "Derived from score 4/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability confidence tracks score bucket at 4/10."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Risk is inversely mapped from score bucket (4/10)."
+        }
+      },
+      "key_strengths": [
+        "Focus first on seamless onboarding, KYC/AML compliance, robust API integrations with banks and crypto exchanges, and transparent fee structure.",
+        "The core round\u2011up engine is highly automatable and can scale if reliable banking and exchange APIs are secured."
+      ],
+      "key_risks": [
+        "Platform Dependency on card networks, banks, and third\u2011party crypto exchanges",
+        "Regulatory & AML compliance risk across multiple jurisdictions",
+        "High competitive pressure from established fintechs (Acorns, Square, PayPal) adding crypto features",
+        "Liquidity and price\u2011risk management for automatic crypto purchases"
+      ],
+      "key_questions": [
+        "What product signal most strongly indicates PMF progress?",
+        "Which user segment has the clearest willingness to pay?",
+        "What feature decision carries the highest execution risk?"
+      ],
+      "next_steps": [
+        "Prioritize the roadmap around the highest-confidence user pain.",
+        "Validate feature adoption using cohort-level usage data.",
+        "Reduce execution risk by sequencing delivery in milestones."
+      ],
+      "debate": {
+        "core_thesis": "Success of traditional round\u2011up apps (Acorns) shows consumer appetite for micro\u2011investing, but crypto\u2011specific equivalents have limited traction (e.g., Bitpass failure); Retail interest in crypto remains volatile; spikes in market rallies drive short\u2011term adoption but taper off; Early adopters often cite security and fee transparency as make\u2011or\u2011break factors",
+        "challenge_for_committee": "Are we overestimating differentiation versus incumbents?",
+        "what_would_change_my_mind": "Stronger PMF evidence and lower execution risk."
+      }
+    }
+  ],
+  "moderator_output": {
+    "agent": "Moderator",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "decision_summary": "The startup lacks any revenue, has only ~4 months of runway, and faces substantial regulatory, technical, and competitive hurdles. Without clear proof of product\u2011market fit, a detailed security architecture, and required money\u2011transmitter/AML licenses, the risk of cash exhaustion or legal failure is high. Consequently, further investment is not recommended at this stage.",
+    "consensus_points": [
+      "Regulatory and compliance exposure is significant and unresolved.",
+      "The company has no revenue and an extremely short runway given its burn rate.",
+      "Technical feasibility, security, and scalability have not been demonstrated."
+    ],
+    "disagreements": [
+      "Market Analyst and Product Lead suggest a pivot could be viable, whereas Finance and Technical Lead recommend a full No\u2011Go.",
+      "Legal and Product Lead see some IP and market opportunity, while other agents view these as insufficient to offset the risks."
+    ],
+    "top_risks": [
+      "Absence of required FinCEN/BSA registration and state money\u2011transmitter licenses.",
+      "Insufficient runway and lack of any monetisation strategy.",
+      "Unproven technical security model for handling crypto custody and transactions."
+    ],
+    "required_follow_ups": [
+      "Develop a comprehensive regulatory compliance plan, including licensing, AML/KYC, and data\u2011privacy measures.",
+      "Provide a detailed technical design covering architecture, security controls, and integration with banking/crypto partners.",
+      "Validate market demand through customer interviews, pilot programs, and a clear revenue model."
+    ],
+    "agent_positions": [
+      {
+        "agent": "Market Analyst",
+        "decision": "Pivot",
+        "confidence": "Medium",
+        "core_thesis": "Proceed with caution. CryptoSave operates in a highly competitive fintech arena where many ventures have failed due to competitive pressure and market\u2011fit issues. Strong differentiation, clear regulatory compliance, and demonstrated user demand are required before committing significant resources."
+      },
+      {
+        "agent": "Finance",
+        "decision": "No-Go",
+        "confidence": "Medium",
+        "core_thesis": "Secure additional financing or pivot to a revenue\u2011generating model before further investment."
+      },
+      {
+        "agent": "Technical Lead",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "Without concrete technical disclosure, the venture cannot demonstrate that it can safely and reliably handle crypto transactions at scale, making the investment too risky at this stage."
+      },
+      {
+        "agent": "Skeptic",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "Micro\u2011investing in crypto can capture a niche segment of financially\u2011savvy millennials who want automated, low\u2011friction exposure to digital assets."
+      },
+      {
+        "agent": "Legal",
+        "decision": "Pivot",
+        "confidence": "Medium",
+        "core_thesis": "Moderate \u2014 the core rounding\u2011up algorithm and proprietary transaction orchestration can be protected by trade secrets and patents, but the app will likely rely heavily on open\u2011source cryptographic libraries and blockchain."
+      },
+      {
+        "agent": "Product Lead",
+        "decision": "Pivot",
+        "confidence": "Low",
+        "core_thesis": "Success of traditional round\u2011up apps (Acorns) shows consumer appetite for micro\u2011investing, but crypto\u2011specific equivalents have limited traction (e.g., Bitpass failure); retail interest in crypto remains volatile; early adopters often cite security and fee transparency as make\u2011or\u2011break factors."
+      }
+    ]
+  }
+}

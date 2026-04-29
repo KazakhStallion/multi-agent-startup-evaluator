@@ -1,0 +1,662 @@
+{
+  "startup": {
+    "name": "WellnessAI",
+    "sector": "healthtech",
+    "description": "AI chatbot for wellness advice without clinical validation yet.",
+    "business": {
+      "description": "AI chatbot for wellness advice without clinical validation yet."
+    },
+    "finances": {
+      "revenue": 0,
+      "burn_rate": 25000,
+      "funding": 150000,
+      "employee_count": 7
+    }
+  },
+  "native_outputs": {
+    "market_analyst": {
+      "agent": "Market Analyst",
+      "market_sizing": {
+        "tam_estimate": "The healthtech sector contains 6,990 companies, with a median funding of $4,469,794, indicating a total addressable market that likely runs into the tens of billions of dollars (aggregate funding \u2248 $31\u202fB).",
+        "sam_estimate": "WellnessAI\u2019s focus on AI\u2011driven wellness advice targets a niche within healthtech (consumer\u2011focused wellness chatbots). Assuming this niche represents roughly 5\u202f% of the overall healthtech ecosystem, the serviceable addressable market would be on the order of a few hundred companies (\u2248350) and several hundred million dollars of annual spend. This is an assumption built on the sector\u2011wide company count.",
+        "evidence": "Crunchbase data: 6,990 healthtech companies, median funding $4,469,794; top funded companies ranging from $710\u202fM to $2.6\u202fB. Failure data shows 60 total failures, with competition (35) and giants (34) as leading causes."
+      },
+      "competitive_landscape": "The sector is crowded: 6,264 operating firms and 343 acquisitions indicate active consolidation. Failure evidence highlights competition and dominance by large incumbents (e.g., giants) as the most common reasons for shutdown, suggesting WellnessAI will face strong head\u2011to\u2011head pressure from both established healthtech players and new AI\u2011driven entrants.",
+      "demand_validation": "WellnessAI currently lacks clinical validation and there is no direct evidence of user traction or revenue. The failure examples (Aira Health, Amino, Arivale) illustrate that insufficient user bases and poor market fit led to shutdowns, underscoring the need for solid demand validation before scaling.",
+      "market_timing": "Funding activity in healthtech spans over a century (1902\u20112014) and includes multi\u2011billion\u2011dollar rounds, indicating long\u2011standing investor interest. However, the absence of recent post\u20112014 data and the high failure rate due to competition suggest timing is favorable only if WellnessAI can differentiate quickly.",
+      "key_claims": [
+        "The healthtech ecosystem is large (\u22487,000 companies) and well\u2011funded (median $4.5\u202fM).",
+        "Top\u2011funded healthtech firms have secured between $710\u202fM and $2.6\u202fB, showing that big capital bets are possible.",
+        "Historical failures in the sector are most often caused by competition, dominance of large incumbents, and poor market fit."
+      ],
+      "risks": [
+        {
+          "description": "Intense competition from existing healthtech platforms and large incumbents (giants).",
+          "severity": "high",
+          "evidence": "Failure evidence: competition cited in 35 of 60 failures; giants cited in 34 of 60 failures."
+        },
+        {
+          "description": "Unproven market demand for non\u2011clinical wellness chatbots.",
+          "severity": "high",
+          "evidence": "No clinical validation yet; failure cases (Aira Health, Arivale) failed due to small user bases and low demand."
+        },
+        {
+          "description": "Potential mismatch between product cost/price and consumer willingness to pay.",
+          "severity": "medium",
+          "evidence": "Arivale failed because of high costs and low demand; similar pricing challenges could affect WellnessAI."
+        }
+      ],
+      "score": 3,
+      "recommendation": "Proceed with caution. Conduct rapid user testing and secure a clear path to market differentiation before pursuing large funding rounds. Validate demand early to mitigate high competition risk."
+    },
+    "finance": {
+      "agent": "Finance",
+      "burn_efficiency": {
+        "calculation": "0.0 / 25000.0 = 0.0",
+        "result": 0.0,
+        "reasoning": "With zero revenue, the efficiency of converting burn into revenue is nil."
+      },
+      "capital_risk": {
+        "level": "high",
+        "reasoning": "The company has no revenue and only 6 months of runway, indicating a high risk of running out of cash before achieving product-market fit."
+      },
+      "burn_multiple": {
+        "calculation": "0.0 / 25000.0 = 0.0",
+        "result": 0.0,
+        "reasoning": "Burn multiple compares revenue to cash burn; with zero revenue the multiple is zero."
+      },
+      "runway": {
+        "calculation": "cash / monthly_burn",
+        "months": 6.0,
+        "reasoning": "150,000 cash divided by a $25,000 monthly burn yields 6 months of runway."
+      },
+      "ten_x_goal": {
+        "target_revenue_usd": 0.0,
+        "calculation": "0.0 * 10 = 0.0"
+      },
+      "capital_intensity": {
+        "rating": "medium",
+        "reasoning": "The cash burn is moderate relative to the cash on hand, giving a 6\u2011month runway which is neither extremely low nor high capital intensity."
+      },
+      "founder_inquiry": "What is your concrete plan to generate revenue within the next 3 months and extend runway beyond the current 6\u2011month horizon?",
+      "total_rating": 5,
+      "final_decision": {
+        "decision": "No-Go",
+        "recommendation": "Given zero revenue, short runway, and high capital risk, the startup should focus on validating a revenue model before seeking additional financing."
+      }
+    },
+    "tech_lead": {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup is an early\u2011stage AI chatbot targeting wellness advice, but it lacks any clinical validation or disclosed technical architecture. With a 7\u2011person team, modest funding, and no revenue, there is insufficient evidence to assess execution feasibility, scalability, or reliability. Critical technical details such as model selection, data pipeline, security, and compliance are unknown, making the risk profile high.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on model development, deployment strategy, or engineering processes; clinical validation is absent, indicating high execution risk."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability cannot be evaluated without knowledge of infrastructure (cloud vs on\u2011prem), load testing results, or multi\u2011tenant design."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "Provided data is minimal; there are no product demos, performance metrics, or user studies to substantiate technical claims."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory, privacy, and reliability risks are unknown; lack of validation and unclear architecture amplify overall risk."
+        }
+      },
+      "key_strengths": [
+        "Small, focused team (7 members) potentially capable of rapid iteration",
+        "Early funding of $150k provides runway for prototype development",
+        "Clear market interest in AI\u2011driven wellness assistance"
+      ],
+      "key_risks": [
+        "No clinical validation \u2013 potential regulatory and liability issues",
+        "Unknown technical stack and data governance raises security and reliability concerns",
+        "Limited financial runway (burn $25k/month) may not support extensive R&D or compliance work"
+      ],
+      "key_questions": [
+        "What AI models and training data are used, and how are they vetted for bias and safety?",
+        "What is the planned architecture (cloud provider, micro\u2011services, scaling strategy) and how is high availability ensured?",
+        "What regulatory pathway or clinical validation plan is in place to mitigate liability?"
+      ],
+      "next_steps": [
+        "Request a detailed technical architecture diagram and deployment pipeline description",
+        "Ask for a validation roadmap, including any clinical trials, IRB approvals, or compliance frameworks (e.g., HIPAA, GDPR)",
+        "Obtain early user metrics or pilot study results to gauge efficacy and safety"
+      ],
+      "debate": {
+        "core_thesis": "AI wellness chatbots can capture a large consumer market, but without clinical validation and a robust, compliant architecture they face prohibitive regulatory and trust barriers.",
+        "challenge_for_committee": "The current data provides no concrete evidence of technical maturity, safety, or scalability, making it difficult to justify investment at this stage.",
+        "what_would_change_my_mind": "A demonstrable, peer\u2011reviewed validation study, a clear, secure, and scalable technical architecture, and early traction metrics showing safe, effective user interactions would substantially improve the investment case."
+      },
+      "technical_summary": "The startup is an early\u2011stage AI chatbot targeting wellness advice, but it lacks any clinical validation or disclosed technical architecture. With a 7\u2011person team, modest funding, and no revenue, there is insufficient evidence to assess execution feasibility, scalability, or reliability. Critical technical details such as model selection, data pipeline, security, and compliance are unknown, making the risk profile high.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on model development, deployment strategy, or engineering processes; clinical validation is absent, indicating high execution risk."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Scalability cannot be evaluated without knowledge of infrastructure (cloud vs on\u2011prem), load testing results, or multi\u2011tenant design."
+      },
+      "security_and_reliability_risks": [
+        "No clinical validation \u2013 potential regulatory and liability issues",
+        "Unknown technical stack and data governance raises security and reliability concerns",
+        "Limited financial runway (burn $25k/month) may not support extensive R&D or compliance work"
+      ],
+      "build_plan_90_days": [
+        "Request a detailed technical architecture diagram and deployment pipeline description",
+        "Ask for a validation roadmap, including any clinical trials, IRB approvals, or compliance frameworks (e.g., HIPAA, GDPR)",
+        "Obtain early user metrics or pilot study results to gauge efficacy and safety"
+      ],
+      "tech_due_diligence_questions": [
+        "What AI models and training data are used, and how are they vetted for bias and safety?",
+        "What is the planned architecture (cloud provider, micro\u2011services, scaling strategy) and how is high availability ensured?",
+        "What regulatory pathway or clinical validation plan is in place to mitigate liability?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    "skeptic": {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup offers an AI wellness chatbot that has not yet undergone clinical validation, with no disclosed market, business model, or traction. With zero revenue, a modest burn of $25k/month, and only $150k in funding, the venture is operating on an undefined runway and faces significant regulatory and adoption uncertainties.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No clear product validation, regulatory pathway, or go\u2011to\u2011market plan; the team\u2019s ability to deliver a compliant, effective health\u2011focused AI is unproven."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Without evidence of market demand, pricing strategy, or a repeatable customer acquisition funnel, scaling beyond a niche pilot is speculative."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All critical data points (problem, solution, traction, revenue) are missing; the only concrete metric is a $150k seed raise, which provides limited validation."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory risk, liability for health advice, undefined runway, and zero revenue combine to make the investment highly risky."
+        }
+      },
+      "key_strengths": [
+        "Seed funding of $150k provides initial runway for development",
+        "Small team (7 people) may enable fast decision\u2011making",
+        "Operating in a high\u2011growth AI wellness space that attracts investor interest"
+      ],
+      "key_risks": [
+        "Lack of clinical validation and regulatory compliance for health advice",
+        "No disclosed market size, target customer, or pricing model",
+        "Zero revenue and unknown runway despite $25k/month burn"
+      ],
+      "key_questions": [
+        "What specific wellness problems does the chatbot address, and how is it differentiated from existing solutions?",
+        "What is the regulatory strategy (e.g., FDA, CE) to ensure the advice is legally permissible?",
+        "How does the team plan to acquire paying customers and generate sustainable revenue?"
+      ],
+      "next_steps": [
+        "Request a detailed product and validation roadmap, including clinical trial or expert review plans",
+        "Obtain a full financial model showing runway, unit economics, and break\u2011even projections",
+        "Secure market research that quantifies target customer segments, willingness to pay, and competitive landscape"
+      ],
+      "debate": {
+        "core_thesis": "An unvalidated AI chatbot for wellness advice is unlikely to achieve traction or survive regulatory scrutiny without a clear, evidence\u2011based product and revenue model.",
+        "challenge_for_committee": "Can the founding team demonstrate a credible path to clinical validation, regulatory clearance, and a monetizable market within the next 12 months?",
+        "what_would_change_my_mind": "Concrete evidence of clinical validation, a documented regulatory approval roadmap, and a signed pilot with a paying partner generating recurring revenue."
+      }
+    },
+    "legal": {
+      "agent": "Legal",
+      "regulatory_burden": "High",
+      "applicable_regulations": [
+        "FDA (Software as a Medical Device \u2013 510(k) / De Novo pathway)",
+        "HIPAA (if PHI is collected or transmitted)",
+        "FTC Act (deceptive/ unfair advertising)",
+        "State consumer protection statutes (e.g., California Consumer Privacy Act, New York SHIELD Act)",
+        "GDPR (for EU users)",
+        "CCPA/CPRA (California residents)",
+        "SOC\u202f2 / ISO\u202f27001 (vendor security certifications expected by partners)"
+      ],
+      "ip_defensibility": "Moderate \u2013 the core AI models are likely built on open\u2011source frameworks (TensorFlow, PyTorch, HuggingFace). Protectability hinges on robust trade\u2011secret policies, clear employee/contractor IP assignment agreements, and possibly filing patents on unique model\u2011training pipelines or domain\u2011specific data\u2011curation methods. Open\u2011source license compliance (Apache\u20112.0, MIT, LGPL) is critical; any GPL\u2011licensed component could jeopardize commercial use. Overall defensibility is achievable but requires disciplined IP housekeeping.",
+      "critical_red_flags": [
+        "The chatbot provides health\u2011related advice without FDA clearance; could be classified as a medical device and expose the company to enforcement actions.",
+        "Potential violation of HIPAA if users disclose protected health information and the platform lacks required safeguards (risk assessments, BAAs, encryption, audit controls).",
+        "Marketing language may be deemed deceptive under FTC rules if advice is presented as clinically validated.",
+        "Handling of personal health data without a comprehensive GDPR/CCPA compliance program could lead to large fines and loss of user trust.",
+        "Open\u2011source license compliance risk \u2013 using any GPL\u2011licensed code without adhering to its copyleft requirements would force source disclosure of proprietary code.",
+        "Lack of professional liability insurance to cover malpractice or wrongful\u2011advice claims."
+      ],
+      "mitigation_requirements": [
+        "Conduct a formal FDA regulatory classification; if the product is deemed SaMD, develop a clearance/approval roadmap (pre\u2011submission, 510(k) or De Novo).",
+        "Implement a HIPAA compliance program: perform a security risk analysis, establish Business Associate Agreements where applicable, adopt encryption at rest/in\u2011transit, and enforce strict access controls.",
+        "Review all marketing and user\u2011interface copy with counsel to ensure no unsubstantiated health claims; include clear disclaimers that the service is not a substitute for professional medical advice.",
+        "Develop a privacy program covering GDPR, CCPA/CPRA, and other state laws: data\u2011mapping, consent mechanisms, data\u2011subject rights workflow, and appoint a Data Protection Officer if required.",
+        "Audit all third\u2011party code libraries; maintain a software bill of materials (SBOM) and ensure all open\u2011source components are used under compatible licenses. Replace any GPL code with permissively\u2011licensed alternatives or obtain appropriate licensing.",
+        "Secure IP assignments from all founders, employees, and contractors; file provisional patents on novel AI methods or data\u2011curation processes; implement trade\u2011secret protections (NDAs, least\u2011privilege access).",
+        "Obtain Errors\u2011and\u2011Omissions (E&O) insurance covering advice\u2011related liability."
+      ],
+      "score": 4,
+      "legal_verdict": "Hold"
+    },
+    "product_lead": {
+      "agent": "Product_Lead",
+      "product_differentiation": "Low - the AI wellness chatbot offers generic advice that can be replicated by larger players or open\u2011source LLMs, providing little unique value versus incumbents.",
+      "feature_priority": "The team is building conversational UI before securing clinical validation, regulatory compliance, and a trusted data pipeline\u2014mis\u2011aligned with the core problem of trustworthy wellness guidance.",
+      "scalability_assessment": "Technically the chatbot can scale quickly on cloud LLM infrastructure, but real\u2011world growth is throttled by the need for manual oversight, safety reviews, and potential regulatory barriers, making scaling frictionful.",
+      "ip_defensibility": "Low - no evident patents, limited proprietary data, and heavy reliance on third\u2011party models reduce moat potential.",
+      "execution_risks": [
+        "Regulatory risk due to lack of clinical validation",
+        "Platform dependency on external LLM providers",
+        "High competition from established health\u2011tech apps and large incumbents",
+        "User trust and data\u2011privacy concerns",
+        "Potential cash burn before achieving measurable outcomes"
+      ],
+      "product_market_fit_signals": [
+        "Historical failures (Arivale, Aira Health) highlight low demand for paid, non\u2011clinical wellness coaching",
+        "Sector failure data shows poor market fit as a top cause (28/60 failures)",
+        "Consumers gravitate toward proven medical platforms or human coaches rather than generic AI chatbots"
+      ],
+      "score": 3,
+      "product_verdict": "No-Go"
+    }
+  },
+  "committee_inputs": [
+    {
+      "agent": "Market Analyst",
+      "role": "market",
+      "summary": "The sector is crowded: 6,264 operating firms and 343 acquisitions indicate active consolidation.",
+      "decision": "Pivot",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Derived from score 6/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "Scalability confidence tracks score bucket at 6/10."
+        },
+        "evidence_quality": {
+          "assessment": "Medium",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "Medium",
+          "reasoning": "Risk is inversely mapped from score bucket (6/10)."
+        }
+      },
+      "key_strengths": [
+        "The healthtech sector contains 6,990 companies, with a median funding of $4,469,794, indicating a total addressable market that likely runs into the tens of billions of dollars (aggregate funding \u2248 $31 B).",
+        "WellnessAI\u2019s focus on AI\u2011driven wellness advice targets a niche within healthtech (consumer\u2011focused wellness chatbots).",
+        "Funding activity in healthtech spans over a century (1902\u20112014) and includes multi\u2011billion\u2011dollar rounds, indicating long\u2011standing investor interest."
+      ],
+      "key_risks": [
+        "Intense competition from existing healthtech platforms and large incumbents (giants).",
+        "Unproven market demand for non\u2011clinical wellness chatbots.",
+        "Potential mismatch between product cost/price and consumer willingness to pay."
+      ],
+      "key_questions": [
+        "What proof exists for repeatable customer demand in the exact target niche?",
+        "What is the startup's most defensible market wedge against incumbents?",
+        "Which assumption in TAM/SAM has the highest downside if wrong?"
+      ],
+      "next_steps": [
+        "Get customer interviews and conversion proof in the target segment.",
+        "List the alternatives buyers are using right now.",
+        "Test pricing and retention assumptions with real prospects."
+      ],
+      "debate": {
+        "core_thesis": "Proceed with caution. Conduct rapid user testing and secure a clear path to market differentiation before pursuing large funding rounds. Validate demand early to mitigate high competition risk.",
+        "challenge_for_committee": "Are we overestimating demand from broad market stats?",
+        "what_would_change_my_mind": "Crunchbase data: 6,990 healthtech companies, median funding $4,469,794; top funded companies ranging from $710 M to $2.6 B. Failure data shows 60 total failures, with competition (35) and giants (34) as leading causes."
+      }
+    },
+    {
+      "agent": "Finance",
+      "role": "finance",
+      "summary": "Given zero revenue, short runway, and high capital risk, the startup should focus on validating a revenue model before seeking additional financing.",
+      "decision": "No-Go",
+      "confidence": "Medium",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Medium",
+          "reasoning": "Mapped from finance rating 5/10 and stability of cash profile."
+        },
+        "scalability": {
+          "assessment": "Medium",
+          "reasoning": "The cash burn is moderate relative to the cash on hand, giving a 6\u2011month runway which is neither extremely low nor high capital intensity."
+        },
+        "evidence_quality": {
+          "assessment": "High",
+          "reasoning": "Finance output has explicit calculations."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "The company has no revenue and only 6 months of runway, indicating a high risk of running out of cash before achieving product-market fit."
+        }
+      },
+      "key_strengths": [
+        "Burn efficiency: 0.0",
+        "Runway months: 6.0",
+        "150,000 cash divided by a $25,000 monthly burn yields 6 months of runway."
+      ],
+      "key_risks": [
+        "Capital risk level: high",
+        "The company has no revenue and only 6 months of runway, indicating a high risk of running out of cash before achieving product-market fit.",
+        "Capital intensity: medium",
+        "Burn is still close to revenue, so margin error is thin if growth slows."
+      ],
+      "key_questions": [
+        "What is your concrete plan to generate revenue within the next 3 months and extend runway beyond the current 6\u2011month horizon?"
+      ],
+      "next_steps": [
+        "Track burn efficiency month to month.",
+        "Set runway guardrails and fundraise trigger points.",
+        "Validate unit economics with cohort data."
+      ],
+      "debate": {
+        "core_thesis": "Given zero revenue, short runway, and high capital risk, the startup should focus on validating a revenue model before seeking additional financing.",
+        "challenge_for_committee": "Is the current runway sufficient if growth slips below plan?",
+        "what_would_change_my_mind": "The company has no revenue and only 6 months of runway, indicating a high risk of running out of cash before achieving product-market fit."
+      }
+    },
+    {
+      "agent": "Technical Lead",
+      "role": "technical",
+      "summary": "The startup is an early\u2011stage AI chatbot targeting wellness advice, but it lacks any clinical validation or disclosed technical architecture. With a 7\u2011person team, modest funding, and no revenue, there is insufficient evidence to assess execution feasibility, scalability, or reliability. Critical technical details such as model selection, data pipeline, security, and compliance are unknown, making the risk profile high.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No information on model development, deployment strategy, or engineering processes; clinical validation is absent, indicating high execution risk."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability cannot be evaluated without knowledge of infrastructure (cloud vs on\u2011prem), load testing results, or multi\u2011tenant design."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "Provided data is minimal; there are no product demos, performance metrics, or user studies to substantiate technical claims."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory, privacy, and reliability risks are unknown; lack of validation and unclear architecture amplify overall risk."
+        }
+      },
+      "key_strengths": [
+        "Small, focused team (7 members) potentially capable of rapid iteration",
+        "Early funding of $150k provides runway for prototype development",
+        "Clear market interest in AI\u2011driven wellness assistance"
+      ],
+      "key_risks": [
+        "No clinical validation \u2013 potential regulatory and liability issues",
+        "Unknown technical stack and data governance raises security and reliability concerns",
+        "Limited financial runway (burn $25k/month) may not support extensive R&D or compliance work"
+      ],
+      "key_questions": [
+        "What AI models and training data are used, and how are they vetted for bias and safety?",
+        "What is the planned architecture (cloud provider, micro\u2011services, scaling strategy) and how is high availability ensured?",
+        "What regulatory pathway or clinical validation plan is in place to mitigate liability?"
+      ],
+      "next_steps": [
+        "Request a detailed technical architecture diagram and deployment pipeline description",
+        "Ask for a validation roadmap, including any clinical trials, IRB approvals, or compliance frameworks (e.g., HIPAA, GDPR)",
+        "Obtain early user metrics or pilot study results to gauge efficacy and safety"
+      ],
+      "debate": {
+        "core_thesis": "AI wellness chatbots can capture a large consumer market, but without clinical validation and a robust, compliant architecture they face prohibitive regulatory and trust barriers.",
+        "challenge_for_committee": "The current data provides no concrete evidence of technical maturity, safety, or scalability, making it difficult to justify investment at this stage.",
+        "what_would_change_my_mind": "A demonstrable, peer\u2011reviewed validation study, a clear, secure, and scalable technical architecture, and early traction metrics showing safe, effective user interactions would substantially improve the investment case."
+      },
+      "technical_summary": "The startup is an early\u2011stage AI chatbot targeting wellness advice, but it lacks any clinical validation or disclosed technical architecture. With a 7\u2011person team, modest funding, and no revenue, there is insufficient evidence to assess execution feasibility, scalability, or reliability. Critical technical details such as model selection, data pipeline, security, and compliance are unknown, making the risk profile high.",
+      "architecture_feasibility": {
+        "assessment": "Low",
+        "reasoning": "No information on model development, deployment strategy, or engineering processes; clinical validation is absent, indicating high execution risk."
+      },
+      "scalability_outlook": {
+        "assessment": "Low",
+        "reasoning": "Scalability cannot be evaluated without knowledge of infrastructure (cloud vs on\u2011prem), load testing results, or multi\u2011tenant design."
+      },
+      "security_and_reliability_risks": [
+        "No clinical validation \u2013 potential regulatory and liability issues",
+        "Unknown technical stack and data governance raises security and reliability concerns",
+        "Limited financial runway (burn $25k/month) may not support extensive R&D or compliance work"
+      ],
+      "build_plan_90_days": [
+        "Request a detailed technical architecture diagram and deployment pipeline description",
+        "Ask for a validation roadmap, including any clinical trials, IRB approvals, or compliance frameworks (e.g., HIPAA, GDPR)",
+        "Obtain early user metrics or pilot study results to gauge efficacy and safety"
+      ],
+      "tech_due_diligence_questions": [
+        "What AI models and training data are used, and how are they vetted for bias and safety?",
+        "What is the planned architecture (cloud provider, micro\u2011services, scaling strategy) and how is high availability ensured?",
+        "What regulatory pathway or clinical validation plan is in place to mitigate liability?"
+      ],
+      "technical_verdict": "No-Go"
+    },
+    {
+      "agent": "Skeptic",
+      "role": "skeptical",
+      "summary": "The startup offers an AI wellness chatbot that has not yet undergone clinical validation, with no disclosed market, business model, or traction. With zero revenue, a modest burn of $25k/month, and only $150k in funding, the venture is operating on an undefined runway and faces significant regulatory and adoption uncertainties.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "No clear product validation, regulatory pathway, or go\u2011to\u2011market plan; the team\u2019s ability to deliver a compliant, effective health\u2011focused AI is unproven."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Without evidence of market demand, pricing strategy, or a repeatable customer acquisition funnel, scaling beyond a niche pilot is speculative."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "All critical data points (problem, solution, traction, revenue) are missing; the only concrete metric is a $150k seed raise, which provides limited validation."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Regulatory risk, liability for health advice, undefined runway, and zero revenue combine to make the investment highly risky."
+        }
+      },
+      "key_strengths": [
+        "Seed funding of $150k provides initial runway for development",
+        "Small team (7 people) may enable fast decision\u2011making",
+        "Operating in a high\u2011growth AI wellness space that attracts investor interest"
+      ],
+      "key_risks": [
+        "Lack of clinical validation and regulatory compliance for health advice",
+        "No disclosed market size, target customer, or pricing model",
+        "Zero revenue and unknown runway despite $25k/month burn"
+      ],
+      "key_questions": [
+        "What specific wellness problems does the chatbot address, and how is it differentiated from existing solutions?",
+        "What is the regulatory strategy (e.g., FDA, CE) to ensure the advice is legally permissible?",
+        "How does the team plan to acquire paying customers and generate sustainable revenue?"
+      ],
+      "next_steps": [
+        "Request a detailed product and validation roadmap, including clinical trial or expert review plans",
+        "Obtain a full financial model showing runway, unit economics, and break\u2011even projections",
+        "Secure market research that quantifies target customer segments, willingness to pay, and competitive landscape"
+      ],
+      "debate": {
+        "core_thesis": "An unvalidated AI chatbot for wellness advice is unlikely to achieve traction or survive regulatory scrutiny without a clear, evidence\u2011based product and revenue model.",
+        "challenge_for_committee": "Can the founding team demonstrate a credible path to clinical validation, regulatory clearance, and a monetizable market within the next 12 months?",
+        "what_would_change_my_mind": "Concrete evidence of clinical validation, a documented regulatory approval roadmap, and a signed pilot with a paying partner generating recurring revenue."
+      }
+    },
+    {
+      "agent": "Legal",
+      "role": "legal",
+      "summary": "Moderate \u2013 the core AI models are likely built on open\u2011source frameworks (TensorFlow, PyTorch, HuggingFace). Protectability hinges on robust trade\u2011secret policies, clear employee/contractor IP assignment agreements, and possibly filing patents on unique model\u2011training pipelines or domain\u2011specific data\u2011curation methods. Open\u2011source license compliance (Apache\u20112.0, MIT, LGPL) is critical; any GPL\u2011licensed component could jeopardize commercial use. Overall defensibility is achievable but requires disciplined IP housekeeping.",
+      "decision": "Pivot",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "Derived from score 4/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability confidence tracks score bucket at 4/10."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Risk is inversely mapped from score bucket (4/10)."
+        }
+      },
+      "key_strengths": [
+        "Regulatory burden: High",
+        "Moderate \u2013 the core AI models are likely built on open\u2011source frameworks (TensorFlow, PyTorch, HuggingFace)."
+      ],
+      "key_risks": [
+        "The chatbot provides health\u2011related advice without FDA clearance; could be classified as a medical device and expose the company to enforcement actions.",
+        "Potential violation of HIPAA if users disclose protected health information and the platform lacks required safeguards (risk assessments, BAAs, encryption, audit controls).",
+        "Marketing language may be deemed deceptive under FTC rules if advice is presented as clinically validated.",
+        "Handling of personal health data without a comprehensive GDPR/CCPA compliance program could lead to large fines and loss of user trust.",
+        "Open\u2011source license compliance risk \u2013 using any GPL\u2011licensed code without adhering to its copyleft requirements would force source disclosure of proprietary code."
+      ],
+      "key_questions": [
+        "Which compliance obligations must be met before scaling?",
+        "What legal blocker can halt go-to-market if not handled now?",
+        "What is the highest legal risk concentration by geography?"
+      ],
+      "next_steps": [
+        "Conduct a formal FDA regulatory classification; if the product is deemed SaMD, develop a clearance/approval roadmap (pre\u2011submission, 510(k) or De Novo).",
+        "Implement a HIPAA compliance program: perform a security risk analysis, establish Business Associate Agreements where applicable, adopt encryption at rest/in\u2011transit, and enforce s.",
+        "Review all marketing and user\u2011interface copy with counsel to ensure no unsubstantiated health claims.",
+        "Develop a privacy program covering GDPR, CCPA/CPRA, and other state laws: data\u2011mapping, consent mechanisms, data\u2011subject rights workflow, and appoint a Data Protection Officer if r.",
+        "Audit all third\u2011party code libraries; maintain a software bill of materials (SBOM) and ensure all open\u2011source components are used under compatible licenses."
+      ],
+      "debate": {
+        "core_thesis": "Moderate \u2013 the core AI models are likely built on open\u2011source frameworks (TensorFlow, PyTorch, HuggingFace).",
+        "challenge_for_committee": "Are we underestimating regulatory and liability exposure?",
+        "what_would_change_my_mind": "Proof of compliance readiness and lower legal exposure."
+      }
+    },
+    {
+      "agent": "Product Lead",
+      "role": "product",
+      "summary": "Low - the AI wellness chatbot offers generic advice that can be replicated by larger players or open\u2011source LLMs, providing little unique value versus incumbents.",
+      "decision": "No-Go",
+      "confidence": "Low",
+      "scorecard": {
+        "execution_feasibility": {
+          "assessment": "Low",
+          "reasoning": "Derived from score 3/10 and consistency of returned evidence."
+        },
+        "scalability": {
+          "assessment": "Low",
+          "reasoning": "Scalability confidence tracks score bucket at 3/10."
+        },
+        "evidence_quality": {
+          "assessment": "Low",
+          "reasoning": "Evidence quality follows how specific and testable the supporting points are."
+        },
+        "risk_level": {
+          "assessment": "High",
+          "reasoning": "Risk is inversely mapped from score bucket (3/10)."
+        }
+      },
+      "key_strengths": [
+        "Low - the AI wellness chatbot offers generic advice that can be replicated by larger players or open\u2011source LLMs, providing little unique value versus incumbents.",
+        "Technically the chatbot can scale quickly on cloud LLM infrastructure, but real\u2011world growth is throttled by the need for manual oversight, safety reviews, and potential regulatory barriers, making scaling frictionful."
+      ],
+      "key_risks": [
+        "Regulatory risk due to lack of clinical validation",
+        "Platform dependency on external LLM providers",
+        "High competition from established health\u2011tech apps and large incumbents",
+        "User trust and data\u2011privacy concerns",
+        "Potential cash burn before achieving measurable outcomes"
+      ],
+      "key_questions": [
+        "What product signal most strongly indicates PMF progress?",
+        "Which user segment has the clearest willingness to pay?",
+        "What feature decision carries the highest execution risk?"
+      ],
+      "next_steps": [
+        "Prioritize the roadmap around the highest-confidence user pain.",
+        "Validate feature adoption using cohort-level usage data.",
+        "Reduce execution risk by sequencing delivery in milestones."
+      ],
+      "debate": {
+        "core_thesis": "Historical failures (Arivale, Aira Health) highlight low demand for paid, non\u2011clinical wellness coaching; Sector failure data shows poor market fit as a top cause (28/60 failures); Consumers gravitate toward proven medical platforms or human coaches rather than generic AI chatbots",
+        "challenge_for_committee": "Are we overestimating differentiation versus incumbents?",
+        "what_would_change_my_mind": "Stronger PMF evidence and lower execution risk."
+      }
+    }
+  ],
+  "moderator_output": {
+    "agent": "Moderator",
+    "committee_size": 6,
+    "final_decision": "No-Go",
+    "confidence": "Medium",
+    "decision_summary": "The startup faces high regulatory and compliance risk, has no clinical validation, zero revenue and only six months of runway, and operates in a crowded health\u2011tech market with little differentiated moat. The team lacks a clear go\u2011to\u2011market or monetisation plan, making the probability of achieving product\u2011market fit before cash runs out low. Consequently, the committee recommends not proceeding with investment at this time.",
+    "consensus_points": [
+      "Intense competition and unclear differentiation in the wellness\u2011chatbot niche.",
+      "Absence of clinical validation and significant regulatory/compliance exposure.",
+      "Very short runway (\u22486 months) with no revenue traction."
+    ],
+    "disagreements": [
+      "Market Analyst and Legal suggest a pivot rather than a full stop, seeing some niche opportunity.",
+      "Finance, Technical Lead, Skeptic and Product Lead assert a No\u2011Go due to financial and product risks."
+    ],
+    "top_risks": [
+      "Regulatory and liability risk (FDA/ HIPAA / FTC compliance) for health advice.",
+      "Lack of demonstrated customer demand and repeatable revenue model.",
+      "Insufficient runway and high burn rate relative to zero revenue."
+    ],
+    "required_follow_ups": [
+      "Develop a concrete clinical validation and regulatory clearance roadmap.",
+      "Produce a detailed financial model showing path to revenue and runway extension.",
+      "Execute customer discovery to prove demand, willingness to pay, and differentiation."
+    ],
+    "agent_positions": [
+      {
+        "agent": "Market Analyst",
+        "decision": "Pivot",
+        "confidence": "Medium",
+        "core_thesis": "Proceed with caution. Conduct rapid user testing and secure a clear path to market differentiation before pursuing large funding rounds."
+      },
+      {
+        "agent": "Finance",
+        "decision": "No-Go",
+        "confidence": "Medium",
+        "core_thesis": "Given zero revenue, short runway, and high capital risk, the startup should focus on validating a revenue model before seeking additional financing."
+      },
+      {
+        "agent": "Technical Lead",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "AI wellness chatbots can capture a large consumer market, but without clinical validation and a robust, compliant architecture they face prohibitive regulatory and trust barriers."
+      },
+      {
+        "agent": "Skeptic",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "An unvalidated AI chatbot for wellness advice is unlikely to achieve traction or survive regulatory scrutiny without a clear, evidence\u2011based product and revenue model."
+      },
+      {
+        "agent": "Legal",
+        "decision": "Pivot",
+        "confidence": "Low",
+        "core_thesis": "Moderate \u2013 the core AI models are likely built on open\u2011source frameworks; protectability hinges on IP housekeeping but regulatory compliance is a major hurdle."
+      },
+      {
+        "agent": "Product Lead",
+        "decision": "No-Go",
+        "confidence": "Low",
+        "core_thesis": "Historical failures show low demand for paid, non\u2011clinical wellness coaching; the chatbot offers generic advice that can be replicated by larger players."
+      }
+    ]
+  }
+}

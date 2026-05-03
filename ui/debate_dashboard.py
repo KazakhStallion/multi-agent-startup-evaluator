@@ -172,7 +172,11 @@ def render_startup_snapshot(payload: dict):
 
 def render_agent_cards(payload: dict):
     committee = payload.get("committee_inputs", [])
+    initial = payload.get("committee_inputs_initial")
+    meta = payload.get("pipeline_meta") or {}
     st.subheader("Agent Positions")
+    if meta.get("second_round") and initial:
+        st.caption("Final stances after the peer round (each agent revised once using others' round-1 views).")
     for row in committee:
         if not isinstance(row, dict):
             continue
@@ -189,6 +193,17 @@ def render_agent_cards(payload: dict):
                 st.markdown("**Key risks**")
                 for item in row.get("key_risks", [])[:4]:
                     st.write(f"- {item}")
+
+    if initial and meta.get("second_round"):
+        with st.expander("Round 1 only (snapshot before peer revision)", expanded=False):
+            for row in initial:
+                if not isinstance(row, dict):
+                    continue
+                st.markdown(
+                    f"**{row.get('agent', 'Agent')}** · {_decision_badge(str(row.get('decision', 'Pivot')))}"
+                )
+                st.write((row.get("summary") or "")[:400])
+                st.divider()
 
 
 def render_debate_round(payload: dict):

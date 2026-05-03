@@ -64,7 +64,7 @@ RUNS_PER_MODEL = 3
 
 # 12 pitches across all 7 sectors. mix of strong, weak, and ambiguous on purpose
 # so the models have to actually differentiate and not just give everything a 3
-# All these pitches I generated using Claude, which are not real startups.
+# synthetic pitches only
 TEST_PITCHES = [
     {
         "name": "LedgerFlow",

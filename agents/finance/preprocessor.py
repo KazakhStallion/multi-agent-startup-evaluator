@@ -107,11 +107,7 @@ if __name__ == "__main__":
     total_processed = process_datasets()
     print(f"Successfully processed {total_processed} startups into {PROCESSED_DIR}.")
 
-    # --- Verification Block ---
-    print("\n" + "="*50)
-    print("VERIFICATION: Random Sample Results")
-    print("="*50)
-    
+    print("sample check:")
     processed_files = [f for f in os.listdir(PROCESSED_DIR) if f.endswith('.json')]
     
     if processed_files:
@@ -119,12 +115,11 @@ if __name__ == "__main__":
         samples = random.sample(processed_files, min(2, len(processed_files)))
         
         for sample_file in samples:
-            print(f"\n[SAMPLE FILE: {sample_file}]")
+            print(f"\n{sample_file}")
             with open(os.path.join(PROCESSED_DIR, sample_file), 'r') as f:
                 sample_data = json.load(f)
                 print(json.dumps(sample_data, indent=2))
     else:
         print("Error: No processed files found. Check your RAW_DIR path.")
 
-    print("\n" + "="*50)
-    print("Pre-processing Complete.")
+    print("preprocessing done.")

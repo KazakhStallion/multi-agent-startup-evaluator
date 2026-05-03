@@ -10,6 +10,7 @@ from agents.committee_adapters import (
 from agents.finance.finance_agent import FinanceAgent
 from agents.legal.legal_agent import run_legal_agent
 from agents.market_analyst.market_analyst_agent import run_market_analyst
+from agents.committee_second_round import run_committee_second_round
 from agents.moderator.moderator_agent import ModeratorAgent
 from agents.product_lead.product_lead_agent import run_product_lead
 from agents.skeptic.skeptic_agent import SkepticAgent
@@ -52,10 +53,10 @@ def _build_default_startup():
     }
 
 
-def run_committee_pipeline(startup: dict | None = None):
+def run_committee_pipeline(startup: dict | None = None, *, second_round: bool = True):
     startup = startup or _build_default_startup()
 
-    # run native agents first
+    # six specialists (native JSON each)
     market_native = run_market_analyst(
         name=startup.get("name", ""),
         sector=startup.get("sector", ""),
@@ -78,8 +79,8 @@ def run_committee_pipeline(startup: dict | None = None):
         description=startup.get("description", startup.get("business", {}).get("description", "")),
     )
 
-    # normalize to committee schema for moderator
-    committee_inputs = [
+    # adapters -> committee rows
+    committee_inputs_initial = [
         market_to_committee_output(market_native),
         finance_to_committee_output(finance_native),
         tech_native,
@@ -87,6 +88,12 @@ def run_committee_pipeline(startup: dict | None = None):
         legal_to_committee_output(legal_native),
         product_to_committee_output(product_native),
     ]
+
+    committee_inputs = (
+        run_committee_second_round(startup, committee_inputs_initial)
+        if second_round
+        else committee_inputs_initial
+    )
 
     moderator = ModeratorAgent()
     moderator_output = moderator.synthesize(startup, committee_inputs)
@@ -105,7 +112,10 @@ def run_committee_pipeline(startup: dict | None = None):
         },
         "committee_inputs": committee_inputs,
         "moderator_output": moderator_output,
+        "pipeline_meta": {"second_round": bool(second_round)},
     }
+    if second_round:
+        payload["committee_inputs_initial"] = committee_inputs_initial
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 

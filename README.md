@@ -1,35 +1,47 @@
 # multi-agent-startup-evaluator
-Multi-Agent Debate & Decision System for Early-Stage Startup Evaluation
 
-Early-stage startup evaluation is uncertain, multi-dimensional, and adversarial. Investors have to weigh technical feasibility, market demand, financial viability, product execution, regulatory exposure, and downside risk with incomplete information. This repo is structured around a committee model where specialized agents evaluate the same startup pitch from different perspectives, debate their conclusions, and feed a moderator that produces a final decision.
+Multi-Agent Debate and Decision System for early-stage startup evaluation.
 
-## Current status
-The long-term target is a 6-agent committee:
+This project runs a committee-style flow: six role-specific agents read the same startup payload, outputs are normalized into one schema, an optional peer revision pass lets roles update once after seeing others, then a moderator produces the final Go/Pivot/No-Go memo with disagreement, risks, and follow-ups.
+
+## What is implemented now
+
+Current committee roles:
+
 - Market Analyst
+- Finance
 - Technical Lead
-- Finance / VC
+- Legal
 - Product Lead
-- Risk / Legal
 - Skeptic
 
-## Current flow
-1. Load one startup pitch JSON using the shared startup schema below.
-2. Pass that same pitch to All Agents.
-4. Both agents return the same core output schema.
-5. Pass those two outputs into `ModeratorAgent`.
-6. The moderator returns the current committee decision: `Go`, `Pivot`, or `No-Go`.
+Core pipeline is live in `run_committee_pipeline.py` and writes one trace per startup to `data/committee_pipeline/*_committee_pipeline.json`.
 
-Later, the same pattern can be extended so the moderator ingests all 6 agent outputs instead of just 2.
+## Setup
 
-## Shared input schema
-All committee agents should receive a startup pitch JSON shaped like this:
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Environment keys:
+
+- `OPENAI_API_KEY` (used against `https://llm-api.arc.vt.edu/api/v1/`)
+- `GROQ_API_KEY` (fallback provider if OpenAI key is absent)
+
+If neither key is present, several components fall back to local heuristics so the pipeline still runs, but output quality is lower.
+
+## Shared startup input schema
+
+All roles expect a startup dictionary shaped roughly like:
 
 ```json
 {
   "metadata": {
-    "source_file": "all_synthetic_pitches.json",
-    "source_dataset": "tech_lead_synthetic",
-    "label": "Synthetic"
+    "source_file": "optional.json",
+    "source_dataset": "optional_tag",
+    "label": "optional"
   },
   "identity": {
     "name": "ShiftPay",
@@ -37,16 +49,16 @@ All committee agents should receive a startup pitch JSON shaped like this:
     "location": "United States"
   },
   "business": {
-    "description": "ShiftPay is a cloud-native payroll platform built for multi-unit restaurant groups.",
+    "description": "Cloud payroll + AP automation for multi-unit operators",
     "model": "B2B SaaS",
-    "problem": "Restaurant groups still compile hours from multiple systems and run payroll manually.",
-    "solution": "ShiftPay syncs operational data, automates payroll, and flags compliance exceptions.",
+    "problem": "Manual AP and payroll workflows",
+    "solution": "Automated intake, approvals, and payment routing",
     "target_customer": "Restaurant groups with 10-200 locations",
-    "pricing": "$45 per location per month plus $2 per active employee",
-    "traction": "Three pilots, 85 locations, 4,200 employees, two signed contracts"
+    "pricing": "$45/location/month + usage",
+    "traction": "Three pilots and two signed contracts"
   },
   "team": {
-    "founders": "Founder has payroll automation experience; CTO previously built restaurant POS pipelines."
+    "founders": "Domain operator + engineering lead"
   },
   "finances": {
     "revenue": "Unknown",
@@ -58,189 +70,138 @@ All committee agents should receive a startup pitch JSON shaped like this:
 }
 ```
 
-### Required vs optional fields
-The absolute minimum useful fields are:
+Minimum useful fields:
+
 - `identity.name`
 - `identity.sector`
 - `business.description`
 
-Strongly recommended fields:
-- `business.problem`
-- `business.solution`
-- `business.target_customer`
-- `business.traction`
-- `team.founders`
-- `finances.runway`
+`normalize_startup` in `agents/committee_utils.py` fills missing text as `"Unknown"` so fields stay explicit.
 
-If fields are unknown, use the string `"Unknown"` rather than omitting them.
+## Committee output schema (normalized)
 
-## Shared agent output schema
-`Technical Lead` and `Skeptic` now return the same core schema:
+Adapters and validators produce one shared shape per role:
 
 ```json
 {
   "agent": "Technical Lead",
   "role": "technical",
-  "summary": "2-4 sentence interpretation",
-  "decision": "Go",
-  "confidence": "Medium",
+  "summary": "2-4 sentence assessment",
+  "decision": "Go/Pivot/No-Go",
+  "confidence": "Low/Medium/High",
   "scorecard": {
     "execution_feasibility": {
-      "assessment": "High",
-      "reasoning": "The product scope looks achievable for the team and category."
+      "assessment": "Low/Medium/High",
+      "reasoning": "..."
     },
-    "scalability": {
-      "assessment": "High",
-      "reasoning": "The product appears software-leveraged rather than services-heavy."
-    },
-    "evidence_quality": {
-      "assessment": "Medium",
-      "reasoning": "There is some traction but still missing diligence detail."
-    },
-    "risk_level": {
-      "assessment": "Medium",
-      "reasoning": "There are still unresolved implementation and operating risks."
-    }
+    "scalability": { "assessment": "Low/Medium/High", "reasoning": "..." },
+    "evidence_quality": { "assessment": "Low/Medium/High", "reasoning": "..." },
+    "risk_level": { "assessment": "Low/Medium/High", "reasoning": "..." }
   },
-  "key_strengths": [
-    "strength 1",
-    "strength 2",
-    "strength 3"
-  ],
-  "key_risks": [
-    "risk 1",
-    "risk 2",
-    "risk 3"
-  ],
-  "key_questions": [
-    "question 1",
-    "question 2",
-    "question 3"
-  ],
-  "next_steps": [
-    "next step 1",
-    "next step 2",
-    "next step 3"
-  ],
+  "key_strengths": ["..."],
+  "key_risks": ["..."],
+  "key_questions": ["..."],
+  "next_steps": ["..."],
   "debate": {
-    "core_thesis": "The main case this agent is making",
-    "challenge_for_committee": "The hardest thing the committee should confront",
-    "what_would_change_my_mind": "What evidence would materially shift the decision"
+    "core_thesis": "...",
+    "challenge_for_committee": "...",
+    "what_would_change_my_mind": "..."
   }
 }
 ```
 
-### Notes
-- `decision` must be one of `Go`, `Pivot`, or `No-Go`.
-- `confidence` must be one of `Low`, `Medium`, or `High`.
-- Every `scorecard` field uses `Low`, `Medium`, or `High`.
-- `Technical Lead` currently also emits legacy alias fields so its existing tech-only tooling stays usable.
+Rules enforced in code:
 
-## Moderator output schema
-The moderator currently consumes the 2 agent outputs above and returns:
+- `decision` in `{Go, Pivot, No-Go}`
+- `confidence` in `{Low, Medium, High}`
+- scorecard assessments in `{Low, Medium, High}`
 
-```json
-{
-  "agent": "Moderator",
-  "committee_size": 2,
-  "final_decision": "Pivot",
-  "confidence": "Low",
-  "decision_summary": "Short synthesis of the current committee view",
-  "consensus_points": [
-    "point 1",
-    "point 2"
-  ],
-  "disagreements": [
-    "disagreement 1",
-    "disagreement 2"
-  ],
-  "top_risks": [
-    "risk 1",
-    "risk 2",
-    "risk 3"
-  ],
-  "required_follow_ups": [
-    "follow-up 1",
-    "follow-up 2",
-    "follow-up 3"
-  ],
-  "agent_positions": [
-    {
-      "agent": "Technical Lead",
-      "decision": "Go",
-      "confidence": "Medium",
-      "core_thesis": "The strongest technical case for the company"
-    },
-    {
-      "agent": "Skeptic",
-      "decision": "Pivot",
-      "confidence": "Medium",
-      "core_thesis": "The strongest argument against taking the pitch at face value"
-    }
-  ]
-}
+## Pipeline flow (current)
+
+1. Run six specialist modules and store raw role outputs in `native_outputs`.
+2. Map role outputs into `committee_inputs_initial` shape (via adapters + validator).
+3. Optional peer revision pass (`agents/committee_second_round.py`) rewrites each row once with peer context.
+4. Moderator runs structured `debate_round` generation and final synthesis.
+5. Save one JSON trace with startup, native outputs, committee rows, moderator output, and `pipeline_meta`.
+
+`second_round` defaults to `True` in `run_committee_pipeline(...)`.
+
+## Running the project
+
+### Single run
+
+```bash
+python run_committee_pipeline.py
 ```
 
-## Code entry points
-Current aligned modules:
-- `agents/tech_lead/technical_lead_agent.py`
-- `agents/skeptic/skeptic_agent.py`
-- `agents/moderator/moderator_agent.py`
-- `agents/committee_utils.py`
-
-Useful functions:
-- `run_technical_lead(...)`
-- `run_skeptic_agent(...)`
-- `run_two_agent_committee(startup, ...)`
-
-## Example usage
-Run the current 2-agent committee in Python:
+Programmatic call:
 
 ```python
-from agents.moderator.moderator_agent import run_two_agent_committee
+from run_committee_pipeline import run_committee_pipeline
 
-startup = {
-    "identity": {
-        "name": "ShiftPay",
-        "sector": "fintech",
-        "location": "United States",
-    },
-    "business": {
-        "description": "Cloud-native payroll platform for multi-unit restaurant groups.",
-        "model": "B2B SaaS",
-        "problem": "Restaurant payroll is manual and compliance-heavy.",
-        "solution": "Automated payroll, tax, and exception handling.",
-        "target_customer": "Restaurant groups with 10-200 locations",
-        "pricing": "$45/location/month plus usage fees",
-        "traction": "Three pilots and two signed contracts",
-    },
-    "team": {
-        "founders": "Payroll automation operator plus restaurant POS infrastructure lead"
-    },
-    "finances": {
-        "runway": "12 months",
-        "employee_count": "8"
-    }
-}
-
-result = run_two_agent_committee(
-    startup,
-    tech_use_local=True,
-    skeptic_use_local=True,
-    moderator_use_local=True,
-    save=False,
-)
+result = run_committee_pipeline(second_round=True)   # default
+print(result["output_path"], result["decision"])
 ```
 
-## Output locations
-When using the save-capable methods:
-- Tech Lead outputs go to `data/tech_lead/outputs/`
-- Skeptic outputs go to `data/skeptic/outputs/`
-- Moderator outputs go to `data/moderator/outputs/`
+Disable peer revision:
 
-## Next planned expansion
-Once the other teammates finish their agents, the intended next step is:
-1. normalize them to the same shared input schema
-2. normalize them to the same shared output schema
-3. pass all 6 outputs into the moderator
-4. keep the moderator schema stable while expanding `committee_size`
+```python
+run_committee_pipeline(second_round=False)
+```
+
+### Batch run
+
+```bash
+python run_committee_batch.py
+python run_committee_batch.py --no-second-round
+```
+
+## Moderator outputs and evaluation
+
+Moderator output includes:
+
+- `final_decision`
+- `confidence`
+- `decision_summary`
+- `consensus_points`
+- `disagreements`
+- `top_risks`
+- `required_follow_ups`
+- `agent_positions`
+- `debate_round` (rebuttals + key shifts)
+
+Evaluation script:
+
+```bash
+python agents/moderator/evaluate_moderator.py
+```
+
+This writes summary/runs CSV/JSON and figures under `data/moderator/evaluation/`.
+
+## Streamlit dashboard
+
+```bash
+streamlit run ui/debate_dashboard.py
+```
+
+The UI can:
+
+- view saved committee runs
+- show final positions and moderator decision
+- show round-one snapshot when peer revision is enabled
+- run a new startup from sidebar form
+
+## Main files
+
+- `run_committee_pipeline.py` - orchestrator
+- `run_committee_batch.py` - batch execution
+- `agents/committee_adapters.py` - role adapters to shared schema
+- `agents/committee_second_round.py` - peer revision pass
+- `agents/committee_utils.py` - normalization/validation/client routing
+- `agents/moderator/moderator_agent.py` - rebuttals + synthesis
+- `agents/moderator/evaluate_moderator.py` - metrics
+- `ui/debate_dashboard.py` - Streamlit app
+
+## Example notebook
+
+`notebooks/example_committee_run.ipynb` shows a minimal smoke test from Python and how to inspect a saved trace.

@@ -1,108 +1,207 @@
 # multi-agent-startup-evaluator
 
-Capstone project: six specialist-style agents read the same startup JSON, we squash their native outputs into one committee schema, optionally let each role revise once after seeing peers, then a moderator model writes Go / Pivot / No-Go plus risks and follow-ups. Everything worth keeping lands in `data/committee_pipeline/` as JSON. There is no single fine-tuned model checkpoint; calls go out to the VT OpenAI-compatible endpoint and/or Groq using keys in your environment (see below).
+Multi-Agent Debate and Decision System for early-stage startup evaluation.
+
+This project runs a committee-style flow: six role-specific agents read the same startup payload, outputs are normalized into one schema, an optional peer revision pass lets roles update once after seeing others, then a moderator produces the final Go/Pivot/No-Go memo with disagreement, risks, and follow-ups.
+
+## What is implemented now
+
+Current committee roles:
+
+- Market Analyst
+- Finance
+- Technical Lead
+- Legal
+- Product Lead
+- Skeptic
+
+Core pipeline is live in `run_committee_pipeline.py` and writes one trace per startup to `data/committee_pipeline/*_committee_pipeline.json`.
 
 ## Setup
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Copy `.env` from the sample if you have one, or export:
+Environment keys:
 
-- `OPENAI_API_KEY` — used with base URL `https://llm-api.arc.vt.edu/api/v1/` (Virginia Tech ARC) for `gpt-oss-120b` by default in `agents/committee_utils.py`.
-- `GROQ_API_KEY` — optional fallback; default model there is `llama-3.3-70b-versatile`.
+- `OPENAI_API_KEY` (used against `https://llm-api.arc.vt.edu/api/v1/`)
+- `GROQ_API_KEY` (fallback provider if OpenAI key is absent)
 
-If neither key is set, several agents and the moderator fall back to small local heuristics so imports still work; quality is not the same as hitting the API.
+If neither key is present, several components fall back to local heuristics so the pipeline still runs, but output quality is lower.
 
-## Run the full committee pipeline
+## Shared startup input schema
 
-From repo root:
+All roles expect a startup dictionary shaped roughly like:
+
+```json
+{
+  "metadata": {
+    "source_file": "optional.json",
+    "source_dataset": "optional_tag",
+    "label": "optional"
+  },
+  "identity": {
+    "name": "ShiftPay",
+    "sector": "fintech",
+    "location": "United States"
+  },
+  "business": {
+    "description": "Cloud payroll + AP automation for multi-unit operators",
+    "model": "B2B SaaS",
+    "problem": "Manual AP and payroll workflows",
+    "solution": "Automated intake, approvals, and payment routing",
+    "target_customer": "Restaurant groups with 10-200 locations",
+    "pricing": "$45/location/month + usage",
+    "traction": "Three pilots and two signed contracts"
+  },
+  "team": {
+    "founders": "Domain operator + engineering lead"
+  },
+  "finances": {
+    "revenue": "Unknown",
+    "burn_rate": "Unknown",
+    "funding": "Unknown",
+    "runway": "12 months",
+    "employee_count": "8"
+  }
+}
+```
+
+Minimum useful fields:
+
+- `identity.name`
+- `identity.sector`
+- `business.description`
+
+`normalize_startup` in `agents/committee_utils.py` fills missing text as `"Unknown"` so fields stay explicit.
+
+## Committee output schema (normalized)
+
+Adapters and validators produce one shared shape per role:
+
+```json
+{
+  "agent": "Technical Lead",
+  "role": "technical",
+  "summary": "2-4 sentence assessment",
+  "decision": "Go/Pivot/No-Go",
+  "confidence": "Low/Medium/High",
+  "scorecard": {
+    "execution_feasibility": {
+      "assessment": "Low/Medium/High",
+      "reasoning": "..."
+    },
+    "scalability": { "assessment": "Low/Medium/High", "reasoning": "..." },
+    "evidence_quality": { "assessment": "Low/Medium/High", "reasoning": "..." },
+    "risk_level": { "assessment": "Low/Medium/High", "reasoning": "..." }
+  },
+  "key_strengths": ["..."],
+  "key_risks": ["..."],
+  "key_questions": ["..."],
+  "next_steps": ["..."],
+  "debate": {
+    "core_thesis": "...",
+    "challenge_for_committee": "...",
+    "what_would_change_my_mind": "..."
+  }
+}
+```
+
+Rules enforced in code:
+
+- `decision` in `{Go, Pivot, No-Go}`
+- `confidence` in `{Low, Medium, High}`
+- scorecard assessments in `{Low, Medium, High}`
+
+## Pipeline flow (current)
+
+1. Run six specialist modules and store raw role outputs in `native_outputs`.
+2. Map role outputs into `committee_inputs_initial` shape (via adapters + validator).
+3. Optional peer revision pass (`agents/committee_second_round.py`) rewrites each row once with peer context.
+4. Moderator runs structured `debate_round` generation and final synthesis.
+5. Save one JSON trace with startup, native outputs, committee rows, moderator output, and `pipeline_meta`.
+
+`second_round` defaults to `True` in `run_committee_pipeline(...)`.
+
+## Running the project
+
+### Single run
 
 ```bash
 python run_committee_pipeline.py
 ```
 
-That runs the default PayFlow-shaped fixture, writes `data/committee_pipeline/payflow_committee_pipeline.json`, and prints the path plus moderator label.
-
-In code, `second_round` defaults to **on** (six extra LLM calls: each role refines its committee row using other members’ round-one stances). To skip that for a faster or cheaper run:
+Programmatic call:
 
 ```python
 from run_committee_pipeline import run_committee_pipeline
+
+result = run_committee_pipeline(second_round=True)   # default
+print(result["output_path"], result["decision"])
+```
+
+Disable peer revision:
+
+```python
 run_committee_pipeline(second_round=False)
 ```
 
-Batch over several startups (list lives in `run_committee_batch.py`):
+### Batch run
 
 ```bash
 python run_committee_batch.py
-# skip peer revision for every startup in the batch:
 python run_committee_batch.py --no-second-round
 ```
 
-## Streamlit UI
+## Moderator outputs and evaluation
 
-```bash
-streamlit run ui/debate_dashboard.py
-```
+Moderator output includes:
 
-Pick a saved `*_committee_pipeline.json`, or use the sidebar form to run a new startup. If `committee_inputs_initial` is in the file, the UI can show round-one vs after peer round.
+- `final_decision`
+- `confidence`
+- `decision_summary`
+- `consensus_points`
+- `disagreements`
+- `top_risks`
+- `required_follow_ups`
+- `agent_positions`
+- `debate_round` (rebuttals + key shifts)
 
-## Moderator evaluation (figures + summary JSON)
-
-After you have one or more committee JSON files under `data/committee_pipeline/`:
+Evaluation script:
 
 ```bash
 python agents/moderator/evaluate_moderator.py
 ```
 
-Outputs go to `data/moderator/evaluation/` (summary JSON, CSV, and matplotlib figures). Your `.gitignore` may ignore `*.png`; that is why plots sometimes do not show up in git unless you adjust ignore rules.
+This writes summary/runs CSV/JSON and figures under `data/moderator/evaluation/`.
 
-## What’s in a committee trace
+## Streamlit dashboard
 
-Rough shape of `data/committee_pipeline/<name>_committee_pipeline.json`:
+```bash
+streamlit run ui/debate_dashboard.py
+```
 
-- `startup` — input pitch
-- `native_outputs` — raw JSON per agent before adapters
-- `committee_inputs` — normalized rows the moderator actually saw (after peer round when that ran)
-- `committee_inputs_initial` — only when peer revision ran; snapshot before that pass
-- `moderator_output` — final decision, confidence, summary lists, `debate_round` (moderator-generated rebuttal block), etc.
-- `pipeline_meta` — e.g. `"second_round": true/false`
+The UI can:
 
-## Repo layout (high level)
+- view saved committee runs
+- show final positions and moderator decision
+- show round-one snapshot when peer revision is enabled
+- run a new startup from sidebar form
 
-| Path | What it is |
-|------|------------|
-| `run_committee_pipeline.py` | Orchestrates six agents → adapters → optional `committee_second_round` → moderator |
-| `agents/committee_adapters.py` | Maps heterogeneous agent JSON into the shared committee shape |
-| `agents/committee_second_round.py` | Peer revision pass on committee rows |
-| `agents/moderator/moderator_agent.py` | Debate prompt + final synthesis |
-| `agents/moderator/evaluate_moderator.py` | Metrics over saved runs |
-| `ui/debate_dashboard.py` | Streamlit front end |
+## Main files
 
-Older helpers like `run_two_agent_committee` in `moderator_agent.py` still exist for debugging but are not the main demo anymore.
+- `run_committee_pipeline.py` - orchestrator
+- `run_committee_batch.py` - batch execution
+- `agents/committee_adapters.py` - role adapters to shared schema
+- `agents/committee_second_round.py` - peer revision pass
+- `agents/committee_utils.py` - normalization/validation/client routing
+- `agents/moderator/moderator_agent.py` - rebuttals + synthesis
+- `agents/moderator/evaluate_moderator.py` - metrics
+- `ui/debate_dashboard.py` - Streamlit app
 
 ## Example notebook
 
-See `notebooks/example_committee_run.ipynb` — load a saved trace or call the pipeline from Python.
-
-## Data / preprocessing / checkpoints
-
-- **Data:** Pitches are JSON you provide or fixtures under `data/`. Some agents (market, legal, product) read static JSON corpora under their own `data/...` folders; paths are in the agent modules. There is no separate mandatory preprocessing pipeline for the committee JSON itself beyond `normalize_startup` in `committee_utils.py`.
-- **Model weights:** Not shipped. Inference goes through the APIs above; install deps from `requirements.txt` and set keys.
-
-## Submission checklist (course-style)
-
-| Requirement | Where |
-|-------------|--------|
-| README | This file |
-| Dependencies | `requirements.txt` |
-| Example notebook | `notebooks/example_committee_run.ipynb` |
-| Preprocessing | Inline normalization + agent-specific readers (no standalone ETL script required for the committee flow) |
-| Checkpoints | N/A — use API keys per above |
-
-## License / course
-
-Virginia Tech capstone — update if you need a formal license block.
+`notebooks/example_committee_run.ipynb` shows a minimal smoke test from Python and how to inspect a saved trace.

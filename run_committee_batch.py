@@ -150,7 +150,7 @@ def _record(progress: dict, startup_name: str, status: str, message: str, elapse
     _save_progress(progress)
 
 
-def run_batch(max_startups: int | None, retries: int, force: bool):
+def run_batch(max_startups: int | None, retries: int, force: bool, *, second_round: bool):
     progress = _load_progress()
     completed = 0
 
@@ -171,7 +171,7 @@ def run_batch(max_startups: int | None, retries: int, force: bool):
         for attempt in range(1, retries + 2):
             t0 = time.time()
             try:
-                result = run_committee_pipeline(startup)
+                result = run_committee_pipeline(startup, second_round=second_round)
                 elapsed = time.time() - t0
                 msg = f"decision={result.get('decision', 'unknown')}"
                 print(f"ok: {name} -> {msg} ({elapsed:.1f}s)")
@@ -216,6 +216,16 @@ if __name__ == "__main__":
         action="store_true",
         help="Run even if output file already exists.",
     )
+    parser.add_argument(
+        "--no-second-round",
+        action="store_true",
+        help="Skip peer revision (6 extra LLM calls per startup). Faster batch runs.",
+    )
     args = parser.parse_args()
-    run_batch(max_startups=args.max_startups, retries=args.retries, force=args.force)
+    run_batch(
+        max_startups=args.max_startups,
+        retries=args.retries,
+        force=args.force,
+        second_round=not args.no_second_round,
+    )
 

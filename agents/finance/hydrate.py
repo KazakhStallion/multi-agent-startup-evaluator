@@ -67,14 +67,14 @@ if __name__ == "__main__":
     test_file = os.path.join("data", "finance", "processed", "everyme.json")
     
     if os.path.exists(test_file):
-        print(f"--- Before Hydration: {test_file} ---")
+        print(f"before: {test_file}")
         with open(test_file, 'r', encoding='utf-8') as f:
             print(json.dumps(json.load(f), indent=2))
         
         print("\nRunning Hydration...")
         hydrate_startup(test_file)
         
-        print(f"\n--- After Hydration: {test_file} ---")
+        print(f"\nafter: {test_file}")
         with open(test_file, 'r', encoding='utf-8') as f:
             # Re-read the file to see the changes
             final_data = json.load(f)

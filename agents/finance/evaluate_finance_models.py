@@ -61,10 +61,7 @@ MODELS = [
 
 RUNS_PER_MODEL = 3
 
-# 12 pitches across all 7 sectors. mix of strong, weak, and ambiguous on purpose
-# so the models have to actually differentiate and not just give everything a 3
-# All these pitches I generated using Claude, which are not real startups.
-# ADDED FINANCE INFO WITH GEMINI
+# synthetic fixtures for eval — not real companies; varied strength on purpose
 TEST_PITCHES = [
     {
         "name": "LedgerFlow",
@@ -220,11 +217,9 @@ def verify_finance_math(result, pitch):
     true_monthly_rev = true_annual_rev / 12
 
     def get_num(val):
-        """Safely extracts a float from a string, or returns 0.0."""
         if val is None or isinstance(val, (list, dict)):
             return 0.0
         try:
-            # This regex-style strip handles "$1,200.50 MRR" correctly
             cleaned = ''.join(c for c in str(val) if c.isdigit() or c == '.')
             return float(cleaned) if cleaned else 0.0
         except (ValueError, TypeError):
@@ -257,9 +252,8 @@ def verify_finance_math(result, pitch):
 
 
 def safe_int(val, default=0):
-    """Safely converts a value to an integer, returning a default if it fails."""
     try:
-        # Strip any extra text the LLM might have added (e.g., "Rating: 8")
+        # strip junk if the model returned text around a number
         if isinstance(val, str):
             val = ''.join(c for c in val if c.isdigit() or c == '.')
         return int(float(val))
@@ -284,7 +278,6 @@ def score_rubric(result, math_accuracy_pct):
     if all(k in result for k in required_keys):
         score += 1
 
-    # SAFE FIXES USING THE HELPER
     if len(str(safe_nested_get(result, "runway", "calculation"))) > 5:
         score += 1
 
@@ -312,7 +305,6 @@ def score_rubric(result, math_accuracy_pct):
     return score
 
 def safe_nested_get(data, top_key, sub_key, default=""):
-    """Safely gets a nested key, ensuring the top level is actually a dictionary."""
     top_level = data.get(top_key, {})
     if isinstance(top_level, dict):
         return top_level.get(sub_key, default)
@@ -343,7 +335,6 @@ def extract_metrics(result, pitch, model, run_num):
         "math_accuracy_excluding_na": math_accuracy_excl_na if math_accuracy_excl_na is not None else "",
         "math_checks_total": num_checks,
         "math_checks_applicable": num_applicable,
-        # SAFE FIXES USING THE HELPER
         "risk_level": safe_nested_get(result, "capital_risk", "level", "No Level Returned"),
         "capital_intensity": safe_nested_get(result, "capital_intensity", "rating", "No Rating Returned"),
         "recommendation_length": len(str(safe_nested_get(result, "final_decision", "recommendation")).split()),

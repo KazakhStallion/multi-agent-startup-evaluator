@@ -52,7 +52,7 @@ client = (
 )
 
 # Each sector has a list of niches so the pitches don't all feel like the same startup.
-# All these niches I generated using Claude which includes exisiting and fictional ideas
+# niches are a mix of made-up and generic (not a real deal list)
 SECTOR_NICHES = {
     "fintech": [
         "payroll automation for restaurant groups",
@@ -451,7 +451,7 @@ Vary the quality based on the variation hint: {variation_hint}.
 """.strip()
 
 
-# I use three variation prompts so the dataset has a mix of strong, weak, and average pitches.
+# three prompt variants -> mixed pitch strength in the batch
 VARIATIONS = [
     "strong pitch with clear problem-solution fit and early traction",
     "weak pitch with vague value proposition and no real traction",
